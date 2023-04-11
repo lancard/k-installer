@@ -11,6 +11,8 @@
   "author": "Sungho Kim",
   "dependencies": {
     "electron": "^24.0.0",
-    "electron-builder": "^24.2.0"
+    "electron-builder": "^24.2.0",
+    "request": "^2.88.2",
+    "request-progress": "^3.0.0"
   }
 }

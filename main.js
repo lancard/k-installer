@@ -37,7 +37,7 @@ function createWindow() {
     mainWindow.isFocused() && mainWindow.webContents.toggleDevTools();
   });
 
-  if (process.env.NODE_ENV == 'sdevelopment') {
+  if (process.env.NODE_ENV == 'development') {
     mainWindow.loadFile('index.html');
   }
   else {
