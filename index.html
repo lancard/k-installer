@@ -2,8 +2,18 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://code.jquery.com; script-src 'self' 'unsafe-inline' https://code.jquery.com;">
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src
+            'self'
+            'unsafe-inline'
+            https://cdnjs.cloudflare.com
+            https://code.jquery.com
+            https://github.com
+            https://raw.githubusercontent.com;
+         script-src
+            'self'
+            'unsafe-inline'
+            https://code.jquery.com;">
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>K-Installer</title>
@@ -23,6 +33,18 @@
 
         .sidebar .nav-item .nav-link span {
             font-size: 1.3rem;
+        }
+
+        #wrapper #content-wrapper {
+            background-color: #272b30;
+            width: 100%;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        #accordionSidebar {
+            background-image: linear-gradient(90deg, #484e55, #3a3f44 60%, #272b30);
+            background-color: #000000;
         }
     </style>
 
@@ -55,7 +77,7 @@
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block" style="margin-top: 10px;">
+            <hr class="sidebar-divider d-none d-md-block">
 
 
             <!-- Heading -->
@@ -65,8 +87,14 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKJY')">
-                    <span class="strong">RKJY</span>
-                    <span>- Yeosu</span>
+                    <span class="font-weight-bold">RKJY</span>
+                    <small> Yeosu airport</small>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKJY')">
+                    <span class="font-weight-bold">RKSI</span>
+                    <small> Incheon airport</small>
                 </a>
             </li>
 
@@ -80,7 +108,7 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKJY')">
-                    <span>APU_PAR</span>
+                    <span>APUPAR</span>
                 </a>
             </li>
 
@@ -92,66 +120,76 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
+            <!-- Nav Item - Email -->
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="messagesDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    onclick="alert('w_o_r_s_t_r_o_c_k_e_r@gmail.com plz. (delete underscore before send)')">
+                    <i class="fas fa-envelope fa-fw"></i>
+                    <span class="mx-2 d-none d-lg-inline">Email to me</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Github -->
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="messagesDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    onclick="require('child_process').execSync('start https://github.com/lancard')">
+                    <i class="fa-brands fa-github"></i>
+                    <span class="mx-2 d-none d-lg-inline">Github Link</span>
+                </a>
+            </li>
+
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Sungho Kim 2023</span>
+            </div>
+
         </ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content-wrapper" class="d-flex flex-column p-2">
 
             <!-- Main Content -->
             <div id="content">
 
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <div class="container-fluid collapse" id="RKJY">
 
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                        <h1 class="h3 mb-0">
+                            <i class="fa-solid fa-tree"></i>
+                            RKJY - Yeosu airport
+                        </h1>
+                    </div>
 
-                        <!-- Nav Item - Email -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="messagesDropdown"
-                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                onclick="alert('w_o_r_s_t_r_o_c_k_e_r@gmail.com plz. (delete underscore before send)')">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <span class="mx-2 d-none d-lg-inline">Email to me</span>
-                            </a>
-                        </li>
+                    <div class="d-inline-block">
+                        <p>ICAO: RKJY</p>
+                        <p>Name: Yeosu airport</p>
+                        <p>Author: ArtistPilot</p>
+                        <p>License: [View]</p>
+                    </div>
 
-                        <!-- Nav Item - Github -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="messagesDropdown"
-                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                onclick="require('child_process').execSync('start https://github.com/lancard')">
-                                <i class="fa-brands fa-github"></i>
-                                <span class="mx-2 d-none d-lg-inline">Github Link</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- End of Topbar -->
+                    <img src="https://github.com/lancard/fs2020-RKJY/raw/master/resource/screenshot.png" width="400"
+                        class="m-1" style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
 
-
-
-
-                <div class="container-fluid" id="RKJY">
                 </div>
 
 
                 <div class="container-fluid" id="home">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">
+                        <h1 class="h3 mb-0 text-white">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
-                            Welcome to Korean Aviation Installer
+                            Welcome to Korea Program and Scenery Installer
                         </h1>
                     </div>
 
-                    <div class="card shadow mb-4">
+                    <img src="resources/airport.png" class="d-inline-block"
+                        style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
+
+                    <div class="d-inline-block card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary"><i class="fa-solid fa-people-carry-box"></i>
                                 Installer Version
@@ -162,7 +200,7 @@
                         </div>
                     </div>
 
-                    <div class="card shadow mb-4">
+                    <div class="d-inline-block card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary"><i class="fa-solid fa-gamepad"></i> FS2020
                                 Community Folder
@@ -178,17 +216,6 @@
 
             </div>
             <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Sungho Kim 2023</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
 
