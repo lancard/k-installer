@@ -1,23 +1,32 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, globalShortcut } = require('electron');
 const path = require('path');
+const fs = require('fs');
+const https = require('https');
 
-function upsertKeyValue(header, keyToChange, value) {
-  for (const key of Object.keys(header)) {
-    if (key.toLowerCase() === keyToChange.toLowerCase()) {
-      header[key] = value;
-      return;
-    }
-  }
-  header[keyToChange] = value;
-};
+function downloadFile(path, url) {
+  const file = fs.createWriteStream(path);
+  const request = https.get(url, function (response) {
+    response.pipe(file);
+
+    // after download completed close filestream
+    file.on("finish", () => {
+      file.close();
+      console.log("Download Completed");
+    });
+  });
+}
+
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 1280,
     height: 800,
     backgroundColor: '#1b2434',
+    icon: 'icon.png',
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true,
+      contextIsolation: false
     }
   });
 
@@ -25,24 +34,20 @@ function createWindow() {
 
   mainWindow.maximize();
 
-  mainWindow.webContents.session.webRequest.onBeforeSendHeaders(
-    (details, callback) => {
-      const { requestHeaders } = details;
-      upsertKeyValue(requestHeaders, 'Access-Control-Allow-Origin', '*');
-      callback({ requestHeaders });
-    },
-  );
-
-  mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
-    const { responseHeaders } = details;
-    upsertKeyValue(responseHeaders, 'Access-Control-Allow-Origin', ['*']);
-    upsertKeyValue(responseHeaders, 'Access-Control-Allow-Headers', ['*']);
-    callback({
-      responseHeaders,
-    });
+  globalShortcut.register('CmdOrCtrl+F5', () => {
+    mainWindow.isFocused() && mainWindow.reload();
   });
 
-  mainWindow.loadURL('https://airplane.mywire.org').then();
+  globalShortcut.register('CmdOrCtrl+F7', () => {
+    downloadFile('index.html', '')
+  });
+
+  globalShortcut.register('CmdOrCtrl+F12', () => {
+    mainWindow.isFocused() && mainWindow.webContents.toggleDevTools();
+  });
+
+  console.dir(fs.readdirSync('.'));
+  mainWindow.loadFile('index.html');
 }
 
 app.whenReady().then(() => {
