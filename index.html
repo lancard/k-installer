@@ -9,6 +9,7 @@
             https://cdnjs.cloudflare.com
             https://code.jquery.com
             https://github.com
+            https://api.github.com
             https://raw.githubusercontent.com;
          script-src
             'self'
@@ -82,7 +83,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading mb-2 mt-2">
-                <i class="fas fa-fw fa-tree"></i> Scenery
+                <i class="fas fa-fw fa-tree"></i> Scenery For FS2020
             </div>
 
             <li class="nav-item">
@@ -153,7 +154,7 @@
             <!-- Main Content -->
             <div id="content">
 
-                <div class="container-fluid collapse" id="RKJY">
+                <div class="container-fluid collapse" id="RKJY" data-url="">
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -173,6 +174,19 @@
 
                     <img src="https://github.com/lancard/fs2020-RKJY/raw/master/resource/screenshot.png" width="400"
                         class="m-1" style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
+
+
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="d-inline-block m-0 font-weight-bold text-primary">
+                                Latest Version
+                            </h6>
+                            <button class="btn btn-danger" onclick="updateScenery('RKJY')">UPDATE</button>
+                        </div>
+                        <div class="card-body bg-dark">
+                            <span latestVersion>(Loading)</span>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -249,7 +263,14 @@
 
     <script>
         const util = require('./util.js');
-        const communityDirectory = util.getCommunityDirectory();
+        const path = require('path');
+        const fs = require('fs');
+        const decompress = require("decompress");
+
+
+        var communityDirectory = util.getCommunityDirectory();
+        if (communityDirectory == null)
+            communityDirectory = "D:/";
 
         function showMenu(selectedId) {
             $("div.container-fluid").hide();
@@ -266,10 +287,39 @@
 
         $("#programVersion").text(process.env.npm_package_version);
 
-        function download() {
-            util.downloadFile('D:/tetstae', 'https://github.com/lancard/fs2020-RKJY/releases/download/production/full.zip',
+        $.getJSON("https://api.github.com/repos/lancard/fs2020-RKJY/releases/tags/production", (data) => {
+            var zipFile = null;
+            data.assets.forEach(e => {
+                if (path.extname(e.name) == ".zip")
+                    zipFile = e;
+            });
+
+            $("#RKJY span[latestVersion]").text(zipFile.updated_at);
+            $("#RKJY").attr("data-url", zipFile.browser_download_url);
+            $("#RKJY").attr("data-updated_at", zipFile.updated_at);
+        });
+
+        function updateScenery(icao) {
+            if (communityDirectory == null) {
+                alert('install fs2020 first');
+                return;
+            }
+
+            const filename = `${communityDirectory}/${icao}.zip`;
+            const dirname = `${communityDirectory}/${icao}`;
+
+            util.downloadFile(filename, $("#" + icao).attr('data-url'),
                 () => {
-                    alert('update finished');
+                    alert('download finished');
+
+                    decompress(filename, dirname)
+                        .then((files) => {
+                            localStorage.setItem(icao, $("#" + icao).attr('data-updated_at'));
+                            console.log(files);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
                 },
                 (state) => {
                     console.dir(state);
