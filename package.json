@@ -1,0 +1,16 @@
+{
+  "name": "k-installer",
+  "version": "0.8.0",
+  "description": "installer for korean program and scenery",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-builder"
+  },
+  "repository": "https://github.com/lancard",
+  "author": "Sungho Kim",
+  "dependencies": {
+    "electron": "^24.0.0",
+    "electron-builder": "^24.2.0"
+  }
+}
