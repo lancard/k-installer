@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const request = require('request');
 const progress = require('request-progress');
 
@@ -36,7 +37,40 @@ const downloadFile = (filename, url, callback, progressCallback) => {
         .pipe(file);
 };
 
+const getCommunityDirectory = () => {
+    var msfsConfigPath = null;
+
+    const steamPath = path.join(process.env.APPDATA, "\\Microsoft Flight Simulator\\UserCfg.opt");
+    const storePath = path.join(process.env.LOCALAPPDATA, "\\Packages\\Microsoft.FlightSimulator_8wekyb3d8bbwe\\LocalCache\\UserCfg.opt");
+
+    if (fs.existsSync(steamPath)) {
+        msfsConfigPath = steamPath;
+    } else if (fs.existsSync(storePath)) {
+        msfsConfigPath = storePath;
+    } else {
+        return null;
+    }
+
+    if (!msfsConfigPath) {
+        return null;
+    }
+
+    try {
+        const msfsConfig = fs.readFileSync(msfsConfigPath).toString();
+        const msfsConfigLines = msfsConfig.split(/\r?\n/);
+        const packagesPathLine = msfsConfigLines.find(line => line.includes('InstalledPackagesPath'));
+        const communityDir = path.join(packagesPathLine.split(" ").slice(1).join(" ").replaceAll('"', ''), "\\Community");
+
+        return fs.existsSync(communityDir) ? communityDir : null;
+    } catch (e) {
+        console.warn('Could not parse community dir from file', msfsConfigPath);
+        console.error(e);
+        return null;
+    }
+};
+
 module.exports = {
     randomString,
-    downloadFile
+    downloadFile,
+    getCommunityDirectory
 };

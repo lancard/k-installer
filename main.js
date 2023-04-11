@@ -25,9 +25,16 @@ function createWindow() {
 
   mainWindow.maximize();
 
-  globalShortcut.register('CmdOrCtrl+F5', () => {
-    mainWindow.isFocused() && mainWindow.reload();
-  });
+  if (process.env.NODE_ENV == 'development') {
+    globalShortcut.register('F5', () => {
+      mainWindow.isFocused() && mainWindow.reload();
+    });
+  }
+  else {
+    globalShortcut.register('CmdOrCtrl+F5', () => {
+      mainWindow.isFocused() && mainWindow.reload();
+    });
+  }
 
   globalShortcut.register('CmdOrCtrl+F7', () => {
     updateIndexPageAndRedirect(mainWindow);

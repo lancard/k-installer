@@ -15,6 +15,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .sidebar .nav-item .nav-link {
+            padding: 2px;
+            padding-left: 30px;
+        }
+
+        .sidebar .nav-item .nav-link span {
+            font-size: 1.3rem;
+        }
+    </style>
 
     <!-- for loading jQuery -->
     <script>
@@ -26,25 +36,6 @@
     <script>
         if (window.module) module = window.module;
     </script>
-
-    <script>
-        const util = require('./util.js');
-
-        function showMenu(selectedId) {
-            $("div.container-fluid").hide();
-            $("#" + selectedId).show();
-        }
-
-        function download() {
-            util.downloadFile('D:/tetstae', 'https://github.com/lancard/fs2020-RKJY/releases/download/production/full.zip',
-                () => {
-                    alert('update finished');
-                },
-                (state) => {
-                    console.dir(state);
-                });
-        }
-    </script>
 </head>
 
 <body>
@@ -55,79 +46,46 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="javascript: void(0)"
+                onclick="showMenu('home')">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-truck-fast"></i>
+                    <i class="fas fa-plane"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">K-Installer</div>
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('intro')">
-                    <i class="fas fa-fw fa-wand-magic-sparkles"></i>
-                    <span>Intro</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-
-
+            <hr class="sidebar-divider d-none d-md-block" style="margin-top: 10px;">
 
 
             <!-- Heading -->
-            <div class="sidebar-heading mb-2">
-                Scenery
+            <div class="sidebar-heading mb-2 mt-2">
+                <i class="fas fa-fw fa-tree"></i> Scenery
             </div>
 
             <li class="nav-item">
-                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('stock')">
-                    <i class="fas fa-fw fa-arrow-trend-up"></i>
-                    <span>Stock</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('membership')">
-                    <i class="fas fa-fw fa-gift"></i>
-                    <span>Membership</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('tts')">
-                    <i class="fas fa-fw fa-microphone"></i>
-                    <span>TTS</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('ping')">
-                    <i class="fas fa-fw fa-home"></i>
-                    <span>Who is in home?</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('addip')">
-                    <i class="fas fa-fw fa-plus"></i>
-                    <span>접속허용 IP 추가</span></a>
+                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKJY')">
+                    <span class="strong">RKJY</span>
+                    <span>- Yeosu</span>
+                </a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block mt-2">
+            <hr class="sidebar-divider d-none d-md-block" style="margin-top: 40px;">
 
             <!-- Heading -->
-            <div class="sidebar-heading mb-2">
-                Misc
+            <div class="sidebar-heading mb-2 mt-2">
+                Program
             </div>
 
             <li class="nav-item">
-                <a class="nav-link"
-                    href="https://docs.google.com/spreadsheets/d/1-T1cCJTsSN4HmZ53v3o3JZBEGexUhNCNPQnuJdvxVOY/edit?usp=sharing"
-                    target="_blank">
-                    <i class="fas fa-fw fa-gift"></i>
-                    <span>Wishlist</span></a>
+                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKJY')">
+                    <span>APU_PAR</span>
+                </a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block mt-2">
+            <hr class="sidebar-divider d-none d-md-block" style="margin-top: 40px;">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -177,223 +135,44 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid collapse" id="addip">
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">
-                            <i class="fa-solid fa-plus"></i>
-                            접속 허용 IP 추가
-                        </h1>
-                        <a href="javascript: void(0);" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"
-                            onclick="allowHost()">
-                            <i class="fas fa-download fa-sm text-white-50"></i> Add IP
-                        </a>
-                    </div>
 
-                    <div class="input-group my-2">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-primary" type="button">
-                                <small>
-                                    IP
-                                </small>
-                            </button>
-                        </div>
-                        <input type="text" class="form-control" id="ipText">
-                    </div>
+
+
+                <div class="container-fluid" id="RKJY">
                 </div>
 
-                <div class="container-fluid collapse" id="ping">
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">
-                            <i class="fa-solid fa-home"></i>
-                            Check Connection
-                        </h1>
-                        <a href="javascript: void(0);" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"
-                            onclick="pingToHost()">
-                            <i class="fas fa-download fa-sm text-white-50"></i> Check Connection
-                        </a>
-                    </div>
 
-                    <div id="pingResult" class="bg-dark text-white"></div>
-                </div>
-
-                <div class="container-fluid collapse" id="stock">
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">
-                            <i class="fa-solid fa-arrow-trend-up"></i>
-                            Stock
-                        </h1>
-                    </div>
-
-                    <h3>● 추천종목</h3>
-                    <table class="table table-condensed table-bordered" id="stock_recommend_list">
-                        <thead>
-                            <tr class="info">
-                                <th>종목(종목코드)</th>
-                                <th>PER</th>
-                                <th>PBR</th>
-                                <th>배당액</th>
-                                <th>배당수익률</th>
-                                <th>전일가격</th>
-                                <th>52주 최저가</th>
-                                <th>52주 최저가 대비 전일가격</th>
-                                <th>컨센서스(목표가)</th>
-                                <th>컨센서스(컨센최저가대비현재가)</th>
-                                <th>컨센서스(최저가)</th>
-                                <th>컨센서스(평점)</th>
-                                <th>데이터 가져온 일자</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="collapse">
-                                <td><b><a href="javascript:void(0)" onClick="selectStock(this);"
-                                            ajax_result_mapping_name="hname"></a>
-                                        (<span ajax_result_mapping_name="shcode"></span>)</b>
-                                </td>
-                                <td ajax_result_mapping_name="per"><b></b></td>
-                                <td ajax_result_mapping_name="pbrx"><b></b></td>
-                                <td ajax_result_mapping_name="cashsis"><b></b></td>
-                                <td ajax_result_mapping_name="cashrate"><b></b></td>
-                                <td ajax_result_mapping_name="price"><b></b></td>
-                                <td ajax_result_mapping_name="low52w"><b></b></td>
-                                <td><b ajax_percent_denominator="price" ajax_percent_numerator="low52w"></b>％</td>
-                                <td ajax_result_mapping_name="boga"><b></b></td>
-                                <td><b ajax_percent_denominator="price" ajax_percent_numerator="minga"></b>％</td>
-                                <td ajax_result_mapping_name="minga"><b></b></td>
-                                <td ajax_result_mapping_name="bopn"><b></b></td>
-                                <td ajax_result_mapping_name="last_update_datetime"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <table class="table table-condensed table-bordered" id="stock_status_list">
-                        <thead>
-                            <tr class="success">
-                                <th>종목(종목코드)</th>
-                                <th>수량(A)</th>
-                                <th>평균단가(B)</th>
-                                <th>매입금액(A×B)</th>
-                                <th>현재가</th>
-                                <th>평가손익</th>
-                                <th>이익(손실)률</th>
-                                <th>매도하기</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="display: none;">
-
-                                <td><b><a href="javascript:void(0)" onClick="selectStock(this);"
-                                            ajax_result_mapping_name="hname"></a>
-                                        (<span ajax_result_mapping_name="expcode"></span>)</b>
-                                </td>
-                                <td ajax_result_mapping_name="janqty"></td>
-                                <td ajax_result_mapping_name="pamt"></td>
-                                <td ajax_result_mapping_name="mamt"></td>
-                                <td ajax_result_mapping_name="price"></td>
-                                <td ajax_result_mapping_name="dtsunik" ajax_after_mapping_function="decorateProfitText">
-                                </td>
-                                <td><b ajax_percent_denominator="dtsunik" ajax_percent_numerator="mamt"
-                                        ajax_after_mapping_function="decorateProfitText"></b>％</td>
-                                <td>
-                                    수량: <input type="text" name="qty" ajax_result_mapping_name="janqty" size="3">
-                                    <input type="button" value="팔기" onClick="sellStock(this)">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="container-fluid collapse" id="tts">
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">
-                            <i class="fa-solid fa-microphone"></i>
-                            TTS (Text to speech)
-                        </h1>
-                        <a href="javascript: void(0);" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"
-                            onclick="callTTS()">
-                            <i class="fas fa-microphone fa-sm text-white-50"></i> Speak
-                        </a>
-                    </div>
-
-                    <input type="text" class="form-control" id="ttsText">
-                    <div>
-                        <i>Will Speacker out above text message</i>
-                    </div>
-                </div>
-
-                <div class="container-fluid collapse" id="membership">
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">
-                            <i class="fa-solid fa-gifts"></i>
-                            Membership
-                        </h1>
-                    </div>
-
-                    <img class="img-fluid" src-original="secured_static/img/happypoint.jpg">
-                </div>
-
-                <div class="container-fluid" id="intro">
-
+                <div class="container-fluid" id="home">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
-                            Hello there! Welcome to SungHo's warehouse.
+                            Welcome to Korean Aviation Installer
                         </h1>
                     </div>
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><i class="fa-solid fa-plane"></i> Aviation
+                            <h6 class="m-0 font-weight-bold text-primary"><i class="fa-solid fa-people-carry-box"></i>
+                                Installer Version
                             </h6>
                         </div>
                         <div class="card-body">
-                            <p>항공 관련 자료는 <a href="https://airplane.mywire.org">https://airplane.mywire.org</a>로 이관되었습니다.
-                            </p>
-                            <p>link to scenery and aviation: <a
-                                    href="https://airplane.mywire.org">https://airplane.mywire.org</a></p>
+                            <span id="programVersion">(Loading)</span>
                         </div>
                     </div>
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><i class="fa-solid fa-gamepad"></i> Sepi MUD
+                            <h6 class="m-0 font-weight-bold text-primary"><i class="fa-solid fa-gamepad"></i> FS2020
+                                Community Folder
                             </h6>
                         </div>
                         <div class="card-body">
-                            <ul>
-                                <li>
-                                    <a href="https://namu.wiki/w/%EC%84%B8%ED%94%BC%EB%A1%9C%EB%8B%88%EC%95%84">나무위키</a>
-                                </li>
-                                <li><a
-                                        href="https://docs.google.com/spreadsheets/d/1lPMDVhs1WxR7IRVZJU3YCB5U_RamhmdHkwDvCQ8x-VA/edit?usp=sharing">세피로니아
-                                        게임 정보들(구글닥스)</a>
-                                </li>
-                                <li><a href="/mud/ansi.exe">안시 편집 프로그램</a></li>
-
-                            </ul>
+                            <span id="communityDirectory">(Loading)</span>
                         </div>
                     </div>
 
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><i class="fa-solid fa-heart"></i> Special
-                                Thanks
-                                To</h6>
-                        </div>
-                        <div class="card-body">
-                            <ul>
-                                <li>My wife and my son.</li>
-                                <li>Sepi MUD users.</li>
-                                <li>And you.</li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -440,6 +219,36 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const util = require('./util.js');
+        const communityDirectory = util.getCommunityDirectory();
+
+        function showMenu(selectedId) {
+            $("div.container-fluid").hide();
+            $("#" + selectedId).show();
+        }
+
+        if (communityDirectory == null) {
+            $("#communityDirectory").addClass("text-danger");
+            $("#communityDirectory").text("Not Found");
+        }
+        else {
+            $("#communityDirectory").text(communityDirectory);
+        }
+
+        $("#programVersion").text(process.env.npm_package_version);
+
+        function download() {
+            util.downloadFile('D:/tetstae', 'https://github.com/lancard/fs2020-RKJY/releases/download/production/full.zip',
+                () => {
+                    alert('update finished');
+                },
+                (state) => {
+                    console.dir(state);
+                });
+        }
+    </script>
 </body>
 
 </html>

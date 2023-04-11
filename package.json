@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "set NODE_ENV=development&&electron .",
-    "package": "electron-builder"
+    "package": "npm version patch && electron-builder"
   },
   "repository": "https://github.com/lancard",
   "author": "Sungho Kim",
