@@ -4,7 +4,7 @@
   "description": "installer for korean program and scenery",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "start": "set NODE_ENV=development&&electron .",
     "package": "electron-builder"
   },
   "repository": "https://github.com/lancard",
