@@ -188,6 +188,11 @@
                         </div>
                     </div>
 
+                    <div class="progress mb-4">
+                        <div class="progress-bar" role="progressbar" style="width: 0%">
+                        </div>
+                        <span>10%</span>
+                    </div>
                 </div>
 
 
@@ -224,6 +229,7 @@
                             <span id="communityDirectory">(Loading)</span>
                         </div>
                     </div>
+
 
                 </div>
                 <!-- /.container-fluid -->
@@ -308,8 +314,12 @@
             const filename = `${communityDirectory}/${icao}.zip`;
             const dirname = `${communityDirectory}/${icao}`;
 
+            $("#" + icao).find(".progress").removeClass("collapse");
+            $("#" + icao).find(".progress-bar").css("width", "0");
+
             util.downloadFile(filename, $("#" + icao).attr('data-url'),
                 () => {
+                    $("#" + icao).find(".progress-bar").css("width", "100%");
                     alert('download finished');
 
                     decompress(filename, dirname)
@@ -322,7 +332,7 @@
                         });
                 },
                 (state) => {
-                    console.dir(state);
+                    $("#" + icao).find(".progress-bar").css("width", (state.percent * 100) + "%");
                 });
         }
     </script>
