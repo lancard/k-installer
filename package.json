@@ -3,9 +3,6 @@
   "version": "0.8.1",
   "description": "installer for korean program and scenery",
   "main": "main.js",
-  "build": {
-    "artifactName": "k_installer_setup.exe"
-  },  
   "scripts": {
     "start": "set NODE_ENV=development&&electron .",
     "package": "electron-builder"
