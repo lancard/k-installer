@@ -435,7 +435,7 @@
             localStorage.removeItem(id);
 
             for (var dir in programInfo[id].directory) {
-                fs.rmSync(dir, { recursive: true, force: true });
+                fs.rmSync(programInfo[id].directory[dir], { recursive: true, force: true });
             };
 
             updateScreen(id);
@@ -465,7 +465,7 @@
                             for (var dir in programInfo[id].directory) {
                                 fs.renameSync(`${unzippedDirName}/${dir}`, programInfo[id].directory[dir]);
                             }
-                            fs.rmSync(unzippedDirName);
+                            fs.rmSync(unzippedDirName, { recursive: true, force: true });
                             localStorage.setItem(id, programInfo[id].date);
                             $(`#${id}`).find("[downloadStatus]").hide();
                             updateScreen(id);
