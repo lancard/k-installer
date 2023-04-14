@@ -363,6 +363,7 @@
 
     <script>
         // common library
+        const appVersion = require('./package.json').version;
         const util = require('./util.js');
         var communityDirectory = util.getCommunityDirectory();
         if (communityDirectory == null)
@@ -392,7 +393,7 @@
 
         function checkUpdate() {
             $.getJSON(`https://raw.githubusercontent.com/lancard/k-installer/master/package.json`, (data) => {
-                if (process.env.npm_package_version == data.version)
+                if (appVersion == data.version)
                     return;
 
                 // update exist.
@@ -412,7 +413,7 @@
             else {
                 $("#communityDirectory").text(communityDirectory);
             }
-            $("#programVersion").text(process.env.npm_package_version);
+            $("#programVersion").text(appVersion);
 
             // check update
             checkUpdate();
