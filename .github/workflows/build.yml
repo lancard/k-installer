@@ -1,9 +1,9 @@
-name: Build
+name: build
 
 on: push
 
 jobs:
-  release:
+  build:
     runs-on: windows-latest
 
     steps:
@@ -14,8 +14,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
+      
+      - run: npm install
 
-      - name: Build/release Electron app
-        uses: samuelmeuli/action-electron-builder@v1
-        with:
-          release: ${{ startsWith(github.ref, 'refs/tags/v1') }}
+      - run: npm run package
+
+      - run: dir /s/r *
