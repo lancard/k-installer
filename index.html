@@ -469,7 +469,7 @@
                             localStorage.setItem(id, programInfo[id].date);
                             $(`#${id}`).find("[downloadStatus]").hide();
                             updateScreen(id);
-                            alert('install complete');
+                            alert(`installation complete: ${id}`);
                         })
                         .catch((error) => {
                             console.log(error);
