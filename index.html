@@ -39,6 +39,14 @@
             font-size: 1.3rem;
         }
 
+        .sidebar .nav-item small {
+            color: rgb(128, 128, 128);
+        }
+
+        .sidebar-heading {
+            color: rgb(228, 228, 228) !important;
+        }
+
         #wrapper #content-wrapper {
             background-color: #272b30;
             width: 100%;
@@ -139,7 +147,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKJY')">
                     <span class="font-weight-bold">RKJY</span>
-                    <small> Yeosu airport</small>
+                    <small class="d-none d-lg-inline"> Yeosu airport</small>
                     <span updateIcon="RKJY" class="d-none"><sup class="text-warning">up<i
                                 class="fas fa-turn-up text-warning"></i></sup></span>
                 </a>
@@ -147,7 +155,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKPK')">
                     <span class="font-weight-bold">RKPK</span>
-                    <small> Gimhae airport</small>
+                    <small class="d-none d-lg-inline"> Gimhae airport</small>
                     <span updateIcon="RKPK" class="d-none"><sup class="text-warning">up<i
                                 class="fas fa-turn-up text-warning"></i></sup></span>
                 </a>
@@ -155,27 +163,21 @@
 
             <!-- Heading -->
             <div class="sidebar-heading mb-2 mt-4">
-                Program
+                ATC Program
             </div>
 
             <li class="nav-item">
-                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKJY')">
-                    <span>APUPAR</span>
+                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKPK')">
+                    <span class="font-weight-bold">APU PAR</span>
+                    <small class="d-none d-lg-inline"> PAR program</small>
                 </a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block" style="margin-top: 40px;">
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-            <!-- Nav Item - Email -->
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="messagesDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)" role="button"
                     onclick="alert('w_o_r_s_t_r_o_c_k_e_r@gmail.com plz. (delete underscore before send)')">
                     <i class="fas fa-envelope fa-fw"></i>
                     <span class="mx-2 d-none d-lg-inline">Email to me</span>
@@ -192,10 +194,9 @@
                 </a>
             </li>
 
-            <div class="copyright text-center fixed-bottom">
+            <li class="nav-item dropdown no-arrow mx-1 my-4 text-center">
                 <small><span>Copyright &copy; Sungho Kim 2023</span></small>
-            </div>
-
+            </li>
         </ul>
         <!-- End of Sidebar -->
 
