@@ -7,14 +7,12 @@
             'self'
             'unsafe-inline'
             https://cdnjs.cloudflare.com
-            https://code.jquery.com
-            https://github.com
-            https://api.github.com
+            https://github.com            
             https://raw.githubusercontent.com;
          script-src
             'self'
             'unsafe-inline'
-            https://code.jquery.com;">
+            https://cdnjs.cloudflare.com;">
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>K-Installer</title>
@@ -47,14 +45,50 @@
             background-image: linear-gradient(90deg, #484e55, #3a3f44 60%, #272b30);
             background-color: #000000;
         }
+
+        .card {
+            border-color: #424242;
+            background-color: #181818;
+            margin: 5px;
+        }
+
+        .card-header {
+            color: white;
+            border-bottom: #424242;
+            background-color: #000;
+        }
+
+        .card-body {
+            color: white;
+        }
+
+        .map-overlay {
+            position: absolute;
+            width: 70px;
+            background-color: rgba(255, 255, 255, 0.1);
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .airport-description {
+            color: rgb(128, 128, 128);
+        }
+
+        .airport-description strong {
+            color: rgb(228, 228, 228);
+        }
     </style>
 
     <!-- for loading jQuery -->
     <script>
         if (typeof module === 'object') { window.module = module; module = undefined; }
     </script>
-    <script src="https://code.jquery.com/jquery-3.6.3.js"
-        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.7/dayjs.min.js"
+        integrity="sha512-hcV6DX35BKgiTiWYrJgPbu3FxS6CsCjKgmrsPRpUPkXWbvPiKxvSVSdhWX0yXcPctOI2FJ4WP6N1zH+17B/sAA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- for loading jQuery -->
     <script>
         if (window.module) module = window.module;
@@ -141,8 +175,8 @@
                 </a>
             </li>
 
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Sungho Kim 2023</span>
+            <div class="copyright text-center fixed-bottom">
+                <small><span>Copyright &copy; Sungho Kim 2023</span></small>
             </div>
 
         </ul>
@@ -157,36 +191,35 @@
                 <div class="container-fluid collapse" id="RKJY" data-url="">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-
+                    <div class="m-4">
                         <h1 class="h3 mb-0">
-                            <i class="fa-solid fa-tree"></i>
+                            <i class="fa-solid fa-plane-departure"></i>
                             RKJY - Yeosu airport
                         </h1>
                     </div>
 
-                    <div class="d-inline-block">
-                        <p>ICAO: RKJY</p>
-                        <p>Name: Yeosu airport</p>
-                        <p>Author: ArtistPilot</p>
-                        <p>License: [View]</p>
+                    <div class="row p-4">
+                        <div class="col-auto">
+                            <img src="https://github.com/lancard/k-installer/raw/master/resources/RKJY.png"
+                                width="400" class="m-1" style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
+                        </div>
+                        <div class="col mx-0 my-4">
+                            <ul class="airport-description">
+                                <li>ICAO: <strong>RKJY</strong></li>
+                                <li>Name: <strong>Yeosu airport</strong></li>
+                                <li>Author: <strong>ArtistPilot</strong></li>
+                                <li>License: <strong>mail to ArtistPilot</strong></li>
+                                <hr class="my-2" />
+                                <li>Installed version: <strong latestVersion></strong></li>
+                                <li>Name: <strong>Yeosu airport</strong></li>
+                                <li>Author: <strong>ArtistPilot</strong></li>
+                                <li>License: <strong>mail to ArtistPilot</strong></li>
+                            </ul>
+                        </div>
+
                     </div>
 
-                    <img src="https://github.com/lancard/fs2020-RKJY/raw/master/resource/screenshot.png" width="400"
-                        class="m-1" style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
 
-
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="d-inline-block m-0 font-weight-bold text-primary">
-                                Latest Version
-                            </h6>
-                            <button class="btn btn-danger" onclick="updateScenery('RKJY')">UPDATE</button>
-                        </div>
-                        <div class="card-body bg-dark">
-                            <span latestVersion>(Loading)</span>
-                        </div>
-                    </div>
 
                     <div class="progress mb-4">
                         <div class="progress-bar" role="progressbar" style="width: 0%">
@@ -205,30 +238,43 @@
                         </h1>
                     </div>
 
-                    <img src="resources/airport.png" class="d-inline-block"
-                        style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
+                    <div class="row">
+                        <div class="col-auto">
+                            <img src="https://github.com/lancard/k-installer/raw/master/resources/airport.png" class="d-inline-block"
+                                style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
 
-                    <div class="d-inline-block card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><i class="fa-solid fa-people-carry-box"></i>
-                                Installer Version
-                            </h6>
+                            <div class="map-overlay" onclick="showMenu('RKJY')" style="top: 680px; left: 280px;">
+                                <div class="bg-gray-800"><i class="fa-solid fa-plane"></i> RKJY</div>
+                                <hr class="m-0" style="border-color: white;">
+                                <div>Yeosu</div>
+                            </div>
+                            <div class="map-overlay" onclick="showMenu('RKPK')" style="top: 654px; left: 372px;">
+                                <div class="bg-gray-800"><i class="fa-solid fa-plane"></i> RKPK</div>
+                                <hr class="m-0" style="border-color: white;">
+                                <div>Gimhae</div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <span id="programVersion">(Loading)</span>
+                        <div class="col">
+                            <div class="card m-4">
+                                <div class="card-header">
+                                    <i class="fa-solid fa-people-carry-box"></i> Installer Version
+                                </div>
+                                <div class="card-body">
+                                    <span id="programVersion">(Loading)</span>
+                                </div>
+                            </div>
+
+                            <div class="card m-4">
+                                <div class="card-header">
+                                    <i class="fa-solid fa-people-carry-box"></i> FS2020 Community Folder
+                                </div>
+                                <div class="card-body">
+                                    <span id="communityDirectory">(Loading)</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="d-inline-block card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"><i class="fa-solid fa-gamepad"></i> FS2020
-                                Community Folder
-                            </h6>
-                        </div>
-                        <div class="card-body">
-                            <span id="communityDirectory">(Loading)</span>
-                        </div>
-                    </div>
 
 
                 </div>
@@ -300,7 +346,7 @@
                     zipFile = e;
             });
 
-            $("#RKJY span[latestVersion]").text(zipFile.updated_at);
+            $("#RKJY [latestVersion]").text(zipFile.updated_at);
             $("#RKJY").attr("data-url", zipFile.browser_download_url);
             $("#RKJY").attr("data-updated_at", zipFile.updated_at);
         });
