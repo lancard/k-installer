@@ -6,9 +6,6 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - name: Get version from package.json
-        run: VERSION_STRING=`node -p "require('./package.json').version"` && echo "VERSION_STRING=$VERSION_STRING" >> $GITHUB_ENV
-
       - name: Check out Git repository
         uses: actions/checkout@v1
 
@@ -16,6 +13,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
+
+      - name: Get version from package.json
+        run: VERSION_STRING=`node -p "require('./package.json').version"` && echo "VERSION_STRING=$VERSION_STRING" >> $GITHUB_ENV        
       
       - run: npm install
 
