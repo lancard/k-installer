@@ -5,8 +5,10 @@ on: push
 jobs:
   build:
     runs-on: windows-latest
-
     steps:
+      - name: Get version from package.json
+        run: VERSION_STRING=`node -p "require('./package.json').version"` && echo "VERSION_STRING=$VERSION_STRING" >> $GITHUB_ENV
+
       - name: Check out Git repository
         uses: actions/checkout@v1
 
@@ -19,4 +21,23 @@ jobs:
 
       - run: npm run package
 
-      - run: dir /s/r *
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: v${{ env.VERSION_STRING }}
+          release_name: Release v${{ env.VERSION_STRING }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Setup exe file
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: "dist/k-installer Setup ${{ env.VERSION_STRING }}.exe"
+          asset_name: "k-installer Setup ${{ env.VERSION_STRING }}.exe"
+          asset_content_type: application/octet-stream
