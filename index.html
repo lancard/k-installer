@@ -7,7 +7,8 @@
             'self'
             'unsafe-inline'
             https://cdnjs.cloudflare.com
-            https://github.com            
+            https://api.github.com
+            https://github.com
             https://raw.githubusercontent.com;
          script-src
             'self'
@@ -25,6 +26,10 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        .sidebar {
+            width: 20vw;
+        }
+
         .sidebar .nav-item .nav-link {
             padding: 2px;
             padding-left: 30px;
@@ -124,6 +129,8 @@
                 <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKJY')">
                     <span class="font-weight-bold">RKJY</span>
                     <small> Yeosu airport</small>
+                    <span updateIcon="RKJY" class="d-none"><sup class="text-warning">up<i
+                                class="fas fa-turn-up text-warning"></i></sup></span>
                 </a>
             </li>
             <li class="nav-item">
@@ -189,7 +196,6 @@
             <div id="content">
 
                 <div class="container-fluid collapse" id="RKJY" data-url="">
-
                     <!-- Page Heading -->
                     <div class="m-4">
                         <h1 class="h3 mb-0">
@@ -200,8 +206,8 @@
 
                     <div class="row p-4">
                         <div class="col-auto">
-                            <img src="https://github.com/lancard/k-installer/raw/master/resources/RKJY.png"
-                                width="400" class="m-1" style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
+                            <img src="https://github.com/lancard/k-installer/raw/master/resources/RKJY.png" width="500"
+                                class="m-1" style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
                         </div>
                         <div class="col mx-0 my-4">
                             <ul class="airport-description">
@@ -210,21 +216,32 @@
                                 <li>Author: <strong>ArtistPilot</strong></li>
                                 <li>License: <strong>mail to ArtistPilot</strong></li>
                                 <hr class="my-2" />
-                                <li>Installed version: <strong latestVersion></strong></li>
-                                <li>Name: <strong>Yeosu airport</strong></li>
-                                <li>Author: <strong>ArtistPilot</strong></li>
-                                <li>License: <strong>mail to ArtistPilot</strong></li>
+                                <li>Latest version: <strong latestVersion></strong></li>
+                                <li>Installed version: <strong installedVersion></strong></li>
                             </ul>
+                            <div class="mx-4">
+                                <button type="button" class="btn btn-success mx-2"
+                                    onclick="updateScenery('RKJY')">Install / Update</button>
+                                <button type="button" class="btn btn-danger mx-2"
+                                    onclick="removeScenery('RKJY')">Remove</button>
+                            </div>
                         </div>
-
                     </div>
 
+                    <div downloadStatus class="collapse">
+                        <h2 statusMessage class="text-primary">Download in progress...</h2>
+                        <h4>Transferred: <span transferred>0</span> MB</h4>
+                        <h4>Speed: <span speed>0</span> MB/s</h4>
+                    </div>
 
-
-                    <div class="progress mb-4">
-                        <div class="progress-bar" role="progressbar" style="width: 0%">
+                    <div class="collapse">
+                        <h1>Installation in progress</h1>
+                        <div class="progress mb-4">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                style="width: 10%">
+                            </div>
+                            <span>10%</span>
                         </div>
-                        <span>10%</span>
                     </div>
                 </div>
 
@@ -240,15 +257,15 @@
 
                     <div class="row">
                         <div class="col-auto">
-                            <img src="https://github.com/lancard/k-installer/raw/master/resources/airport.png" class="d-inline-block"
-                                style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
+                            <img src="https://github.com/lancard/k-installer/raw/master/resources/airport.png"
+                                style="box-shadow: 5px 5px 10px #000; border-radius: 25px; width: 30vw;">
 
-                            <div class="map-overlay" onclick="showMenu('RKJY')" style="top: 680px; left: 280px;">
+                            <div class="map-overlay" onclick="showMenu('RKJY')" style="top: 36.2vw; left: 14vw;">
                                 <div class="bg-gray-800"><i class="fa-solid fa-plane"></i> RKJY</div>
                                 <hr class="m-0" style="border-color: white;">
                                 <div>Yeosu</div>
                             </div>
-                            <div class="map-overlay" onclick="showMenu('RKPK')" style="top: 654px; left: 372px;">
+                            <div class="map-overlay" onclick="showMenu('RKPK')" style="top: 34.2vw; left: 20vw;">
                                 <div class="bg-gray-800"><i class="fa-solid fa-plane"></i> RKPK</div>
                                 <hr class="m-0" style="border-color: white;">
                                 <div>Gimhae</div>
@@ -314,73 +331,129 @@
     </div>
 
     <script>
+        // common library
         const util = require('./util.js');
         const path = require('path');
         const fs = require('fs');
         const decompress = require("decompress");
-
-
+        const programInfo = {
+            "RKJY": {
+                id: "RKJY",
+                repository: "fs2020-RKJY",
+                directory: [
+                    "rkjy-airport-scene",
+                    "rkjy",
+                    "zulu-airport-rkjy-yeosu"
+                ]
+            },
+            "RKPK": {
+                id: "RKPK",
+                repository: "fs2020-RKPK"
+            }
+        };
         var communityDirectory = util.getCommunityDirectory();
-        if (communityDirectory == null)
-            communityDirectory = "D:/";
+
+
+        function initialization() {
+            if (communityDirectory == null)
+                communityDirectory = "D:/test"; // for debug
+            if (communityDirectory == null) {
+                $("#communityDirectory").addClass("text-danger");
+                $("#communityDirectory").text("Not Found");
+            }
+            else {
+                $("#communityDirectory").text(communityDirectory);
+            }
+            $("#programVersion").text(process.env.npm_package_version);
+
+            for (var id in programInfo) {
+                retrieveGitInfo(id);
+            }
+        }
+
+
+        // functions ..................................
+
+        function updateScreen(id) {
+            $(`#${id} [latestVersion]`).text(programInfo[id]["date"]);
+            $(`#${id} [installedVersion]`).text(localStorage.getItem(id));
+            if (programInfo[id]["date"] != localStorage.getItem(id)) {
+                $(`#${id} [latestVersion]`).addClass("text-danger");
+                $(`[updateicon=${id}]`).removeClass("d-none");
+            } else {
+                $(`#${id} [latestVersion]`).removeClass("text-danger");
+                $(`[updateicon=${id}]`).addClass("d-none");
+            }
+        }
+
+        function retrieveGitInfo(id) {
+            $.getJSON(`https://api.github.com/repos/lancard/${programInfo[id].repository}/commits/master`, (data) => {
+                programInfo[id]["date"] = data.commit.committer.date;
+
+                updateScreen(id);
+            });
+        }
+
+
 
         function showMenu(selectedId) {
             $("div.container-fluid").hide();
             $("#" + selectedId).show();
         }
 
-        if (communityDirectory == null) {
-            $("#communityDirectory").addClass("text-danger");
-            $("#communityDirectory").text("Not Found");
-        }
-        else {
-            $("#communityDirectory").text(communityDirectory);
-        }
 
-        $("#programVersion").text(process.env.npm_package_version);
 
-        $.getJSON("https://api.github.com/repos/lancard/fs2020-RKJY/releases/tags/production", (data) => {
-            var zipFile = null;
-            data.assets.forEach(e => {
-                if (path.extname(e.name) == ".zip")
-                    zipFile = e;
+        function removeScenery(id) {
+            localStorage.removeItem(id);
+
+            programInfo[id].directory.forEach(e => {
+                fs.rmSync(`${communityDirectory}/${e}`, { recursive: true, force: true });
             });
 
-            $("#RKJY [latestVersion]").text(zipFile.updated_at);
-            $("#RKJY").attr("data-url", zipFile.browser_download_url);
-            $("#RKJY").attr("data-updated_at", zipFile.updated_at);
-        });
+            updateScreen(id);
+        }
 
-        function updateScenery(icao) {
+        function updateScenery(id, branch) {
             if (communityDirectory == null) {
                 alert('install fs2020 first');
                 return;
             }
 
-            const filename = `${communityDirectory}/${icao}.zip`;
-            const dirname = `${communityDirectory}/${icao}`;
+            removeScenery(id);
 
-            $("#" + icao).find(".progress").removeClass("collapse");
-            $("#" + icao).find(".progress-bar").css("width", "0");
+            const filename = `${communityDirectory}/${id}.zip`;
+            const unzippedDirName = `${communityDirectory}/${programInfo[id].repository}-${branch}`;
 
-            util.downloadFile(filename, $("#" + icao).attr('data-url'),
+            $(`#${id}`).find("[downloadStatus]").show();
+            $(`#${id}`).find("[downloadStatus] [statusMessage]").text("downloading...");
+
+            util.downloadFile(filename, `https://github.com/lancard/${programInfo[id].repository}/archive/refs/heads/${branch}.zip`,
                 () => {
-                    $("#" + icao).find(".progress-bar").css("width", "100%");
-                    alert('download finished');
+                    $(`#${id}`).find("[downloadStatus] [statusMessage]").text("decompressing...");
 
-                    decompress(filename, dirname)
+                    decompress(filename, communityDirectory)
                         .then((files) => {
-                            localStorage.setItem(icao, $("#" + icao).attr('data-updated_at'));
-                            console.log(files);
+                            fs.rmSync(filename);
+                            programInfo[id].directory.forEach(e => {
+                                fs.renameSync(`${unzippedDirName}/${e}`, `${communityDirectory}/${e}`);
+                            });
+                            fs.rmSync(unzippedDirName);
+                            localStorage.setItem(id, programInfo[id].date);
+                            $(`#${id}`).find("[downloadStatus]").hide();
+                            updateScreen(id);
+                            alert('install complete');
                         })
                         .catch((error) => {
                             console.log(error);
                         });
                 },
                 (state) => {
-                    $("#" + icao).find(".progress-bar").css("width", (state.percent * 100) + "%");
+                    $(`#${id}`).find("[downloadStatus] [transferred]").text((state.size.transferred / 1024 / 1024).toFixed(2));
+                    $(`#${id}`).find("[downloadStatus] [speed]").text((state.speed / 1024 / 1024).toFixed(2));
                 });
         }
+
+        initialization();
     </script>
 </body>
 
