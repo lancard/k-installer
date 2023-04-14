@@ -119,9 +119,20 @@
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
+            <!-- Heading -->
+            <div class="sidebar-heading mb-2 mt-4">
+                <i class="fas fa-fw fa-tree"></i> Chart for Korea
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript: void(0)"
+                    onclick="require('child_process').execSync('start https://lancard.github.io/chart/')">
+                    <span class="font-weight-bold">Charts <i class="fas fa-fw fa-up-right-from-square"></i></span>
+                </a>
+            </li>
+
 
             <!-- Heading -->
-            <div class="sidebar-heading mb-2 mt-2">
+            <div class="sidebar-heading mb-2 mt-4">
                 <i class="fas fa-fw fa-tree"></i> Scenery For FS2020
             </div>
 
@@ -134,17 +145,16 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKJY')">
-                    <span class="font-weight-bold">RKSI</span>
-                    <small> Incheon airport</small>
+                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKPK')">
+                    <span class="font-weight-bold">RKPK</span>
+                    <small> Gimhae airport</small>
+                    <span updateIcon="RKPK" class="d-none"><sup class="text-warning">up<i
+                                class="fas fa-turn-up text-warning"></i></sup></span>
                 </a>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block" style="margin-top: 40px;">
-
             <!-- Heading -->
-            <div class="sidebar-heading mb-2 mt-2">
+            <div class="sidebar-heading mb-2 mt-4">
                 Program
             </div>
 
@@ -195,8 +205,8 @@
             <!-- Main Content -->
             <div id="content">
 
+                <!-- start of container-->
                 <div class="container-fluid collapse" id="RKJY" data-url="">
-                    <!-- Page Heading -->
                     <div class="m-4">
                         <h1 class="h3 mb-0">
                             <i class="fa-solid fa-plane-departure"></i>
@@ -221,7 +231,7 @@
                             </ul>
                             <div class="mx-4">
                                 <button type="button" class="btn btn-success mx-2"
-                                    onclick="updateScenery('RKJY')">Install / Update</button>
+                                    onclick="updateScenery('RKJY', 'master')">Install / Update</button>
                                 <button type="button" class="btn btn-danger mx-2"
                                     onclick="removeScenery('RKJY')">Remove</button>
                             </div>
@@ -233,21 +243,60 @@
                         <h4>Transferred: <span transferred>0</span> MB</h4>
                         <h4>Speed: <span speed>0</span> MB/s</h4>
                     </div>
+                </div>
+                <!-- end of container -->
 
-                    <div class="collapse">
-                        <h1>Installation in progress</h1>
-                        <div class="progress mb-4">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                                style="width: 10%">
+                <!-- start of container-->
+                <div class="container-fluid collapse" id="RKPK" data-url="">
+                    <div class="m-4">
+                        <h1 class="h3 mb-0">
+                            <i class="fa-solid fa-plane-departure"></i>
+                            RKPK - Gimhae airport
+                        </h1>
+                    </div>
+
+                    <div class="row p-4">
+                        <div class="col-auto">
+                            <img src="https://github.com/lancard/k-installer/raw/master/resources/RKPK.png" width="500"
+                                class="m-1" style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
+                        </div>
+                        <div class="col mx-0 my-4">
+                            <ul class="airport-description">
+                                <li>ICAO: <strong>RKPK</strong></li>
+                                <li>Name: <strong>Gimhae airport</strong></li>
+                                <li>Author: <strong>Sungho Kim (3D object contribution: Hongsda)</strong></li>
+                                <li>License: <strong>Contact me</strong></li>
+                                <hr class="my-2" />
+                                <li>Latest version: <strong latestVersion></strong></li>
+                                <li>Installed version: <strong installedVersion></strong></li>
+                            </ul>
+                            <div class="mx-4">
+                                <button type="button" class="btn btn-success mx-2"
+                                    onclick="updateScenery('RKPK', 'master')">Install / Update</button>
+                                <button type="button" class="btn btn-danger mx-2"
+                                    onclick="removeScenery('RKPK')">Remove</button>
                             </div>
-                            <span>10%</span>
                         </div>
                     </div>
+
+                    <div downloadStatus class="collapse">
+                        <h2 statusMessage class="text-primary">Download in progress...</h2>
+                        <h4>Transferred: <span transferred>0</span> MB</h4>
+                        <h4>Speed: <span speed>0</span> MB/s</h4>
+                    </div>
                 </div>
+                <!-- end of container -->
+
+
+
+
+
+
+
+
 
 
                 <div class="container-fluid" id="home">
-                    <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-white">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
@@ -295,44 +344,23 @@
 
 
                 </div>
-                <!-- /.container-fluid -->
 
             </div>
-            <!-- End of Main Content -->
         </div>
-        <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="javascript:void(0);" onclick="logout();">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
         // common library
         const util = require('./util.js');
+        var communityDirectory = util.getCommunityDirectory();
+        if (communityDirectory == null)
+            communityDirectory = "D:/test"; // for debug
         const path = require('path');
         const fs = require('fs');
         const decompress = require("decompress");
@@ -340,23 +368,23 @@
             "RKJY": {
                 id: "RKJY",
                 repository: "fs2020-RKJY",
-                directory: [
-                    "rkjy-airport-scene",
-                    "rkjy",
-                    "zulu-airport-rkjy-yeosu"
-                ]
+                directory: {
+                    "rkjy-airport-scene": `${communityDirectory}/rkjy-airport-scene`,
+                    "rkjy": `${communityDirectory}/rkjy`,
+                    "zulu-airport-rkjy-yeosu": `${communityDirectory}/zulu-airport-rkjy-yeosu`
+                }
             },
             "RKPK": {
                 id: "RKPK",
-                repository: "fs2020-RKPK"
+                repository: "fs2020-RKPK",
+                directory: {
+                    "PackageSources/Scenery/airport-rkpk-busan": `${communityDirectory}/airport-rkpk-busan`
+                }
             }
         };
-        var communityDirectory = util.getCommunityDirectory();
 
 
         function initialization() {
-            if (communityDirectory == null)
-                communityDirectory = "D:/test"; // for debug
             if (communityDirectory == null) {
                 $("#communityDirectory").addClass("text-danger");
                 $("#communityDirectory").text("Not Found");
@@ -406,9 +434,9 @@
         function removeScenery(id) {
             localStorage.removeItem(id);
 
-            programInfo[id].directory.forEach(e => {
-                fs.rmSync(`${communityDirectory}/${e}`, { recursive: true, force: true });
-            });
+            for (var dir in programInfo[id].directory) {
+                fs.rmSync(dir, { recursive: true, force: true });
+            };
 
             updateScreen(id);
         }
@@ -434,9 +462,9 @@
                     decompress(filename, communityDirectory)
                         .then((files) => {
                             fs.rmSync(filename);
-                            programInfo[id].directory.forEach(e => {
-                                fs.renameSync(`${unzippedDirName}/${e}`, `${communityDirectory}/${e}`);
-                            });
+                            for (var dir in programInfo[id].directory) {
+                                fs.renameSync(`${unzippedDirName}/${dir}`, programInfo[id].directory[dir]);
+                            }
                             fs.rmSync(unzippedDirName);
                             localStorage.setItem(id, programInfo[id].date);
                             $(`#${id}`).find("[downloadStatus]").hide();
