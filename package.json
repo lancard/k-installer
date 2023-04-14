@@ -1,8 +1,13 @@
 {
   "name": "k-installer",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "installer for korean program and scenery",
   "main": "main.js",
+  "build": {
+    "win": {
+      "icon": "./resources/icon.png"
+    }
+  },
   "scripts": {
     "start": "set NODE_ENV=development&&electron .",
     "package": "electron-builder"

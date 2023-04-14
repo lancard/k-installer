@@ -41,4 +41,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: "dist/k-installer Setup ${{ env.VERSION_STRING }}.exe"
           asset_name: "k-installer Setup ${{ env.VERSION_STRING }}.exe"
-          asset_content_type: application/octet-stream
+          asset_content_type: application/x-msdos-program
