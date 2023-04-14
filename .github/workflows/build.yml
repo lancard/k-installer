@@ -15,7 +15,7 @@ jobs:
           node-version: 16
 
       - name: Get version from package.json
-        run: node -p "require('./package.json').version" >> $env:GITHUB_ENV
+        run: node -p "'VERSION_STRING='+require('./package.json').version" >> $env:GITHUB_ENV
       
       - run: npm install
 
