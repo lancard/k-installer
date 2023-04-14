@@ -4,6 +4,7 @@ on: push
 
 jobs:
   build:
+    permissions: write-all
     runs-on: windows-latest
     steps:
       - name: Check out Git repository
