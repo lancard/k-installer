@@ -386,6 +386,19 @@
             }
         };
 
+        function checkUpdate() {
+            $.getJSON(`https://raw.githubusercontent.com/lancard/k-installer/master/package.json`, (data) => {
+                if (process.env.npm_package_version == data.version)
+                    return;
+
+                // update exist.
+                if (!confirm(`install new version ${data.version}?`))
+                    return;
+
+                require('child_process').execSync('start https://github.com/lancard/k-installer/releases');
+            });
+        }
+
 
         function initialization() {
             if (communityDirectory == null) {
@@ -396,6 +409,9 @@
                 $("#communityDirectory").text(communityDirectory);
             }
             $("#programVersion").text(process.env.npm_package_version);
+
+            // check update
+            checkUpdate();
 
             for (var id in programInfo) {
                 retrieveGitInfo(id);
@@ -419,7 +435,6 @@
 
         function retrieveGitInfo(id) {
             $.get(`https://lancard.github.io/${programInfo[id].repository}/version.txt`, (data) => {
-                console.log("A"+data+"B");
                 programInfo[id]["date"] = data;
 
                 updateScreen(id);
