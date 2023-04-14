@@ -22,6 +22,9 @@ jobs:
 
       - run: npm run package
 
+      - name: Compress exe
+        run: compress-archive -path ".\dist\k-installer Setup ${{ env.VERSION_STRING }}.exe" "k-installer.zip" -compressionlevel optimal
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -39,6 +42,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: "dist/k-installer Setup ${{ env.VERSION_STRING }}.exe"
-          asset_name: "k-installer Setup ${{ env.VERSION_STRING }}.exe"
-          asset_content_type: application/x-msdos-program
+          asset_path: k-installer.zip
+          asset_name: k-installer.zip
+          asset_content_type: application/zip
