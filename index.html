@@ -339,6 +339,9 @@
                                 </div>
                                 <div class="card-body">
                                     <span id="communityDirectory">(Loading)</span>
+                                    <button type="button" class="btn btn-primary mx-4 p-2"
+                                        onclick="require('child_process').execSync('explorer '+communityDirectory);">Open
+                                        in explorer</button>
                                 </div>
                             </div>
                         </div>
@@ -364,6 +367,7 @@
         var communityDirectory = util.getCommunityDirectory();
         if (communityDirectory == null)
             communityDirectory = "D:/test"; // for debug
+        const { dialog } = require('electron');
         const path = require('path');
         const fs = require('fs');
         const decompress = require("decompress");
