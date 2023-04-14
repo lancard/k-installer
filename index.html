@@ -7,7 +7,7 @@
             'self'
             'unsafe-inline'
             https://cdnjs.cloudflare.com
-            https://api.github.com
+            https://lancard.github.io
             https://github.com
             https://raw.githubusercontent.com;
          script-src
@@ -416,8 +416,9 @@
         }
 
         function retrieveGitInfo(id) {
-            $.getJSON(`https://api.github.com/repos/lancard/${programInfo[id].repository}/commits/master`, (data) => {
-                programInfo[id]["date"] = data.commit.committer.date;
+            $.get(`https://lancard.github.io/${programInfo[id].repository}/version.txt`, (data) => {
+                console.log("A"+data+"B");
+                programInfo[id]["date"] = data;
 
                 updateScreen(id);
             });
