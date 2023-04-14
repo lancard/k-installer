@@ -1,6 +1,6 @@
 {
   "name": "k-installer",
-  "version": "0.8.1",
+  "version": "0.9.1",
   "description": "installer for korean program and scenery",
   "main": "main.js",
   "scripts": {
