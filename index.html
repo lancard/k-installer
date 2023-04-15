@@ -417,16 +417,16 @@
                 id: "RKJY",
                 repository: "fs2020-RKJY",
                 directory: {
-                    "rkjy-airport-scene": `${communityDirectory}/rkjy-airport-scene`,
-                    "rkjy": `${communityDirectory}/rkjy`,
-                    "zulu-airport-rkjy-yeosu": `${communityDirectory}/zulu-airport-rkjy-yeosu`
+                    "rkjy-airport-scene": `${communityDirectory}\\rkjy-airport-scene`,
+                    "rkjy": `${communityDirectory}\\rkjy`,
+                    "zulu-airport-rkjy-yeosu": `${communityDirectory}\\zulu-airport-rkjy-yeosu`
                 }
             },
             "RKPK": {
                 id: "RKPK",
                 repository: "fs2020-RKPK",
                 directory: {
-                    "Packages/airport-rkpk-busan": `${communityDirectory}/airport-rkpk-busan`
+                    "Packages\\airport-rkpk-busan": `${communityDirectory}\\airport-rkpk-busan`
                 }
             }
         };
@@ -441,7 +441,7 @@
         };
 
         function downloadFile(filename, url, callback, progressCallback) {
-            const oldPath = getCommunityDirectory() + "/" + randomString(32);
+            const oldPath = path.join(getCommunityDirectory(), randomString(32));
             const file = fs.createWriteStream(oldPath);
 
             // The options argument is optional so you can omit it
@@ -475,7 +475,7 @@
                 if (!confirm(`install new version ${data.version}?`))
                     return;
 
-                const filename = `${communityDirectory}/home.zip`;
+                const filename = `${communityDirectory}\\home.zip`;
 
                 $(`#home`).find("[downloadStatus]").show();
                 $(`#home`).find("[downloadStatus] [statusMessage]").text("downloading...");
@@ -571,8 +571,8 @@
 
             removeScenery(id);
 
-            const filename = `${communityDirectory}/${id}.zip`;
-            const unzippedDirName = `${communityDirectory}/${programInfo[id].repository}-${branch}`;
+            const filename = `${communityDirectory}\\${id}.zip`;
+            const unzippedDirName = `${communityDirectory}\\${programInfo[id].repository}-${branch}`;
 
             $(`#${id}`).find("[downloadStatus]").show();
             $(`#${id}`).find("[downloadStatus] [statusMessage]").text("downloading...");
