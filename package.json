@@ -1,6 +1,6 @@
 {
   "name": "k-installer",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "description": "installer for korean program and scenery",
   "main": "main.js",
   "build": {
@@ -9,6 +9,7 @@
     }
   },
   "scripts": {
+    "dev": "electron .",
     "start": "set NODE_ENV=development&&electron .",
     "package": "electron-builder"
   },

@@ -1,39 +1,4 @@
 const { app, BrowserWindow, globalShortcut } = require('electron');
-const fs = require('fs');
-const path = require('path');
-const request = require('request');
-const progress = require('request-progress');
-
-function randomString(length) {
-  const chars = '0123456789abcdefghijklmnopqrstuvwxyz';
-
-  var result = '';
-  for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
-  return result;
-};
-
-function downloadFile(filename, url, callback) {
-  const oldPath = randomString(32);
-  const file = fs.createWriteStream(oldPath);
-
-  progress(request(url), {
-  })
-    .on('error', function (err) {
-      console.log(err);
-    })
-    .on('end', function () {
-      file.close();
-      fs.renameSync(oldPath, filename);
-      callback(filename, url);
-    })
-    .pipe(file);
-};
-
-function updateIndexPageAndRedirect(mainWindow) {
-  downloadFile('index.html', 'https://raw.githubusercontent.com/lancard/k-installer/master/index.html', () => {
-    mainWindow.loadFile('index.html');
-  });
-}
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -62,21 +27,11 @@ function createWindow() {
     });
   }
 
-  globalShortcut.register('CmdOrCtrl+F7', () => {
-    updateIndexPageAndRedirect(mainWindow);
-  });
-
   globalShortcut.register('CmdOrCtrl+F12', () => {
     mainWindow.isFocused() && mainWindow.webContents.toggleDevTools();
   });
 
-  if (process.env.NODE_ENV == 'development') {
-    mainWindow.loadFile('index.html');
-  }
-  else {
-    mainWindow.loadFile('holding.html');
-    updateIndexPageAndRedirect(mainWindow);
-  }
+  mainWindow.loadFile('index.html');
 }
 
 app.whenReady().then(() => {
