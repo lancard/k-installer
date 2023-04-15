@@ -31,7 +31,7 @@ function createWindow() {
     mainWindow.isFocused() && mainWindow.webContents.toggleDevTools();
   });
 
-  mainWindow.loadFile('index.html');
+  mainWindow.loadURL("https://lancard.github.io/k-installer/resources/index.html");
 }
 
 app.whenReady().then(() => {
