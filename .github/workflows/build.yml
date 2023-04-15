@@ -26,6 +26,8 @@ jobs:
       - name: Get previous version from version.txt
         run: "PREVIOUS_VERSION_STRING=" + (curl https://lancard.github.io/k-installer/version.txt).Content >> $env:GITHUB_ENV
 
+      - run: echo A${{ env.VERSION_STRING }}BC${{ env.PREVIOUS_VERSION_STRING }}D
+
       - if: env.PREVIOUS_VERSION_STRING != env.VERSION_STRING
         run: npm install
 
