@@ -26,6 +26,9 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        #wrapper {
+            height: 100vh;
+        }
         .sidebar {
             width: 17vw !important;
         }
@@ -45,6 +48,15 @@
 
         .sidebar-heading {
             color: rgb(228, 228, 228) !important;
+        }
+
+        .sidebar .bottom-copyright {
+            position: absolute;
+            bottom: 10px;
+        }
+        .sidebar .bottom-copyright .nav-link span {
+            font-size: 1rem !important;
+            font-style: italic !important;
         }
 
         #wrapper #content-wrapper {
@@ -166,29 +178,31 @@
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block" style="margin-top: 40px;">
+            <div class="bottom-copyright">
+                <hr class="sidebar-divider d-none d-md-block" style="margin-top: 40px;">
 
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)" role="button"
-                    onclick="alert('w_o_r_s_t_r_o_c_k_e_r@gmail.com plz. (delete underscore before send)')">
-                    <i class="fas fa-envelope fa-fw"></i>
-                    <span class="mx-2 d-none d-lg-inline">Email to me</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)" role="button"
+                        onclick="alert('w_o_r_s_t_r_o_c_k_e_r@gmail.com plz. (delete underscore before send)')">
+                        <i class="fas fa-envelope fa-fw"></i>
+                        <span class="mx-2">Email to me</span>
+                    </a>
+                </li>
 
-            <!-- Nav Item - Github -->
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="messagesDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                    onclick="require('child_process').execSync('start https://github.com/lancard')">
-                    <i class="fa-brands fa-github"></i>
-                    <span class="mx-2 d-none d-lg-inline">Github Link</span>
-                </a>
-            </li>
+                <!-- Nav Item - Github -->
+                <li class="nav-item dropdown no-arrow mx-1">
+                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="messagesDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        onclick="require('child_process').execSync('start https://github.com/lancard')">
+                        <i class="fa-brands fa-github"></i>
+                        <span class="mx-2">Github Link</span>
+                    </a>
+                </li>
 
-            <li class="nav-item dropdown no-arrow mx-1 my-4 text-center">
-                <small><span>Copyright &copy; Sungho Kim 2023</span></small>
-            </li>
+                <li class="nav-item dropdown no-arrow mx-1 my-4 text-center">
+                    <small><span>Copyright &copy; Sungho Kim 2023</span></small>
+                </li>
+            </div>
         </ul>
         <!-- End of Sidebar -->
 
@@ -199,12 +213,12 @@
             <div id="content">
 
                 <!-- start of container-->
-                <div class="container-fluid collapse" id="KRW" data-url="">
-                    <div class="m-4">
-                        <h1 class="h3 mb-0">
+                <div class="container-fluid collapse" id="KRW">
+                    <div class="m-1">
+                        <h2 class="m-2">
                             <i class="fa-solid fa-plane-departure"></i>
                             KRW - Euroscope plugin Korean Radar for Weather
-                        </h1>
+                        </h2>
                     </div>
 
                     <div class="row p-4">
@@ -225,7 +239,7 @@
                             </ul>
                             <div class="mx-4">
                                 <button type="button" class="btn btn-success mx-2"
-                                    onclick="updateScenery('RKJY', 'master')">Install / Update</button>
+                                    onclick="updateScenery2020('RKJY', 'master')">Install / Update</button>
                                 <button type="button" class="btn btn-danger mx-2"
                                     onclick="removeScenery('RKJY')">Remove</button>
                             </div>
@@ -242,12 +256,12 @@
 
 
                 <!-- start of container-->
-                <div class="container-fluid collapse" id="RKJY" data-url="">
-                    <div class="m-4">
-                        <h1 class="h3 mb-0">
+                <div class="container-fluid collapse" id="RKJY">
+                    <div class="m-1">
+                        <h2 class="m-2">
                             <i class="fa-solid fa-plane-departure"></i>
                             RKJY - Yeosu airport
-                        </h1>
+                        </h2>
                     </div>
 
                     <div class="row p-4">
@@ -267,7 +281,7 @@
                             </ul>
                             <div class="mx-4">
                                 <button type="button" class="btn btn-success mx-2"
-                                    onclick="updateScenery('RKJY', 'master')">Install / Update</button>
+                                    onclick="updateScenery2020('RKJY', 'master')">Install / Update</button>
                                 <button type="button" class="btn btn-danger mx-2"
                                     onclick="removeScenery('RKJY')">Remove</button>
                             </div>
@@ -283,12 +297,12 @@
                 <!-- end of container -->
 
                 <!-- start of container-->
-                <div class="container-fluid collapse" id="RKPK" data-url="">
-                    <div class="m-4">
-                        <h1 class="h3 mb-0">
+                <div class="container-fluid collapse" id="RKPK">
+                    <div class="m-1">
+                        <h2 class="m-2">
                             <i class="fa-solid fa-plane-departure"></i>
                             RKPK - Gimhae airport
-                        </h1>
+                        </h2>
                     </div>
 
                     <div class="row p-4">
@@ -308,7 +322,7 @@
                             </ul>
                             <div class="mx-4">
                                 <button type="button" class="btn btn-success mx-2"
-                                    onclick="updateScenery('RKPK', 'master')">Install / Update</button>
+                                    onclick="updateScenery2020('RKPK', 'master')">Install / Update</button>
                                 <button type="button" class="btn btn-danger mx-2"
                                     onclick="removeScenery('RKPK')">Remove</button>
                             </div>
@@ -333,14 +347,14 @@
 
 
                 <div class="container-fluid" id="home">
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-white">
+                    <div class="m-1">
+                        <h2 class="m-2">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
                             Welcome to Korea Program and Scenery Installer
-                        </h1>
+                        </h2>
                     </div>
 
-                    <div class="row">
+                    <div class="row p-4">
                         <div class="col-auto">
                             <img src="https://lancard.github.io/k-installer/airport.png"
                                 style="box-shadow: 5px 5px 10px #000; border-radius: 25px; width: 30vw;">
@@ -445,7 +459,7 @@
         var communityDirectory = getCommunityDirectory();
         if (communityDirectory == null)
             communityDirectory = "D:/test"; // for debug
-        const programInfo = {
+        const programInfo2020 = {
             "RKJY": {
                 id: "RKJY",
                 repository: "fs2020-RKJY",
@@ -549,7 +563,7 @@
             // check update
             checkUpdate();
 
-            for (var id in programInfo) {
+            for (var id in programInfo2020) {
                 retrieveGitInfo(id);
             }
         }
@@ -558,9 +572,9 @@
         // functions ..................................
 
         function updateScreen(id) {
-            $(`#${id} [latestVersion]`).text(programInfo[id]["date"]);
+            $(`#${id} [latestVersion]`).text(programInfo2020[id]["date"]);
             $(`#${id} [installedVersion]`).text(localStorage.getItem(id));
-            if (programInfo[id]["date"] != localStorage.getItem(id)) {
+            if (programInfo2020[id]["date"] != localStorage.getItem(id)) {
                 $(`#${id} [latestVersion]`).addClass("text-danger");
                 $(`[updateicon=${id}]`).removeClass("d-none");
             } else {
@@ -570,8 +584,8 @@
         }
 
         function retrieveGitInfo(id) {
-            $.get(`https://lancard.github.io/${programInfo[id].repository}/version.txt`, (data) => {
-                programInfo[id]["date"] = data;
+            $.get(`https://lancard.github.io/${programInfo2020[id].repository}/version.txt`, (data) => {
+                programInfo2020[id]["date"] = data;
 
                 updateScreen(id);
             });
@@ -580,8 +594,8 @@
 
 
         function showMenu(selectedId) {
-            $("div.container-fluid").hide();
-            $("#" + selectedId).show();
+            $("div.container-fluid").hide(500);
+            $("#" + selectedId).show(500);
         }
 
 
@@ -589,14 +603,14 @@
         function removeScenery(id) {
             localStorage.removeItem(id);
 
-            for (var dir in programInfo[id].directory) {
-                fs.rmSync(programInfo[id].directory[dir], { recursive: true, force: true });
+            for (var dir in programInfo2020[id].directory) {
+                fs.rmSync(programInfo2020[id].directory[dir], { recursive: true, force: true });
             };
 
             updateScreen(id);
         }
 
-        function updateScenery(id, branch) {
+        function updateScenery2020(id, branch) {
             if (communityDirectory == null) {
                 alert('install fs2020 first');
                 return;
@@ -605,23 +619,23 @@
             removeScenery(id);
 
             const filename = `${communityDirectory}\\${id}.zip`;
-            const unzippedDirName = `${communityDirectory}\\${programInfo[id].repository}-${branch}`;
+            const unzippedDirName = `${communityDirectory}\\${programInfo2020[id].repository}-${branch}`;
 
             $(`#${id}`).find("[downloadStatus]").show();
             $(`#${id}`).find("[downloadStatus] [statusMessage]").text("downloading...");
 
-            downloadFile(filename, `https://github.com/lancard/${programInfo[id].repository}/archive/refs/heads/${branch}.zip`,
+            downloadFile(filename, `https://github.com/lancard/${programInfo2020[id].repository}/archive/${branch}.zip`,
                 () => {
                     $(`#${id}`).find("[downloadStatus] [statusMessage]").text("decompressing...");
 
                     decompress(filename, communityDirectory)
                         .then((files) => {
                             fs.rmSync(filename);
-                            for (var dir in programInfo[id].directory) {
-                                fs.renameSync(`${unzippedDirName}\\${dir}`, programInfo[id].directory[dir]);
+                            for (var dir in programInfo2020[id].directory) {
+                                fs.renameSync(`${unzippedDirName}\\${dir}`, programInfo2020[id].directory[dir]);
                             }
                             fs.rmSync(unzippedDirName, { recursive: true, force: true });
-                            localStorage.setItem(id, programInfo[id].date);
+                            localStorage.setItem(id, programInfo2020[id].date);
                             $(`#${id}`).find("[downloadStatus]").hide();
                             updateScreen(id);
                             alert(`installation complete: ${id}`);
