@@ -15,7 +15,7 @@ jobs:
       - run: curl https://lancard.github.io/k-installer/version.txt
 
       - name: Get previous version from version.txt
-        run: echo ("PREVIOUS_VERSION_STRING="+(curl https://lancard.github.io/k-installer/version.txt).Content.Trim()) >> $env:GITHUB_ENV
+        run: echo ("PREVIOUS_VERSION_STRING="+(Invoke-WebRequest -Uri "https://lancard.github.io/k-installer/version.txt").Content.Trim()) >> $env:GITHUB_ENV
 
       - name: Check out Git repository
         uses: actions/checkout@v1
