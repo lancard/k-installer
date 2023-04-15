@@ -129,23 +129,25 @@
 
             <!-- Heading -->
             <div class="sidebar-heading mb-2 mt-4">
-                <i class="fas fa-fw fa-tree"></i> Airport Scenery and Charts
+                <i class="fas fa-fw fa-tree"></i> Scenery and Chart
             </div>
 
             <li class="nav-item">
                 <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKJY')">
                     <span class="font-weight-bold">RKJY</span>
                     <small class="d-none d-lg-inline"> Yeosu airport</small>
-                    <span updateIcon="RKJY" class="d-none"><sup class="text-warning">up<i
-                                class="fas fa-turn-up text-warning"></i></sup></span>
+                    <span updateIcon="RKJY" class="d-none">
+                        <sup class="text-warning">up<i class="fas fa-turn-up text-warning"></i></sup>
+                    </span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKPK')">
                     <span class="font-weight-bold">RKPK</span>
                     <small class="d-none d-lg-inline"> Gimhae airport</small>
-                    <span updateIcon="RKPK" class="d-none"><sup class="text-warning">up<i
-                                class="fas fa-turn-up text-warning"></i></sup></span>
+                    <span updateIcon="RKPK" class="d-none">
+                        <sup class="text-warning">up<i class="fas fa-turn-up text-warning"></i></sup>
+                    </span>
                 </a>
             </li>
 
@@ -153,15 +155,15 @@
             <div class="sidebar-heading mb-2 mt-4">
                 <i class="fas fa-fw fa-wand-magic-sparkles"></i> ATC Program
             </div>
-
-            <!--
             <li class="nav-item">
-                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKPK')">
-                    <span class="font-weight-bold">APU PAR</span>
-                    <small class="d-none d-lg-inline"> PAR program</small>
+                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('KRW')">
+                    <span class="font-weight-bold">KRW</span>
+                    <small class="d-none d-lg-inline"> Korean weather radar</small>
+                    <span updateIcon="KRW" class="d-none">
+                        <sup class="text-warning">up<i class="fas fa-turn-up text-warning"></i></sup>
+                    </span>
                 </a>
             </li>
-            -->
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block" style="margin-top: 40px;">
@@ -197,6 +199,49 @@
             <div id="content">
 
                 <!-- start of container-->
+                <div class="container-fluid collapse" id="KRW" data-url="">
+                    <div class="m-4">
+                        <h1 class="h3 mb-0">
+                            <i class="fa-solid fa-plane-departure"></i>
+                            KRW - Euroscope plugin Korean Radar for Weather
+                        </h1>
+                    </div>
+
+                    <div class="row p-4">
+                        <div class="col-auto">
+                            <img src="https://lancard.github.io/k-installer/KRW.png" width="500" class="m-1"
+                                style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
+                        </div>
+                        <div class="col mx-0 my-4">
+                            <h4>How to install</h4>
+                            <ul class="airport-description">
+                                <li>Download & Unzip downloaded file</li>
+                                <li>Run euroscope and menu - plugin</li>
+                                <li>Load dll</li>
+                                <li>License: <strong>me</strong></li>
+                                <hr class="my-2" />
+                                <li>Latest version: <strong latestVersion></strong></li>
+                                <li>Installed version: <strong installedVersion></strong></li>
+                            </ul>
+                            <div class="mx-4">
+                                <button type="button" class="btn btn-success mx-2"
+                                    onclick="updateScenery('RKJY', 'master')">Install / Update</button>
+                                <button type="button" class="btn btn-danger mx-2"
+                                    onclick="removeScenery('RKJY')">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div downloadStatus class="collapse">
+                        <h2 statusMessage class="text-primary">Download in progress...</h2>
+                        <h4>Transferred: <span transferred>0</span> MB</h4>
+                        <h4>Speed: <span speed>0</span> MB/s</h4>
+                    </div>
+                </div>
+                <!-- end of container -->
+
+
+                <!-- start of container-->
                 <div class="container-fluid collapse" id="RKJY" data-url="">
                     <div class="m-4">
                         <h1 class="h3 mb-0">
@@ -207,8 +252,8 @@
 
                     <div class="row p-4">
                         <div class="col-auto">
-                            <img src="https://lancard.github.io/k-installer/RKJY.png" width="500"
-                                class="m-1" style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
+                            <img src="https://lancard.github.io/k-installer/RKJY.png" width="500" class="m-1"
+                                style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
                         </div>
                         <div class="col mx-0 my-4">
                             <ul class="airport-description">
@@ -248,8 +293,8 @@
 
                     <div class="row p-4">
                         <div class="col-auto">
-                            <img src="https://lancard.github.io/k-installer/RKPK.png" width="500"
-                                class="m-1" style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
+                            <img src="https://lancard.github.io/k-installer/RKPK.png" width="500" class="m-1"
+                                style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
                         </div>
                         <div class="col mx-0 my-4">
                             <ul class="airport-description">
