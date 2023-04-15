@@ -35,7 +35,7 @@ function createWindow() {
     mainWindow.loadFile('resources/index.html');
   }
   else {
-    mainWindow.loadURL("https://lancard.github.io/k-installer/resources/index.html");
+    mainWindow.loadURL("https://lancard.github.io/k-installer/index.html");
   }
 }
 
