@@ -9,9 +9,14 @@ on:
 
 jobs:
   build:
-    permissions: read-all|write-all
+    permissions: write-all
     runs-on: windows-latest
     steps:
+      - run: curl https://lancard.github.io/k-installer/version.txt
+
+      - name: Get previous version from version.txt
+        run: echo ("PREVIOUS_VERSION_STRING="+(curl https://lancard.github.io/k-installer/version.txt).Content.Trim()) >> $env:GITHUB_ENV
+
       - name: Check out Git repository
         uses: actions/checkout@v1
       
@@ -22,11 +27,6 @@ jobs:
 
       - name: Get version from package.json
         run: node -p "'VERSION_STRING='+require('./package.json').version" >> $env:GITHUB_ENV
-
-      - name: Get previous version from version.txt
-        run: echo ("PREVIOUS_VERSION_STRING="+(curl https://lancard.github.io/k-installer/version.txt).Content.Trim()) >> $env:GITHUB_ENV
-
-      - run: echo A${{ env.VERSION_STRING }}BC${{ env.PREVIOUS_VERSION_STRING }}D
 
       - if: env.PREVIOUS_VERSION_STRING != env.VERSION_STRING
         run: npm install
