@@ -370,15 +370,48 @@
 
     <script>
         // common library
+        const fs = require('fs');
+        const path = require('path');
         const appVersion = require('./package.json').version;
-        const util = require('./util.js');
-        var communityDirectory = util.getCommunityDirectory();
+        const { dialog } = require('electron');
+        const request = require('request');
+        const progress = require('request-progress');
+        const decompress = require("decompress");
+
+        function getCommunityDirectory() {
+            var msfsConfigPath = null;
+
+            const steamPath = path.join(process.env.APPDATA, "\\Microsoft Flight Simulator\\UserCfg.opt");
+            const storePath = path.join(process.env.LOCALAPPDATA, "\\Packages\\Microsoft.FlightSimulator_8wekyb3d8bbwe\\LocalCache\\UserCfg.opt");
+
+            if (fs.existsSync(steamPath)) {
+                msfsConfigPath = steamPath;
+            } else if (fs.existsSync(storePath)) {
+                msfsConfigPath = storePath;
+            } else {
+                return null;
+            }
+
+            if (!msfsConfigPath) {
+                return null;
+            }
+
+            try {
+                const msfsConfig = fs.readFileSync(msfsConfigPath).toString();
+                const msfsConfigLines = msfsConfig.split(/\r?\n/);
+                const packagesPathLine = msfsConfigLines.find(line => line.includes('InstalledPackagesPath'));
+                const communityDir = path.join(packagesPathLine.split(" ").slice(1).join(" ").replaceAll('"', ''), "\\Community");
+
+                return fs.existsSync(communityDir) ? communityDir : null;
+            } catch (e) {
+                console.warn('Could not parse community dir from file', msfsConfigPath);
+                console.error(e);
+                return null;
+            }
+        }
+        var communityDirectory = getCommunityDirectory();
         if (communityDirectory == null)
             communityDirectory = "D:/test"; // for debug
-        const { dialog } = require('electron');
-        const path = require('path');
-        const fs = require('fs');
-        const decompress = require("decompress");
         const programInfo = {
             "RKJY": {
                 id: "RKJY",
@@ -398,6 +431,41 @@
             }
         };
 
+
+        function randomString(length) {
+            const chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+
+            var result = '';
+            for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+            return result;
+        };
+
+        function downloadFile(filename, url, callback, progressCallback) {
+            const oldPath = getCommunityDirectory() + "/" + randomString(32);
+            const file = fs.createWriteStream(oldPath);
+
+            // The options argument is optional so you can omit it
+            progress(request(url), {
+                // throttle: 2000,                    // Throttle the progress event to 2000ms, defaults to 1000ms
+                // delay: 1000,                       // Only start to emit after 1000ms delay, defaults to 0ms
+                // lengthHeader: 'x-transfer-length'  // Length header to use, defaults to content-length
+            })
+                .on('progress', function (state) {
+                    if (progressCallback)
+                        progressCallback(state);
+                })
+                .on('error', function (err) {
+                    console.error(err);
+                    // Do something with err
+                })
+                .on('end', function () {
+                    file.close();
+                    fs.renameSync(oldPath, filename);
+                    callback(filename, url);
+                })
+                .pipe(file);
+        };
+
         function checkUpdate() {
             $.getJSON(`https://raw.githubusercontent.com/lancard/k-installer/master/package.json`, (data) => {
                 if (appVersion == data.version)
@@ -411,7 +479,7 @@
 
                 $(`#home`).find("[downloadStatus]").show();
                 $(`#home`).find("[downloadStatus] [statusMessage]").text("downloading...");
-                util.downloadFile(filename, `https://github.com/lancard/k-installer/releases/latest/download/k-installer.zip`,
+                downloadFile(filename, `https://github.com/lancard/k-installer/releases/latest/download/k-installer.zip`,
                     () => {
                         $(`#home`).find("[downloadStatus] [statusMessage]").text("decompressing...");
 
@@ -509,7 +577,7 @@
             $(`#${id}`).find("[downloadStatus]").show();
             $(`#${id}`).find("[downloadStatus] [statusMessage]").text("downloading...");
 
-            util.downloadFile(filename, `https://github.com/lancard/${programInfo[id].repository}/archive/refs/heads/${branch}.zip`,
+            downloadFile(filename, `https://github.com/lancard/${programInfo[id].repository}/archive/refs/heads/${branch}.zip`,
                 () => {
                     $(`#${id}`).find("[downloadStatus] [statusMessage]").text("decompressing...");
 
