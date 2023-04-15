@@ -30,7 +30,7 @@ jobs:
         uses: actions/configure-pages@v3
 
       - name: Generate Version File
-        run: date "+%Y-%m-%dT%H:%M:%SZ" > resources/version.txt
+        run: node -p "require('./package.json').version" > resources/version.txt
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
