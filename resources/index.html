@@ -9,6 +9,7 @@
             https://cdnjs.cloudflare.com
             https://lancard.github.io
             https://github.com
+            https://api.github.com
             https://raw.githubusercontent.com;
          script-src
             'self'
@@ -208,6 +209,9 @@
                                         <li>Latest version: <strong latestVersion="RKJY-fs2020-scenery"></strong></li>
                                         <li>Installed version: <strong installedVersion="RKJY-fs2020-scenery"></strong>
                                         </li>
+                                        <li>Installed directory: <strong
+                                                installedDirectory="RKJY-fs2020-scenery"></strong>
+                                        </li>
                                     </ul>
 
                                     <button downloadButton="RKJY-fs2020-scenery" type="button"
@@ -218,7 +222,7 @@
                                         onclick="removeProgram('RKJY-fs2020-scenery')">Remove</button>
                                     <div downloadStatus="RKJY-fs2020-scenery" class="collapse">
                                         <h4 statusMessage class="text-primary">Download in progress...</h4>
-                                        <h4>Downloaded: <span transferred>0</span></h4>
+                                        <h4>Download: <span transferred>0</span></h4>
                                         <h4>Speed: <span speed>0</span> MB/s</h4>
                                     </div>
                                 </div>
@@ -236,14 +240,18 @@
                                         <li>Latest version: <strong latestVersion="RKJY-p3d-scenery"></strong></li>
                                         <li>Installed version: <strong installedVersion="RKJY-p3d-scenery"></strong>
                                         </li>
+                                        <li>Installed directory: <strong installedDirectory="RKJY-p3d-scenery"></strong>
+                                        </li>
                                     </ul>
 
-                                    <button type="button" class="btn btn-success mx-2"
+                                    <button downloadButton="RKJY-p3d-scenery" type="button" class="btn btn-success mx-2"
                                         onclick="upgradeProgram('RKJY-p3d-scenery')">Install specific directory</button>
+                                    <button downloadButton="RKJY-p3d-scenery" type="button" class="btn btn-danger mx-2"
+                                        onclick="removeProgram('RKJY-p3d-scenery')">Remove</button>
 
-                                    <div downloadStatus2020 class="collapse">
+                                    <div downloadStatus="RKJY-p3d-scenery" class="collapse">
                                         <h4 statusMessage class="text-primary">Download in progress...</h4>
-                                        <h4>Downloaded: <span transferred>0</span></h4>
+                                        <h4>Download: <span transferred>0</span></h4>
                                         <h4>Speed: <span speed>0</span> MB/s</h4>
                                     </div>
                                 </div>
@@ -326,7 +334,7 @@
                         <div class="col">
                             <div downloadStatusProgram class="collapse m-4 p-4 bg-dark">
                                 <h2 statusMessage class="text-primary">Download in progress...</h2>
-                                <h4>Downloaded: <span transferred>0</span></h4>
+                                <h4>Download: <span transferred>0</span></h4>
                                 <h4>Speed: <span speed>0</span> MB/s</h4>
                             </div>
 
@@ -370,8 +378,6 @@
                 versionModifier: (data) => data.version
             },
             "RKJY-fs2020-scenery": {
-                icao: "RKJY",
-                repository: "fs2020-RKJY",
                 downloadUrl: "https://github.com/lancard/fs2020-RKJY/archive/master.zip",
                 versionCheckUrl: "https://lancard.github.io/fs2020-RKJY/version.txt",
                 versionModifier: (data) => data.trim(),
@@ -388,28 +394,26 @@
                 }
             },
             "RKJY-p3d-scenery": {
-                icao: "RKJY",
                 downloadUrl: "https://github.com/lancard/VFRGO/releases/download/master/VFRGO_Yeosu.zip",
-                unzippedDirName: "VFRGO_Yeosu",
+                versionCheckUrl: "https://api.github.com/repos/lancard/VFRGO/releases/latest",
+                versionModifier: (data) => data.assets[2].updated_at,
+                unzippedRootDirectory: ".",
+                localStorageNameOfInstalledVersion: "RKJY-p3d-scenery-installed-version",
+                localStorageNameOfInstalledRootDirectory: "RKJY-p3d-scenery-installed-directory",
+                localStorageNameOfInstalledDirectoryList: "RKJY-p3d-scenery-installed-directory-list",
                 directory: {
-                    "rkjy-airport-scene": `${communityDirectory}\\rkjy-airport-scene`,
-                    "rkjy": `${communityDirectory}\\rkjy`,
-                    "zulu-airport-rkjy-yeosu": `${communityDirectory}\\zulu-airport-rkjy-yeosu`
+                    "scenery": "RKJY-p3d-scenery\\scenery",
+                    "texture": "RKJY-p3d-scenery\\texture"
                 }
             },
             "RKPK-fs2020-scenery": {
-                icao: "RKPK",
-                repository: "fs2020-RKPK",
                 downloadUrl: "https://github.com/lancard/fs2020-RKPK/archive/master.zip",
                 versionFileName: "https://lancard.github.io/fs2020-RKPK/version.txt",
-                unzippedDirName: "fs2020-RKPK-master",
                 directory: {
                     "Packages\\thekoreans-airport-rkpk-busan": `${communityDirectory}\\thekoreans-airport-rkpk-busan`
                 }
             },
             "RKPK-p3d-scenery": {
-                icao: "RKPK",
-                repository: "fs2020-RKPK",
                 directory: {
                     "Packages\\thekoreans-airport-rkpk-busan": `${communityDirectory}\\thekoreans-airport-rkpk-busan`
                 }
@@ -417,7 +421,27 @@
         };
 
 
+        function updateScreen(id) {
+            $(`[latestVersion="${id}"]`).text(programInfo[id].latestVersion);
 
+            if (!isInstalledBefore(id)) {
+                $(`[installedVersion="${id}"]`).text("(not installed)");
+                $(`[installedDirectory="${id}"]`).text("(not installed)");
+                $(`[update-mark-${id}]`).addClass(`must-show-${id}`);
+                return;
+            }
+
+            $(`[installedVersion="${id}"]`).text(programInfo[id].installedVersion);
+            var installedDirectoryList = JSON.parse(localStorage.getItem(programInfo[id].localStorageNameOfInstalledDirectoryList)).join(", ");
+            $(`[installedDirectory="${id}"]`).text(installedDirectoryList);
+
+            if (programInfo[id].latestVersion == programInfo[id].installedVersion) {
+                $(`[update-mark-${id}]`).removeClass(`must-show-${id}`);
+            }
+            else {
+                $(`[update-mark-${id}]`).addClass(`must-show-${id}`);
+            }
+        }
 
 
         function checkUpdate(id) {
@@ -428,18 +452,10 @@
                 const latestVersion = programInfo[id].versionModifier ? programInfo[id].versionModifier(data) : data;
                 const installedVersion = localStorage.getItem(programInfo[id].localStorageNameOfInstalledVersion);
 
-                programInfo[id].previousVersion = installedVersion;
+                programInfo[id].installedVersion = installedVersion;
                 programInfo[id].latestVersion = latestVersion;
 
-                $(`[latestVersion="${id}"]`).text(latestVersion);
-                $(`[installedVersion="${id}"]`).text(installedVersion);
-
-                if (latestVersion == installedVersion) {
-                    $(`[update-mark-${id}]`).removeClass(`must-show-${id}`);
-                }
-                else {
-                    $(`[update-mark-${id}]`).removeClass(`must-show-${id}`);
-                }
+                updateScreen(id);
             });
         }
 
@@ -457,6 +473,16 @@
             installedDirectoryArray.forEach(e => {
                 fs.rmSync(e, { recursive: true, force: true });
             });
+
+            // remove storage
+            localStorage.removeItem(programInfo[id].localStorageNameOfInstalledRootDirectory);
+            localStorage.removeItem(programInfo[id].localStorageNameOfInstalledDirectoryList);
+            localStorage.removeItem(programInfo[id].localStorageNameOfInstalledVersion);
+
+            programInfo[id].installedVersion = null;
+
+            // update screen
+            updateScreen(id);
         }
 
         function installProgram(id, targetDirectory) {
@@ -480,22 +506,29 @@
                             // replacement for unzipped files
                             var installedDirectory = [];
                             for (var dir in programInfo[id].directory) {
-                                fs.renameSync(`${targetDirectory}\\${programInfo[id].unzippedRootDirectory}\\${dir}`, `${targetDirectory}\\${programInfo[id].directory[dir]}`);
+                                moveSync(`${targetDirectory}\\${programInfo[id].unzippedRootDirectory}\\${dir}`, `${targetDirectory}\\${programInfo[id].directory[dir]}`);
                                 installedDirectory.push(`${targetDirectory}\\${programInfo[id].directory[dir]}`);
                             }
 
-                            fs.rmSync(programInfo[id].unzippedRootDirectory, { recursive: true, force: true }); // remove zip root directory
+                            if (programInfo[id].unzippedRootDirectory != ".") {
+                                fs.rmSync(programInfo[id].unzippedRootDirectory, { recursive: true, force: true }); // remove zip root directory
+                            }
 
                             // save installed information
                             localStorage.setItem(programInfo[id].localStorageNameOfInstalledRootDirectory, targetDirectory);
                             localStorage.setItem(programInfo[id].localStorageNameOfInstalledDirectoryList, JSON.stringify(installedDirectory));
                             localStorage.setItem(programInfo[id].localStorageNameOfInstalledVersion, programInfo[id].latestVersion);
 
+                            programInfo[id].installedVersion = programInfo[id].latestVersion;
+
                             alert(`installation complete: ${id}`);
 
                             // restore hide elements
                             $buttons.show();
                             $status.hide();
+
+                            // check update again
+                            updateScreen(id);
                         })
                         .catch((error) => {
                             console.log(error);
@@ -533,7 +566,11 @@
                 else {
                     var ret = dialog.showOpenDialogSync({ properties: ["openDirectory"] });
                     if (!ret) {
-                        alert('abort.');
+                        alert('abort');
+                        return;
+                    }
+                    if (!fs.existsSync(ret[0])) {
+                        alert(`path not exist: ${ret[0]}`);
                         return;
                     }
 

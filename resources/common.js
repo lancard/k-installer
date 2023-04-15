@@ -45,7 +45,7 @@ if (communityDirectory == null)
 
 function updateDownloadStatus(selector, state) {
     if (state.percent) {
-        var message = `${(state.size.transferred / 1024 / 1024).toFixed(2)} MB / ${(state.size.total / 1024 / 1024).toFixed(2)} MB (${state.percent.toFixed(0)}%)`;
+        var message = `${(state.size.transferred / 1024 / 1024).toFixed(2)} MB / ${(state.size.total / 1024 / 1024).toFixed(2)} MB (${(state.percent * 100).toFixed(0)}%)`;
         $(selector).find("[transferred]").text(message);
     }
     else {
@@ -87,4 +87,20 @@ function downloadFile(filename, url, callback, progressCallback) {
             callback(filename, url);
         })
         .pipe(file);
+}
+
+function moveSync(oldPath, newPath) {
+    // create directory first
+    if (!fs.existsSync(path.dirname(newPath))) {
+        fs.mkdirSync(path.dirname(newPath), { recursive: true });
+    }
+
+    // try to rename
+    try {
+        fs.renameSync(oldPath, newPath);
+    } catch(e) {
+        // if fail, (different device) copy and remove
+        fs.copyFileSync(oldPath, newPath);
+        fs.unlinkSync(oldPath);
+    }
 }
