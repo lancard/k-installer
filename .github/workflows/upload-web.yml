@@ -32,9 +32,6 @@ jobs:
       - name: Generate Version File
         run: date "+%Y-%m-%dT%H:%M:%SZ" > resources/version.txt
 
-      - name: Copy index.html
-        run: cp index.html resources/
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
