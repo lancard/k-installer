@@ -219,7 +219,7 @@
 
                     <div class="row p-4">
                         <div class="col-auto">
-                            <img src="https://github.com/lancard/k-installer/raw/master/resources/RKJY.png" width="500"
+                            <img src="https://lancard.github.io/k-installer/RKJY.png" width="500"
                                 class="m-1" style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
                         </div>
                         <div class="col mx-0 my-4">
@@ -260,7 +260,7 @@
 
                     <div class="row p-4">
                         <div class="col-auto">
-                            <img src="https://github.com/lancard/k-installer/raw/master/resources/RKPK.png" width="500"
+                            <img src="https://lancard.github.io/k-installer/RKPK.png" width="500"
                                 class="m-1" style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
                         </div>
                         <div class="col mx-0 my-4">
@@ -309,7 +309,7 @@
 
                     <div class="row">
                         <div class="col-auto">
-                            <img src="https://github.com/lancard/k-installer/raw/master/resources/airport.png"
+                            <img src="https://lancard.github.io/k-installer/airport.png"
                                 style="box-shadow: 5px 5px 10px #000; border-radius: 25px; width: 30vw;">
 
                             <div class="map-overlay" onclick="showMenu('RKJY')" style="top: 36.2vw; left: 14vw;">
@@ -372,7 +372,7 @@
         // common library
         const fs = require('fs');
         const path = require('path');
-        const appVersion = JSON.parse(fs.readFileSync('resources/app.asar/package.json')).version;
+        const appVersion = process.env.npm_package_version ? process.env.npm_package_version : JSON.parse(fs.readFileSync('resources/app.asar/package.json')).version;
         const { dialog } = require('electron');
         const request = require('request');
         const progress = require('request-progress');
