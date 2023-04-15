@@ -467,7 +467,7 @@
         };
 
         function checkUpdate() {
-            $.getJSON(`https://raw.githubusercontent.com/lancard/k-installer/master/package.json`, (data) => {
+            $.getJSON(`https://lancard.github.io/k-installer/package.json`, (data) => {
                 if (appVersion == data.version)
                     return;
 
