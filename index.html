@@ -324,6 +324,13 @@
                             </div>
                         </div>
                         <div class="col">
+                            <div downloadStatus class="collapse m-4 p-4 bg-dark">
+                                <h2 statusMessage class="text-primary">Download in progress...</h2>
+                                <h4>Transferred: <span transferred>0</span> MB / <span total>0</span> MB (<span
+                                        percent>0%</span>)</h4>
+                                <h4>Speed: <span speed>0</span> MB/s</h4>
+                            </div>
+
                             <div class="card m-4">
                                 <div class="card-header">
                                     <i class="fa-solid fa-people-carry-box"></i> Installer Version
@@ -400,7 +407,30 @@
                 if (!confirm(`install new version ${data.version}?`))
                     return;
 
-                require('child_process').execSync('start https://github.com/lancard/k-installer/releases');
+                const filename = `${communityDirectory}/home.zip`;
+
+                $(`#home`).find("[downloadStatus]").show();
+                $(`#home`).find("[downloadStatus] [statusMessage]").text("downloading...");
+                util.downloadFile(filename, `https://github.com/lancard/k-installer/releases/latest/download/k-installer.zip`,
+                    () => {
+                        $(`#home`).find("[downloadStatus] [statusMessage]").text("decompressing...");
+
+                        decompress(filename, communityDirectory)
+                            .then((files) => {
+                                fs.rmSync(filename);
+                                $(`#home`).find("[downloadStatus]").hide();
+                                require('child_process').execSync(`"${communityDirectory + "\\" + files[0].path}"`);
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
+                    },
+                    (state) => {
+                        $(`#home`).find("[downloadStatus] [transferred]").text((state.size.transferred / 1024 / 1024).toFixed(2));
+                        $(`#home`).find("[downloadStatus] [total]").text((state.size.total / 1024 / 1024).toFixed(2));
+                        $(`#home`).find("[downloadStatus] [percent]").text((state.size.transferred * 100 / state.size.total).toFixed(0) + "%");
+                        $(`#home`).find("[downloadStatus] [speed]").text((state.speed / 1024 / 1024).toFixed(2));
+                    });
             });
         }
 
