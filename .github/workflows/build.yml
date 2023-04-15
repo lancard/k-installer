@@ -12,11 +12,6 @@ jobs:
     permissions: write-all
     runs-on: windows-latest
     steps:
-      - run: curl https://lancard.github.io/k-installer/version.txt
-
-      - name: Get previous version from version.txt
-        run: echo ("PREVIOUS_VERSION_STRING="+(Invoke-WebRequest -Uri "https://lancard.github.io/k-installer/version.txt").Content.Trim()) >> $env:GITHUB_ENV
-
       - name: Check out Git repository
         uses: actions/checkout@v1
       
@@ -28,6 +23,12 @@ jobs:
       - name: Get version from package.json
         run: node -p "'VERSION_STRING='+require('./package.json').version" >> $env:GITHUB_ENV
 
+      - name: Get previous version from version.txt
+        run: echo ("PREVIOUS_VERSION_STRING="+(Invoke-WebRequest -Uri "https://lancard.github.io/k-installer/version.txt").Content.Trim()) >> $env:GITHUB_ENV
+
+
+      # pass generate exe when version not changed
+
       - if: env.PREVIOUS_VERSION_STRING != env.VERSION_STRING
         run: npm install
 
@@ -35,9 +36,11 @@ jobs:
         run: npm run package
 
       - name: Compress exe
+        if: env.PREVIOUS_VERSION_STRING != env.VERSION_STRING
         run: compress-archive -path ".\dist\k-installer Setup ${{ env.VERSION_STRING }}.exe" "k-installer.zip" -compressionlevel optimal
 
       - name: Create Release
+        if: env.PREVIOUS_VERSION_STRING != env.VERSION_STRING
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -49,6 +52,7 @@ jobs:
           prerelease: false
 
       - name: Upload Setup exe file
+        if: env.PREVIOUS_VERSION_STRING != env.VERSION_STRING
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
@@ -57,6 +61,10 @@ jobs:
           asset_path: k-installer.zip
           asset_name: k-installer.zip
           asset_content_type: application/zip
+
+
+
+      # Setup pages
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
