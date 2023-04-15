@@ -50,3 +50,21 @@ jobs:
           asset_path: k-installer.zip
           asset_name: k-installer.zip
           asset_content_type: application/zip
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Generate Version File
+        run: echo "${{ env.VERSION_STRING }}" > resources/version.txt
+
+      - name: Copy package.json
+        run: cp package.json resources/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: './resources'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
