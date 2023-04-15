@@ -1,0 +1,78 @@
+#wrapper {
+    height: 100vh;
+}
+
+.sidebar {
+    width: 17vw !important;
+}
+
+.sidebar .nav-item .nav-link {
+    padding: 2px;
+    padding-left: 30px;
+}
+
+.sidebar .nav-item .nav-link span {
+    font-size: 1.3rem;
+}
+
+.sidebar .nav-item small {
+    color: rgb(128, 128, 128);
+}
+
+.sidebar-heading {
+    color: rgb(228, 228, 228) !important;
+}
+
+.sidebar .bottom-copyright {
+    position: absolute;
+    bottom: 10px;
+}
+
+.sidebar .bottom-copyright .nav-link span {
+    font-size: 1rem !important;
+    font-style: italic !important;
+}
+
+#wrapper #content-wrapper {
+    background-color: #272b30;
+    width: 100%;
+    overflow-x: hidden;
+    color: white;
+}
+
+#sidebar {
+    background-image: linear-gradient(90deg, #484e55, #3a3f44 60%, #272b30);
+    background-color: #000000;
+}
+
+.card {
+    border-color: #424242;
+    background-color: #181818;
+    margin: 5px;
+}
+
+.card-header {
+    color: white;
+    border-bottom: #424242;
+    background-color: #000;
+}
+
+.card-body {
+    color: white;
+}
+
+.map-overlay {
+    position: absolute;
+    width: 70px;
+    background-color: rgba(255, 255, 255, 0.1);
+    text-align: center;
+    cursor: pointer;
+}
+
+.airport-description {
+    color: rgb(128, 128, 128);
+}
+
+.airport-description strong {
+    color: rgb(228, 228, 228);
+}

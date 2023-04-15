@@ -1,0 +1,90 @@
+// common library
+const fs = require('fs');
+const path = require('path');
+const appVersion = process.env.npm_package_version ? process.env.npm_package_version : JSON.parse(fs.readFileSync('resources/app.asar/package.json')).version;
+const dialog = require('@electron/remote').dialog;
+const request = require('request');
+const progress = require('request-progress');
+const decompress = require("decompress");
+
+function getCommunityDirectory() {
+    var msfsConfigPath = null;
+
+    const steamPath = path.join(process.env.APPDATA, "\\Microsoft Flight Simulator\\UserCfg.opt");
+    const storePath = path.join(process.env.LOCALAPPDATA, "\\Packages\\Microsoft.FlightSimulator_8wekyb3d8bbwe\\LocalCache\\UserCfg.opt");
+
+    if (fs.existsSync(steamPath)) {
+        msfsConfigPath = steamPath;
+    } else if (fs.existsSync(storePath)) {
+        msfsConfigPath = storePath;
+    } else {
+        return null;
+    }
+
+    if (!msfsConfigPath) {
+        return null;
+    }
+
+    try {
+        const msfsConfig = fs.readFileSync(msfsConfigPath).toString();
+        const msfsConfigLines = msfsConfig.split(/\r?\n/);
+        const packagesPathLine = msfsConfigLines.find(line => line.includes('InstalledPackagesPath'));
+        const communityDir = path.join(packagesPathLine.split(" ").slice(1).join(" ").replaceAll('"', ''), "\\Community");
+
+        return fs.existsSync(communityDir) ? communityDir : null;
+    } catch (e) {
+        console.warn('Could not parse community dir from file', msfsConfigPath);
+        console.error(e);
+        return null;
+    }
+}
+var communityDirectory = getCommunityDirectory();
+if (communityDirectory == null)
+    communityDirectory = "D:/test"; // for debug
+
+
+function updateDownloadStatus(selector, state) {
+    if (state.percent) {
+        var message = `${(state.size.transferred / 1024 / 1024).toFixed(2)} MB / ${(state.size.total / 1024 / 1024).toFixed(2)} MB (${state.percent.toFixed(0)}%)`;
+        $(selector).find("[transferred]").text(message);
+    }
+    else {
+        $(selector).find("[transferred]").text((state.size.transferred / 1024 / 1024).toFixed(2));
+    }
+    $(selector).find("[speed]").text((state.speed / 1024 / 1024).toFixed(2));
+}
+
+function randomString(length) {
+    const chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
+}
+
+
+function downloadFile(filename, url, callback, progressCallback) {
+    const oldPath = path.join(path.dirname(filename), randomString(32));
+    const file = fs.createWriteStream(oldPath);
+
+    // The options argument is optional so you can omit it
+    progress(request(url), {
+        // throttle: 2000,                    // Throttle the progress event to 2000ms, defaults to 1000ms
+        // delay: 1000,                       // Only start to emit after 1000ms delay, defaults to 0ms
+        // lengthHeader: 'x-transfer-length'  // Length header to use, defaults to content-length
+    })
+        .on('progress', function (state) {
+            if (progressCallback)
+                progressCallback(state);
+        })
+        .on('error', function (err) {
+            console.error(err);
+            // Do something with err
+        })
+        .on('end', function () {
+            file.close();
+            fs.renameSync(oldPath, filename);
+            callback(filename, url);
+        })
+        .pipe(file);
+}

@@ -25,84 +25,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        #wrapper {
-            height: 100vh;
-        }
-        .sidebar {
-            width: 17vw !important;
-        }
-
-        .sidebar .nav-item .nav-link {
-            padding: 2px;
-            padding-left: 30px;
-        }
-
-        .sidebar .nav-item .nav-link span {
-            font-size: 1.3rem;
-        }
-
-        .sidebar .nav-item small {
-            color: rgb(128, 128, 128);
-        }
-
-        .sidebar-heading {
-            color: rgb(228, 228, 228) !important;
-        }
-
-        .sidebar .bottom-copyright {
-            position: absolute;
-            bottom: 10px;
-        }
-        .sidebar .bottom-copyright .nav-link span {
-            font-size: 1rem !important;
-            font-style: italic !important;
-        }
-
-        #wrapper #content-wrapper {
-            background-color: #272b30;
-            width: 100%;
-            overflow-x: hidden;
-            color: white;
-        }
-
-        #accordionSidebar {
-            background-image: linear-gradient(90deg, #484e55, #3a3f44 60%, #272b30);
-            background-color: #000000;
-        }
-
-        .card {
-            border-color: #424242;
-            background-color: #181818;
-            margin: 5px;
-        }
-
-        .card-header {
-            color: white;
-            border-bottom: #424242;
-            background-color: #000;
-        }
-
-        .card-body {
-            color: white;
-        }
-
-        .map-overlay {
-            position: absolute;
-            width: 70px;
-            background-color: rgba(255, 255, 255, 0.1);
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .airport-description {
-            color: rgb(128, 128, 128);
-        }
-
-        .airport-description strong {
-            color: rgb(228, 228, 228);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css" />
 
     <!-- for loading jQuery -->
     <script>
@@ -125,7 +48,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="sidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="javascript: void(0)"
@@ -133,7 +56,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-plane"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">K-Installer</div>
+                <div class="sidebar-brand-text mx-3" style="font-family: 'FontAwesome';">K-Installer</div>
             </a>
 
             <!-- Divider -->
@@ -148,7 +71,7 @@
                 <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKJY')">
                     <span class="font-weight-bold">RKJY</span>
                     <small class="d-none d-lg-inline"> Yeosu airport</small>
-                    <span updateIcon="RKJY" class="d-none">
+                    <span updateIcon="RKJY" class="d-none" update-mark-RKJY-fs2020-scenery update-mark-RKJY-p3d-scenery>
                         <sup class="text-warning">up<i class="fas fa-turn-up text-warning"></i></sup>
                     </span>
                 </a>
@@ -223,7 +146,7 @@
 
                     <div class="row p-4">
                         <div class="col-auto">
-                            <img src="https://lancard.github.io/k-installer/KRW.png" width="500" class="m-1"
+                            <img src="https://lancard.github.io/k-installer/KRW.png" width="400" class="m-1"
                                 style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
                         </div>
                         <div class="col mx-0 my-4">
@@ -232,24 +155,14 @@
                                 <li>Download & Unzip downloaded file</li>
                                 <li>Run euroscope and menu - plugin</li>
                                 <li>Load dll</li>
-                                <li>License: <strong>contact me</strong></li>
-                                <hr class="my-2" />
-                                <li>Latest version: <strong latestVersion></strong></li>
-                                <li>Installed version: <strong installedVersion></strong></li>
                             </ul>
                             <div class="mx-4">
                                 <button type="button" class="btn btn-success mx-2"
                                     onclick="updateScenery2020('RKJY', 'master')">Install / Update</button>
                                 <button type="button" class="btn btn-danger mx-2"
-                                    onclick="removeScenery('RKJY')">Remove</button>
+                                    onclick="removeScenery2020('RKJY')">Remove</button>
                             </div>
                         </div>
-                    </div>
-
-                    <div downloadStatus class="collapse">
-                        <h2 statusMessage class="text-primary">Download in progress...</h2>
-                        <h4>Transferred: <span transferred>0</span> MB</h4>
-                        <h4>Speed: <span speed>0</span> MB/s</h4>
                     </div>
                 </div>
                 <!-- end of container -->
@@ -266,32 +179,86 @@
 
                     <div class="row p-4">
                         <div class="col-auto">
-                            <img src="https://lancard.github.io/k-installer/RKJY.png" width="500" class="m-1"
+                            <img src="https://lancard.github.io/k-installer/RKJY.png" width="400" class="m-1"
                                 style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
                         </div>
                         <div class="col mx-0 my-4">
                             <ul class="airport-description">
                                 <li>ICAO: <strong>RKJY</strong></li>
                                 <li>Name: <strong>Yeosu airport</strong></li>
-                                <li>Author: <strong>ArtistPilot</strong></li>
-                                <li>License: <strong>mail to ArtistPilot</strong></li>
-                                <hr class="my-2" />
-                                <li>Latest version: <strong latestVersion></strong></li>
-                                <li>Installed version: <strong installedVersion></strong></li>
                             </ul>
-                            <div class="mx-4">
-                                <button type="button" class="btn btn-success mx-2"
-                                    onclick="updateScenery2020('RKJY', 'master')">Install / Update</button>
-                                <button type="button" class="btn btn-danger mx-2"
-                                    onclick="removeScenery('RKJY')">Remove</button>
-                            </div>
                         </div>
                     </div>
 
-                    <div downloadStatus class="collapse">
-                        <h2 statusMessage class="text-primary">Download in progress...</h2>
-                        <h4>Transferred: <span transferred>0</span> MB</h4>
-                        <h4>Speed: <span speed>0</span> MB/s</h4>
+                    <hr />
+
+                    <h4 class="mx-4">
+                        <i class="fa-solid fa-tree"></i> Scenery
+                    </h4>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card m-4">
+                                <div class="card-header">
+                                    <i class="fa-solid fa-people-carry-box"></i> FS2020
+                                </div>
+                                <div class="card-body text-center">
+                                    <ul class="airport-description text-left">
+                                        <li>Author: <strong>ArtistPilot</strong></li>
+                                        <li>License: <strong>mail to ArtistPilot</strong></li>
+                                        <li>Latest version: <strong latestVersion="RKJY-fs2020-scenery"></strong></li>
+                                        <li>Installed version: <strong installedVersion="RKJY-fs2020-scenery"></strong>
+                                        </li>
+                                    </ul>
+
+                                    <button downloadButton="RKJY-fs2020-scenery" type="button"
+                                        class="btn btn-success mx-2"
+                                        onclick="upgradeProgram('RKJY-fs2020-scenery')">Install / Update</button>
+                                    <button downloadButton="RKJY-fs2020-scenery" type="button"
+                                        class="btn btn-danger mx-2"
+                                        onclick="removeProgram('RKJY-fs2020-scenery')">Remove</button>
+                                    <div downloadStatus="RKJY-fs2020-scenery" class="collapse">
+                                        <h4 statusMessage class="text-primary">Download in progress...</h4>
+                                        <h4>Downloaded: <span transferred>0</span></h4>
+                                        <h4>Speed: <span speed>0</span> MB/s</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card m-4">
+                                <div class="card-header">
+                                    <i class="fa-solid fa-people-carry-box"></i> FSX/P3D
+                                </div>
+                                <div class="card-body text-center">
+                                    <ul class="airport-description text-left">
+                                        <li>Author: <strong>VFR GO!</strong></li>
+                                        <li>License: <strong>contact VFR GO!</strong></li>
+                                        <li>Latest version: <strong latestVersion="RKJY-p3d-scenery"></strong></li>
+                                        <li>Installed version: <strong installedVersion="RKJY-p3d-scenery"></strong>
+                                        </li>
+                                    </ul>
+
+                                    <button type="button" class="btn btn-success mx-2"
+                                        onclick="upgradeProgram('RKJY-p3d-scenery')">Install specific directory</button>
+
+                                    <div downloadStatus2020 class="collapse">
+                                        <h4 statusMessage class="text-primary">Download in progress...</h4>
+                                        <h4>Downloaded: <span transferred>0</span></h4>
+                                        <h4>Speed: <span speed>0</span> MB/s</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card m-4">
+                                <div class="card-header">
+                                    <i class="fa-solid fa-people-carry-box"></i> XPLANE
+                                </div>
+                                <div class="card-body text-center">
+                                    <span class="text-danger">Not available</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- end of container -->
@@ -307,7 +274,7 @@
 
                     <div class="row p-4">
                         <div class="col-auto">
-                            <img src="https://lancard.github.io/k-installer/RKPK.png" width="500" class="m-1"
+                            <img src="https://lancard.github.io/k-installer/RKPK.png" width="400" class="m-1"
                                 style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
                         </div>
                         <div class="col mx-0 my-4">
@@ -324,26 +291,12 @@
                                 <button type="button" class="btn btn-success mx-2"
                                     onclick="updateScenery2020('RKPK', 'master')">Install / Update</button>
                                 <button type="button" class="btn btn-danger mx-2"
-                                    onclick="removeScenery('RKPK')">Remove</button>
+                                    onclick="removeScenery2020('RKPK')">Remove</button>
                             </div>
                         </div>
                     </div>
-
-                    <div downloadStatus class="collapse">
-                        <h2 statusMessage class="text-primary">Download in progress...</h2>
-                        <h4>Transferred: <span transferred>0</span> MB</h4>
-                        <h4>Speed: <span speed>0</span> MB/s</h4>
-                    </div>
                 </div>
                 <!-- end of container -->
-
-
-
-
-
-
-
-
 
 
                 <div class="container-fluid" id="home">
@@ -371,10 +324,9 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div downloadStatus class="collapse m-4 p-4 bg-dark">
+                            <div downloadStatusProgram class="collapse m-4 p-4 bg-dark">
                                 <h2 statusMessage class="text-primary">Download in progress...</h2>
-                                <h4>Transferred: <span transferred>0</span> MB / <span total>0</span> MB (<span
-                                        percent>0%</span>)</h4>
+                                <h4>Downloaded: <span transferred>0</span></h4>
                                 <h4>Speed: <span speed>0</span> MB/s</h4>
                             </div>
 
@@ -410,67 +362,53 @@
 
     </div>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
+    <script src="common.js"></script>
     <script>
-        // common library
-        const fs = require('fs');
-        const path = require('path');
-        const appVersion = process.env.npm_package_version ? process.env.npm_package_version : JSON.parse(fs.readFileSync('resources/app.asar/package.json')).version;
-        const { dialog } = require('electron');
-        const request = require('request');
-        const progress = require('request-progress');
-        const decompress = require("decompress");
-
-        function getCommunityDirectory() {
-            var msfsConfigPath = null;
-
-            const steamPath = path.join(process.env.APPDATA, "\\Microsoft Flight Simulator\\UserCfg.opt");
-            const storePath = path.join(process.env.LOCALAPPDATA, "\\Packages\\Microsoft.FlightSimulator_8wekyb3d8bbwe\\LocalCache\\UserCfg.opt");
-
-            if (fs.existsSync(steamPath)) {
-                msfsConfigPath = steamPath;
-            } else if (fs.existsSync(storePath)) {
-                msfsConfigPath = storePath;
-            } else {
-                return null;
-            }
-
-            if (!msfsConfigPath) {
-                return null;
-            }
-
-            try {
-                const msfsConfig = fs.readFileSync(msfsConfigPath).toString();
-                const msfsConfigLines = msfsConfig.split(/\r?\n/);
-                const packagesPathLine = msfsConfigLines.find(line => line.includes('InstalledPackagesPath'));
-                const communityDir = path.join(packagesPathLine.split(" ").slice(1).join(" ").replaceAll('"', ''), "\\Community");
-
-                return fs.existsSync(communityDir) ? communityDir : null;
-            } catch (e) {
-                console.warn('Could not parse community dir from file', msfsConfigPath);
-                console.error(e);
-                return null;
-            }
-        }
-        var communityDirectory = getCommunityDirectory();
-        if (communityDirectory == null)
-            communityDirectory = "D:/test"; // for debug
-        const programInfo2020 = {
-            "RKJY": {
-                id: "RKJY",
+        var programInfo = {
+            "k-installer": {
+                versionCheckUrl: "https://lancard.github.io/k-installer/package.json",
+                versionModifier: (data) => data.version
+            },
+            "RKJY-fs2020-scenery": {
+                icao: "RKJY",
                 repository: "fs2020-RKJY",
+                downloadUrl: "https://github.com/lancard/fs2020-RKJY/archive/master.zip",
+                versionCheckUrl: "https://lancard.github.io/fs2020-RKJY/version.txt",
+                versionModifier: (data) => data.trim(),
+                unzippedRootDirectory: "fs2020-RKJY-master",
+                targetDirectoryNotExistMessage: "install fs2020 first",
+                targetDirectory: communityDirectory,
+                localStorageNameOfInstalledVersion: "RKJY-fs2020-scenery-installed-version",
+                localStorageNameOfInstalledRootDirectory: "RKJY-fs2020-scenery-installed-directory",
+                localStorageNameOfInstalledDirectoryList: "RKJY-fs2020-scenery-installed-directory-list",
+                directory: {
+                    "rkjy-airport-scene": `fs2020-RKJY-master\\rkjy-airport-scene`,
+                    "rkjy": `fs2020-RKJY-master\\rkjy`,
+                    "zulu-airport-rkjy-yeosu": `fs2020-RKJY-master\\zulu-airport-rkjy-yeosu`
+                }
+            },
+            "RKJY-p3d-scenery": {
+                icao: "RKJY",
+                downloadUrl: "https://github.com/lancard/VFRGO/releases/download/master/VFRGO_Yeosu.zip",
+                unzippedDirName: "VFRGO_Yeosu",
                 directory: {
                     "rkjy-airport-scene": `${communityDirectory}\\rkjy-airport-scene`,
                     "rkjy": `${communityDirectory}\\rkjy`,
                     "zulu-airport-rkjy-yeosu": `${communityDirectory}\\zulu-airport-rkjy-yeosu`
                 }
             },
-            "RKPK": {
-                id: "RKPK",
+            "RKPK-fs2020-scenery": {
+                icao: "RKPK",
+                repository: "fs2020-RKPK",
+                downloadUrl: "https://github.com/lancard/fs2020-RKPK/archive/master.zip",
+                versionFileName: "https://lancard.github.io/fs2020-RKPK/version.txt",
+                unzippedDirName: "fs2020-RKPK-master",
+                directory: {
+                    "Packages\\thekoreans-airport-rkpk-busan": `${communityDirectory}\\thekoreans-airport-rkpk-busan`
+                }
+            },
+            "RKPK-p3d-scenery": {
+                icao: "RKPK",
                 repository: "fs2020-RKPK",
                 directory: {
                     "Packages\\thekoreans-airport-rkpk-busan": `${communityDirectory}\\thekoreans-airport-rkpk-busan`
@@ -479,76 +417,130 @@
         };
 
 
-        function randomString(length) {
-            const chars = '0123456789abcdefghijklmnopqrstuvwxyz';
 
-            var result = '';
-            for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
-            return result;
-        };
 
-        function downloadFile(filename, url, callback, progressCallback) {
-            const oldPath = path.join(getCommunityDirectory(), randomString(32));
-            const file = fs.createWriteStream(oldPath);
 
-            // The options argument is optional so you can omit it
-            progress(request(url), {
-                // throttle: 2000,                    // Throttle the progress event to 2000ms, defaults to 1000ms
-                // delay: 1000,                       // Only start to emit after 1000ms delay, defaults to 0ms
-                // lengthHeader: 'x-transfer-length'  // Length header to use, defaults to content-length
-            })
-                .on('progress', function (state) {
-                    if (progressCallback)
-                        progressCallback(state);
-                })
-                .on('error', function (err) {
-                    console.error(err);
-                    // Do something with err
-                })
-                .on('end', function () {
-                    file.close();
-                    fs.renameSync(oldPath, filename);
-                    callback(filename, url);
-                })
-                .pipe(file);
-        };
+        function checkUpdate(id) {
+            if (!programInfo[id].versionCheckUrl)
+                return;
 
-        function checkUpdate() {
-            $.getJSON(`https://lancard.github.io/k-installer/package.json`, (data) => {
-                if (appVersion == data.version)
-                    return;
+            $.get(programInfo[id].versionCheckUrl, (data) => {
+                const latestVersion = programInfo[id].versionModifier ? programInfo[id].versionModifier(data) : data;
+                const installedVersion = localStorage.getItem(programInfo[id].localStorageNameOfInstalledVersion);
 
-                // update exist.
-                if (!confirm(`install new version ${data.version}?`))
-                    return;
+                programInfo[id].previousVersion = installedVersion;
+                programInfo[id].latestVersion = latestVersion;
 
-                const filename = `${communityDirectory}\\home.zip`;
+                $(`[latestVersion="${id}"]`).text(latestVersion);
+                $(`[installedVersion="${id}"]`).text(installedVersion);
 
-                $(`#home`).find("[downloadStatus]").show();
-                $(`#home`).find("[downloadStatus] [statusMessage]").text("downloading...");
-                downloadFile(filename, `https://github.com/lancard/k-installer/releases/latest/download/k-installer.zip`,
-                    () => {
-                        $(`#home`).find("[downloadStatus] [statusMessage]").text("decompressing...");
-
-                        decompress(filename, communityDirectory)
-                            .then((files) => {
-                                fs.rmSync(filename);
-                                $(`#home`).find("[downloadStatus]").hide();
-                                require('child_process').execSync(`"${communityDirectory + "\\" + files[0].path}"`);
-                            })
-                            .catch((error) => {
-                                console.log(error);
-                            });
-                    },
-                    (state) => {
-                        $(`#home`).find("[downloadStatus] [transferred]").text((state.size.transferred / 1024 / 1024).toFixed(2));
-                        $(`#home`).find("[downloadStatus] [total]").text((state.size.total / 1024 / 1024).toFixed(2));
-                        $(`#home`).find("[downloadStatus] [percent]").text((state.size.transferred * 100 / state.size.total).toFixed(0) + "%");
-                        $(`#home`).find("[downloadStatus] [speed]").text((state.speed / 1024 / 1024).toFixed(2));
-                    });
+                if (latestVersion == installedVersion) {
+                    $(`[update-mark-${id}]`).removeClass(`must-show-${id}`);
+                }
+                else {
+                    $(`[update-mark-${id}]`).removeClass(`must-show-${id}`);
+                }
             });
         }
 
+        function isInstalledBefore(id) {
+            return localStorage.getItem(programInfo[id].localStorageNameOfInstalledRootDirectory) != null;
+        }
+
+        function removeProgram(id) {
+            if (!isInstalledBefore(id))
+                return;
+
+            const installedDirectoryArray = JSON.parse(localStorage.getItem(programInfo[id].localStorageNameOfInstalledDirectoryList));
+
+            // remove first
+            installedDirectoryArray.forEach(e => {
+                fs.rmSync(e, { recursive: true, force: true });
+            });
+        }
+
+        function installProgram(id, targetDirectory) {
+            const filename = `${targetDirectory}\\${id}.zip`;
+
+            $buttons = $(`[downloadButton="${id}"]`);
+            $status = $(`[downloadStatus="${id}"]`);
+
+            $buttons.hide();
+            $status.show();
+            $status.find("[statusMessage]").text("downloading...");
+
+            downloadFile(filename, programInfo[id].downloadUrl,
+                () => {
+                    $status.find("[statusMessage]").text("decompressing...");
+
+                    decompress(filename, targetDirectory)
+                        .then((files) => {
+                            fs.rmSync(filename); // remove zip file for disk space
+
+                            // replacement for unzipped files
+                            var installedDirectory = [];
+                            for (var dir in programInfo[id].directory) {
+                                fs.renameSync(`${targetDirectory}\\${programInfo[id].unzippedRootDirectory}\\${dir}`, `${targetDirectory}\\${programInfo[id].directory[dir]}`);
+                                installedDirectory.push(`${targetDirectory}\\${programInfo[id].directory[dir]}`);
+                            }
+
+                            fs.rmSync(programInfo[id].unzippedRootDirectory, { recursive: true, force: true }); // remove zip root directory
+
+                            // save installed information
+                            localStorage.setItem(programInfo[id].localStorageNameOfInstalledRootDirectory, targetDirectory);
+                            localStorage.setItem(programInfo[id].localStorageNameOfInstalledDirectoryList, JSON.stringify(installedDirectory));
+                            localStorage.setItem(programInfo[id].localStorageNameOfInstalledVersion, programInfo[id].latestVersion);
+
+                            alert(`installation complete: ${id}`);
+
+                            // restore hide elements
+                            $buttons.show();
+                            $status.hide();
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                },
+                (state) => {
+                    updateDownloadStatus($status, state);
+                });
+        }
+
+        function upgradeProgram(id) {
+            var targetDir = localStorage.getItem(programInfo[id].localStorageNameOfInstalledRootDirectory);
+
+            // installed before
+            if (targetDir != null) {
+                // remove first
+                removeProgram(id);
+
+                installProgram(id, targetDir);
+
+                return;
+            }
+
+            // install first time ----------------------------------
+
+            if (programInfo[id].targetDirectory != null) {
+
+                installProgram(id, programInfo[id].targetDirectory);
+
+            } else {
+                if (programInfo[id].targetDirectoryNotExistMessage) {
+                    alert(programInfo[id].targetDirectoryNotExistMessage);
+                    return;
+                }
+                else {
+                    var ret = dialog.showOpenDialogSync({ properties: ["openDirectory"] });
+                    if (!ret) {
+                        alert('abort.');
+                        return;
+                    }
+
+                    installProgram(id, ret[0]);
+                }
+            }
+        }
 
         function initialization() {
             if (communityDirectory == null) {
@@ -560,94 +552,21 @@
             }
             $("#programVersion").text(appVersion);
 
+            // add stylesheet for update mark element
+            for (var id in programInfo) {
+                var style = $(`<style>.must-show-${id} { display: inline-block !important; }</style>`);
+                $('html > head').append(style);
+            }
+
             // check update
-            checkUpdate();
-
-            for (var id in programInfo2020) {
-                retrieveGitInfo(id);
+            for (var id in programInfo) {
+                checkUpdate(id);
             }
         }
-
-
-        // functions ..................................
-
-        function updateScreen(id) {
-            $(`#${id} [latestVersion]`).text(programInfo2020[id]["date"]);
-            $(`#${id} [installedVersion]`).text(localStorage.getItem(id));
-            if (programInfo2020[id]["date"] != localStorage.getItem(id)) {
-                $(`#${id} [latestVersion]`).addClass("text-danger");
-                $(`[updateicon=${id}]`).removeClass("d-none");
-            } else {
-                $(`#${id} [latestVersion]`).removeClass("text-danger");
-                $(`[updateicon=${id}]`).addClass("d-none");
-            }
-        }
-
-        function retrieveGitInfo(id) {
-            $.get(`https://lancard.github.io/${programInfo2020[id].repository}/version.txt`, (data) => {
-                programInfo2020[id]["date"] = data;
-
-                updateScreen(id);
-            });
-        }
-
-
 
         function showMenu(selectedId) {
             $("div.container-fluid").hide(500);
             $("#" + selectedId).show(500);
-        }
-
-
-
-        function removeScenery(id) {
-            localStorage.removeItem(id);
-
-            for (var dir in programInfo2020[id].directory) {
-                fs.rmSync(programInfo2020[id].directory[dir], { recursive: true, force: true });
-            };
-
-            updateScreen(id);
-        }
-
-        function updateScenery2020(id, branch) {
-            if (communityDirectory == null) {
-                alert('install fs2020 first');
-                return;
-            }
-
-            removeScenery(id);
-
-            const filename = `${communityDirectory}\\${id}.zip`;
-            const unzippedDirName = `${communityDirectory}\\${programInfo2020[id].repository}-${branch}`;
-
-            $(`#${id}`).find("[downloadStatus]").show();
-            $(`#${id}`).find("[downloadStatus] [statusMessage]").text("downloading...");
-
-            downloadFile(filename, `https://github.com/lancard/${programInfo2020[id].repository}/archive/${branch}.zip`,
-                () => {
-                    $(`#${id}`).find("[downloadStatus] [statusMessage]").text("decompressing...");
-
-                    decompress(filename, communityDirectory)
-                        .then((files) => {
-                            fs.rmSync(filename);
-                            for (var dir in programInfo2020[id].directory) {
-                                fs.renameSync(`${unzippedDirName}\\${dir}`, programInfo2020[id].directory[dir]);
-                            }
-                            fs.rmSync(unzippedDirName, { recursive: true, force: true });
-                            localStorage.setItem(id, programInfo2020[id].date);
-                            $(`#${id}`).find("[downloadStatus]").hide();
-                            updateScreen(id);
-                            alert(`installation complete: ${id}`);
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        });
-                },
-                (state) => {
-                    $(`#${id}`).find("[downloadStatus] [transferred]").text((state.size.transferred / 1024 / 1024).toFixed(2));
-                    $(`#${id}`).find("[downloadStatus] [speed]").text((state.speed / 1024 / 1024).toFixed(2));
-                });
         }
 
         initialization();

@@ -1,4 +1,5 @@
 const { app, BrowserWindow, globalShortcut } = require('electron');
+const electronRemoteMain = require('@electron/remote/main');
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -11,6 +12,9 @@ function createWindow() {
       contextIsolation: false
     }
   });
+
+  electronRemoteMain.initialize();
+  electronRemoteMain.enable(mainWindow.webContents);
 
   mainWindow.removeMenu();
 
