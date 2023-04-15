@@ -585,7 +585,7 @@
                         .then((files) => {
                             fs.rmSync(filename);
                             for (var dir in programInfo[id].directory) {
-                                fs.renameSync(`${unzippedDirName}/${dir}`, programInfo[id].directory[dir]);
+                                fs.renameSync(`${unzippedDirName}\\${dir}`, programInfo[id].directory[dir]);
                             }
                             fs.rmSync(unzippedDirName, { recursive: true, force: true });
                             localStorage.setItem(id, programInfo[id].date);
