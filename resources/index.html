@@ -564,6 +564,7 @@
                     return;
                 }
                 else {
+                    alert("select 'addon scenery' folder (will create new folder)");
                     var ret = dialog.showOpenDialogSync({ properties: ["openDirectory"] });
                     if (!ret) {
                         alert('abort');
