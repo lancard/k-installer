@@ -7,6 +7,7 @@
             'self'
             'unsafe-inline'
             https://cdnjs.cloudflare.com
+            https://airplane.mywire.org
             https://lancard.github.io
             https://github.com
             https://api.github.com
@@ -278,31 +279,18 @@
         <hr />
 
         <h4 class="mx-4">
+            <i class="fa-solid fa-tree"></i> Metar
+        </h4>
+
+        <div class="row mx-4 text-warning" metarArea></div>
+
+        <hr />
+
+        <h4 class="mx-4">
             <i class="fa-solid fa-tree"></i> Charts
         </h4>
-        <div class="row mx-4">
-            <div class="col-auto px-1">
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fa-solid fa-car"></i> General
-                    </div>
-                    <div class="card-body text-center">
-                        <button type="button" class="btn btn-primary" onclick="openChart(this, 'TEXT')">View</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-auto px-1">
-                <div class="card">
-                    <div class="card-header">
-                        <i class="fa-solid fa-car"></i> AD
-                    </div>
-                    <div class="card-body text-center">
-                        <button type="button" class="btn btn-primary"
-                            onclick="openChart(this, 'AD CHART')">View</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <div class="row mx-4" chartArea></div>
 
         <hr />
 
@@ -380,7 +368,7 @@
             window.open(`https://lancard.github.io/chart/AIP/latest/AD/${icao}/${chartName}.pdf`);
         }
 
-        function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
+        function createSceneryContentsDOM(icao, airportName, chartMap, metar, fs2020Id, p3dId) {
             $clonedDOM = $("[airportTemplate]:not(:visible)").clone().removeClass("collapse");
 
             // common
@@ -388,6 +376,18 @@
             $clonedDOM.find("[icao]").text(icao);
             $clonedDOM.find("[airportName]").text(airportName);
             $clonedDOM.find("[airportImage]").attr("src", `https://lancard.github.io/k-installer/${icao}.png`);
+
+            // metar
+            $clonedDOM.find("[metarArea]").text(metar);
+
+            // charts
+            for (var chartType in chartMap) {
+                if (!chartMap[chartType])
+                    continue;
+
+                $(`<button type="button" class="btn btn-primary m-2" onclick="openChart(this, '${chartType}')">${chartType}</button>`).appendTo($clonedDOM.find("[chartArea]"));
+            }
+
 
             // fs2020
             $clonedDOM.find("[sceneryType=fs2020]").find("[author]").text(programInfo[fs2020Id].author);
@@ -399,7 +399,12 @@
 
         initialization();
 
-        createSceneryContentsDOM("RKJY", "Yeosu airport", "RKJY-fs2020-scenery", "RKJY-p3d-scenery");
+        $.getJSON("https://airplane.mywire.org/metar.json", metar => {
+            // https://lancard.github.io/chart/AIP/latest/AD/chartInformation.json
+            $.getJSON('https://raw.githubusercontent.com/lancard/chart/main/AIP/latest/AD/chartInformation.json', (data) => {
+                createSceneryContentsDOM("RKJY", "Yeosu airport", data["RKJY"], metar["RKJY"].metar, "RKJY-fs2020-scenery", "RKJY-p3d-scenery");
+            });
+        });
     </script>
 </body>
 
