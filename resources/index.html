@@ -271,18 +271,11 @@
             <div class="col mx-0 my-4">
                 <ul class="airport-description">
                     <li>ICAO: <strong icao></strong></li>
-                    <li>Name: <strong airportName></strong></li>
+                    <li>NAME: <strong airportName></strong></li>
+                    <li>METAR: <strong class="text-warning" metarArea></strong></li>
                 </ul>
             </div>
         </div>
-
-        <hr />
-
-        <h4 class="mx-4">
-            <i class="fa-solid fa-tree"></i> Metar
-        </h4>
-
-        <div class="row mx-4 text-warning" metarArea></div>
 
         <hr />
 
@@ -385,7 +378,7 @@
                 if (!chartMap[chartType])
                     continue;
 
-                $(`<button type="button" class="btn btn-primary m-2" onclick="openChart(this, '${chartType}')">${chartType}</button>`).appendTo($clonedDOM.find("[chartArea]"));
+                $(`<button type="button" class="btn btn-info m-2" onclick="openChart(this, '${chartType}')">${chartType}</button>`).appendTo($clonedDOM.find("[chartArea]"));
             }
 
 
