@@ -38,10 +38,6 @@ function getCommunityDirectory() {
         return null;
     }
 }
-var communityDirectory = getCommunityDirectory();
-if (communityDirectory == null)
-    communityDirectory = "D:/test"; // for debug
-
 
 function updateDownloadStatus(selector, state) {
     if (state.percent) {
@@ -111,14 +107,13 @@ var programInfo = {
         versionModifier: (data) => data.version
     },
     "RKJY-fs2020-scenery": {
+        programType: 'fs2020',
         author: "ArtistPilot",
         license: "contact ArtistPilot",
         downloadUrl: "https://github.com/lancard/fs2020-RKJY/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/fs2020-RKJY/version.txt",
         versionModifier: (data) => data.trim(),
         unzippedRootDirectory: "fs2020-RKJY-master",
-        targetDirectoryNotExistMessage: "install fs2020 first",
-        targetDirectory: communityDirectory,
         localStorageNameOfInstalledVersion: "RKJY-fs2020-scenery-installed-version",
         localStorageNameOfInstalledRootDirectory: "RKJY-fs2020-scenery-installed-directory",
         localStorageNameOfInstalledDirectoryList: "RKJY-fs2020-scenery-installed-directory-list",
@@ -129,6 +124,7 @@ var programInfo = {
         }
     },
     "RKJY-p3d-scenery": {
+        programType: 'p3d',
         downloadUrl: "https://github.com/lancard/VFRGO/releases/download/master/VFRGO_Yeosu.zip",
         versionCheckUrl: "https://api.github.com/repos/lancard/VFRGO/releases/latest",
         versionModifier: (data) => data.assets[2].updated_at,
@@ -145,12 +141,12 @@ var programInfo = {
         downloadUrl: "https://github.com/lancard/fs2020-RKPK/archive/master.zip",
         versionFileName: "https://lancard.github.io/fs2020-RKPK/version.txt",
         directory: {
-            "Packages\\thekoreans-airport-rkpk-busan": `${communityDirectory}\\thekoreans-airport-rkpk-busan`
+            "Packages\\thekoreans-airport-rkpk-busan": `thekoreans-airport-rkpk-busan`
         }
     },
     "RKPK-p3d-scenery": {
         directory: {
-            "Packages\\thekoreans-airport-rkpk-busan": `${communityDirectory}\\thekoreans-airport-rkpk-busan`
+            "Packages\\thekoreans-airport-rkpk-busan": `thekoreans-airport-rkpk-busan`
         }
     }
 };
@@ -162,7 +158,7 @@ function updateScreen(id) {
     if (!isInstalledBefore(id)) {
         $(`[installedVersion="${id}"]`).text("(not installed)");
         $(`[installedDirectory="${id}"]`).text("(not installed)");
-        $(`[update-mark-${id}]`).addClass(`must-show-${id}`);
+        $(`[update-mark-${id}]`).removeClass(`must-show-${id}`);
         return;
     }
 
@@ -199,6 +195,10 @@ function isInstalledBefore(id) {
 }
 
 function removeProgram(id) {
+    if (typeof (id) != 'string') {
+        id = $(id).attr('downloadButton');
+    }
+
     if (!isInstalledBefore(id))
         return;
 
@@ -275,6 +275,10 @@ function installProgram(id, targetDirectory) {
 }
 
 function upgradeProgram(id) {
+    if (typeof (id) != 'string') {
+        id = $(id).attr('downloadButton');
+    }
+
     var targetDir = localStorage.getItem(programInfo[id].localStorageNameOfInstalledRootDirectory);
 
     // installed before
@@ -288,42 +292,76 @@ function upgradeProgram(id) {
     }
 
     // install first time ----------------------------------
-
-    if (programInfo[id].targetDirectory != null) {
-
-        installProgram(id, programInfo[id].targetDirectory);
-
-    } else {
-        if (programInfo[id].targetDirectoryNotExistMessage) {
-            alert(programInfo[id].targetDirectoryNotExistMessage);
+    if (programInfo[id].programType == 'fs2020') {
+        if (window.communityDirectory == null) {
+            alert('select directory in home screen');
+            showMenu('k-installer');
             return;
         }
-        else {
-            alert("select 'addon scenery' folder (will create new folder)");
-            var ret = dialog.showOpenDialogSync({ properties: ["openDirectory"] });
-            if (!ret) {
-                alert('abort');
-                return;
-            }
-            if (!fs.existsSync(ret[0])) {
-                alert(`path not exist: ${ret[0]}`);
-                return;
-            }
 
-            installProgram(id, ret[0]);
+        targetDir = window.communityDirectory;
+    }
+    if (programInfo[id].programType == 'p3d') {
+        if (window.addonSceneryDirectory == null) {
+            alert('select directory in home screen');
+            showMenu('k-installer');
+            return;
         }
+
+        targetDir = window.addonSceneryDirectory;
+    }
+
+    installProgram(id, targetDir);
+}
+
+function selectDirectory(program) {
+    var ret = dialog.showOpenDialogSync({ properties: ["openDirectory"] });
+    if (!ret) {
+        alert('abort');
+        return;
+    }
+    if (!fs.existsSync(ret[0])) {
+        alert(`path not exist: ${ret[0]}`);
+        return;
+    }
+
+    if (program == 'fs2020') {
+        localStorage.setItem("fs2020-root-directory", ret[0]);
+        $("#communityDirectory").text(ret[0]);
+    }
+    if (program == 'p3d') {
+        localStorage.setItem("p3d-root-directory", ret[0]);
+        $("#addonSceneryDirectory").text(ret[0]);
     }
 }
 
 function initialization() {
-    if (communityDirectory == null) {
+    window.communityDirectory = localStorage.getItem("fs2020-root-directory");
+    if (window.communityDirectory == null) {
+        window.communityDirectory = getCommunityDirectory();
+        localStorage.setItem("fs2020-root-directory", window.communityDirectory);
+    }
+
+    if (window.communityDirectory == null) {
         $("#communityDirectory").addClass("text-danger");
         $("#communityDirectory").text("Not Found");
     }
     else {
-        $("#communityDirectory").text(communityDirectory);
+        $("#communityDirectory").text(window.communityDirectory);
     }
+
     $("#programVersion").text(appVersion);
+
+
+    window.addonSceneryDirectory = localStorage.getItem("p3d-root-directory");
+    if (window.addonSceneryDirectory == null) {
+        $("#addonSceneryDirectory").addClass("text-danger");
+        $("#addonSceneryDirectory").text("Not Found");
+    }
+    else {
+        $("#addonSceneryDirectory").text(window.addonSceneryDirectory);
+    }
+
 
     // add stylesheet for update mark element
     for (var id in programInfo) {
@@ -331,13 +369,69 @@ function initialization() {
         $('html > head').append(style);
     }
 
-    // check update
-    for (var id in programInfo) {
-        checkUpdate(id);
-    }
+    $.getJSON("https://airplane.mywire.org/metar.json", metar => {
+        // https://lancard.github.io/chart/AIP/latest/AD/chartInformation.json
+        $.getJSON('https://raw.githubusercontent.com/lancard/chart/main/AIP/latest/AD/chartInformation.json', (data) => {
+            createSceneryContentsDOM("RKJY", "Yeosu airport", data["RKJY"], metar["RKJY"].metar, "RKJY-fs2020-scenery", "RKJY-p3d-scenery");
+
+            // check update
+            for (var id in programInfo) {
+                checkUpdate(id);
+            }
+        });
+    });
 }
 
 function showMenu(selectedId) {
     $("div.container-fluid").hide(500);
     $("#" + selectedId).show(500);
+}
+
+function openChart(elem, chartName) {
+    var icao = $(elem).parents("div[airportTemplate]").attr("icao");
+
+    window.open(`https://lancard.github.io/chart/AIP/latest/AD/${icao}/${chartName}.pdf`);
+}
+
+function createSceneryContentsDOM(icao, airportName, chartMap, metar, fs2020Id, p3dId) {
+    $clonedDOM = $("[airportTemplate]:not(:visible)").clone().removeClass("collapse");
+
+    // common
+    $clonedDOM.attr("icao", icao);
+    $clonedDOM.find("[icao]").text(icao);
+    $clonedDOM.find("[airportName]").text(airportName);
+    $clonedDOM.find("[airportImage]").attr("src", `https://lancard.github.io/k-installer/${icao}.png`);
+
+    // metar
+    $clonedDOM.find("[metarArea]").text(metar);
+
+    // charts
+    for (var chartType in chartMap) {
+        if (!chartMap[chartType])
+            continue;
+
+        $(`<button type="button" class="btn btn-info m-2" onclick="openChart(this, '${chartType}')">${chartType}</button>`).appendTo($clonedDOM.find("[chartArea]"));
+    }
+
+
+    // fs2020
+    $clonedDOM.find("[sceneryType=fs2020]").find("[author]").text(programInfo[fs2020Id].author);
+    $clonedDOM.find("[sceneryType=fs2020]").find("[license]").text(programInfo[fs2020Id].license);
+    $clonedDOM.find("[sceneryType=fs2020]").find("[latestVersion]").attr("latestVersion", fs2020Id);
+    $clonedDOM.find("[sceneryType=fs2020]").find("[installedVersion]").attr("installedVersion", fs2020Id);
+    $clonedDOM.find("[sceneryType=fs2020]").find("[installedDirectory]").attr("installedDirectory", fs2020Id);
+    $clonedDOM.find("[sceneryType=fs2020]").find("[downloadButton]").attr("downloadButton", fs2020Id);
+    $clonedDOM.find("[sceneryType=fs2020]").find("[downloadStatus]").attr("downloadStatus", fs2020Id);
+
+
+    // p3d
+    $clonedDOM.find("[sceneryType=p3d]").find("[author]").text(programInfo[p3dId].author);
+    $clonedDOM.find("[sceneryType=p3d]").find("[license]").text(programInfo[p3dId].license);
+    $clonedDOM.find("[sceneryType=p3d]").find("[latestVersion]").attr("latestVersion", p3dId);
+    $clonedDOM.find("[sceneryType=p3d]").find("[installedVersion]").attr("installedVersion", p3dId);
+    $clonedDOM.find("[sceneryType=p3d]").find("[installedDirectory]").attr("installedDirectory", p3dId);
+    $clonedDOM.find("[sceneryType=p3d]").find("[downloadButton]").attr("downloadButton", p3dId);
+    $clonedDOM.find("[sceneryType=p3d]").find("[downloadStatus]").attr("downloadStatus", p3dId);
+
+    $clonedDOM.appendTo("#RKJY");
 }

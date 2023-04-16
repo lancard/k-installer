@@ -218,15 +218,26 @@
 
                             <div class="card m-4">
                                 <div class="card-header">
-                                    <i class="fa-solid fa-people-carry-box"></i> FS2020 Community Folder
+                                    <i class="fa-solid fa-people-carry-box"></i> FS2020 'Community' Folder
                                 </div>
                                 <div class="card-body">
                                     <span id="communityDirectory">(Loading)</span>
                                     <button type="button" class="btn btn-primary mx-4 p-2"
-                                        onclick="require('child_process').execSync('explorer '+communityDirectory);">Open
-                                        in explorer</button>
+                                        onclick="selectDirectory('fs2020');">Select Directory</button>
                                 </div>
                             </div>
+
+                            <div class="card m-4">
+                                <div class="card-header">
+                                    <i class="fa-solid fa-people-carry-box"></i> FSX/P3D scenery save Folder
+                                </div>
+                                <div class="card-body">
+                                    <span id="addonSceneryDirectory">(Loading)</span>
+                                    <button type="button" class="btn btn-primary mx-4 p-2"
+                                        onclick="selectDirectory('p3d');">Select Directory</button>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -300,19 +311,18 @@
                         <ul class="airport-description text-left">
                             <li>Author: <strong author></strong></li>
                             <li>License: <strong license></strong></li>
-                            <li>Latest version: <strong latestVersion="RKJY-fs2020-scenery"></strong></li>
-                            <li>Installed version: <strong installedVersion="RKJY-fs2020-scenery"></strong>
-                            </li>
-                            <li>Installed directory: <span class="text-small text-white"
-                                    installedDirectory="RKJY-fs2020-scenery"></span>
+                            <li>Latest version: <strong latestVersion=""></strong></li>
+                            <li>Installed version: <strong installedVersion=""></strong></li>
+                            <li>Installed directory:
+                                <span class="text-small text-white" installedDirectory=""></span>
                             </li>
                         </ul>
 
-                        <button downloadButton="RKJY-fs2020-scenery" type="button" class="btn btn-primary mx-2"
-                            onclick="upgradeProgram('RKJY-fs2020-scenery')">Install / Update</button>
-                        <button downloadButton="RKJY-fs2020-scenery" type="button" class="btn btn-danger mx-2"
-                            onclick="removeProgram('RKJY-fs2020-scenery')">Remove</button>
-                        <div downloadStatus="RKJY-fs2020-scenery" class="collapse">
+                        <button downloadButton="" type="button" class="btn btn-primary mx-2"
+                            onclick="upgradeProgram(this)">Install / Update</button>
+                        <button downloadButton="" type="button" class="btn btn-danger mx-2"
+                            onclick="removeProgram(this)">Remove</button>
+                        <div downloadStatus="" class="collapse">
                             <h4 statusMessage class="text-primary">Download in progress...</h4>
                             <h4>Download: <span transferred>0</span></h4>
                             <h4>Speed: <span speed>0</span> MB/s</h4>
@@ -327,22 +337,21 @@
                     </div>
                     <div class="card-body text-center">
                         <ul class="airport-description text-left">
-                            <li>Author: <strong>VFR GO!</strong></li>
-                            <li>License: <strong>contact VFR GO!</strong></li>
-                            <li>Latest version: <strong latestVersion="RKJY-p3d-scenery"></strong></li>
-                            <li>Installed version: <strong installedVersion="RKJY-p3d-scenery"></strong>
-                            </li>
-                            <li>Installed directory: <span class="text-small text-white"
-                                    installedDirectory="RKJY-p3d-scenery"></span>
+                            <li>Author: <strong author></strong></li>
+                            <li>License: <strong license></strong></li>
+                            <li>Latest version: <strong latestVersion=""></strong></li>
+                            <li>Installed version: <strong installedVersion=""></strong></li>
+                            <li>Installed directory:
+                                <span class="text-small text-white" installedDirectory=""></span>
                             </li>
                         </ul>
 
-                        <button downloadButton="RKJY-p3d-scenery" type="button" class="btn btn-primary mx-2"
-                            onclick="upgradeProgram('RKJY-p3d-scenery')">Install specific directory</button>
-                        <button downloadButton="RKJY-p3d-scenery" type="button" class="btn btn-danger mx-2"
-                            onclick="removeProgram('RKJY-p3d-scenery')">Remove</button>
+                        <button downloadButton="" type="button" class="btn btn-primary mx-2"
+                            onclick="upgradeProgram(this)">Install / Update</button>
+                        <button downloadButton="" type="button" class="btn btn-danger mx-2"
+                            onclick="removeProgram(this)">Remove</button>
 
-                        <div downloadStatus="RKJY-p3d-scenery" class="collapse">
+                        <div downloadStatus="" class="collapse">
                             <h4 statusMessage class="text-primary">Download in progress...</h4>
                             <h4>Download: <span transferred>0</span></h4>
                             <h4>Speed: <span speed>0</span> MB/s</h4>
@@ -355,49 +364,7 @@
 
     <script src="common.js"></script>
     <script>
-        function openChart(elem, chartName) {
-            var icao = $(elem).parents("div[airportTemplate]").attr("icao");
-
-            window.open(`https://lancard.github.io/chart/AIP/latest/AD/${icao}/${chartName}.pdf`);
-        }
-
-        function createSceneryContentsDOM(icao, airportName, chartMap, metar, fs2020Id, p3dId) {
-            $clonedDOM = $("[airportTemplate]:not(:visible)").clone().removeClass("collapse");
-
-            // common
-            $clonedDOM.attr("icao", icao);
-            $clonedDOM.find("[icao]").text(icao);
-            $clonedDOM.find("[airportName]").text(airportName);
-            $clonedDOM.find("[airportImage]").attr("src", `https://lancard.github.io/k-installer/${icao}.png`);
-
-            // metar
-            $clonedDOM.find("[metarArea]").text(metar);
-
-            // charts
-            for (var chartType in chartMap) {
-                if (!chartMap[chartType])
-                    continue;
-
-                $(`<button type="button" class="btn btn-info m-2" onclick="openChart(this, '${chartType}')">${chartType}</button>`).appendTo($clonedDOM.find("[chartArea]"));
-            }
-
-
-            // fs2020
-            $clonedDOM.find("[sceneryType=fs2020]").find("[author]").text(programInfo[fs2020Id].author);
-            $clonedDOM.find("[sceneryType=fs2020]").find("[license]").text(programInfo[fs2020Id].license);
-
-
-            $clonedDOM.appendTo("#RKJY");
-        }
-
         initialization();
-
-        $.getJSON("https://airplane.mywire.org/metar.json", metar => {
-            // https://lancard.github.io/chart/AIP/latest/AD/chartInformation.json
-            $.getJSON('https://raw.githubusercontent.com/lancard/chart/main/AIP/latest/AD/chartInformation.json', (data) => {
-                createSceneryContentsDOM("RKJY", "Yeosu airport", data["RKJY"], metar["RKJY"].metar, "RKJY-fs2020-scenery", "RKJY-p3d-scenery");
-            });
-        });
     </script>
 </body>
 
