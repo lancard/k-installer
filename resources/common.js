@@ -248,6 +248,11 @@ function installProgram(id, targetDirectory) {
                 .then((files) => {
                     fs.rmSync(filename); // remove zip file for disk space
 
+                    if (id == "k-installer") {
+                        require('child_process').execSync(`./${files[0].path}`);
+                        return;
+                    }
+
                     // replacement for unzipped files
                     var installedDirectory = [];
                     for (var dir in programInfo[id].directory) {
