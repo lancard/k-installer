@@ -54,7 +54,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="javascript: void(0)"
-                onclick="showMenu('home')">
+                onclick="showMenu('k-installer')">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-plane"></i>
                 </div>
@@ -93,7 +93,7 @@
                 <i class="fas fa-fw fa-wand-magic-sparkles"></i> ATC Program
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('KRW')">
+                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('k-installer')">
                     <span class="font-weight-bold">KRW</span>
                     <small class="d-none d-lg-inline"> Korean weather radar</small>
                     <span updateIcon="KRW" class="d-none">
@@ -137,46 +137,13 @@
             <!-- Main Content -->
             <div id="content">
 
-                <!-- start of container-->
-                <div class="container-fluid collapse" id="KRW">
-                    <div class="m-1">
-                        <h2 class="m-2">
-                            <i class="fa-solid fa-plane-departure"></i>
-                            KRW - Euroscope plugin Korean Radar for Weather
-                        </h2>
-                    </div>
-
-                    <div class="row p-4">
-                        <div class="col-auto">
-                            <img src="https://lancard.github.io/k-installer/KRW.png" width="400" class="m-1"
-                                style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
-                        </div>
-                        <div class="col mx-0 my-4">
-                            <h4>How to install</h4>
-                            <ul class="airport-description">
-                                <li>Download & Unzip downloaded file</li>
-                                <li>Run euroscope and menu - plugin</li>
-                                <li>Load dll</li>
-                            </ul>
-                            <div class="mx-4">
-                                <button type="button" class="btn btn-primary mx-2"
-                                    onclick="updateScenery2020('RKJY', 'master')">Install / Update</button>
-                                <button type="button" class="btn btn-danger mx-2"
-                                    onclick="removeScenery2020('RKJY')">Remove</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end of container -->
-
-
                 <!-- start of airport container -->
                 <div class="container-fluid collapse" id="RKSI"></div>
                 <div class="container-fluid collapse" id="RKJY"></div>
                 <!-- end of airport container -->
 
 
-                <div class="container-fluid" id="home">
+                <div class="container-fluid" id="k-installer">
                     <div class="m-1">
                         <h2 class="m-2">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
@@ -201,18 +168,31 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div downloadStatusProgram class="collapse m-4 p-4 bg-dark">
-                                <h2 statusMessage class="text-primary">Download in progress...</h2>
-                                <h4>Download: <span transferred>0</span></h4>
-                                <h4>Speed: <span speed>0</span> MB/s</h4>
-                            </div>
-
                             <div class="card m-4">
                                 <div class="card-header">
                                     <i class="fa-solid fa-people-carry-box"></i> Installer Version
                                 </div>
                                 <div class="card-body">
-                                    <span id="programVersion">(Loading)</span>
+                                    <div class="row">
+                                        <div class="col">
+                                            <ul class="airport-description text-left">
+                                                <li>Latest version: <strong latestVersion="k-installer"></strong></li>
+                                                <li>Installed version: <strong installedVersion="k-installer"></strong>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        <div class="col-auto">
+                                            <button downloadButton="k-installer" type="button"
+                                                class="btn btn-warning mx-2 collapse"
+                                                onclick="upgradeProgram(this)">Update</button>
+                                        </div>
+                                    </div>
+                                    <div downloadStatus="k-installer" class="collapse">
+                                        <h4 statusMessage class="text-primary">Download in progress...</h4>
+                                        <h4>Download: <span transferred>0</span></h4>
+                                        <h4>Speed: <span speed>0</span></h4>
+                                    </div>
                                 </div>
                             </div>
 
@@ -325,7 +305,7 @@
                         <div downloadStatus="" class="collapse">
                             <h4 statusMessage class="text-primary">Download in progress...</h4>
                             <h4>Download: <span transferred>0</span></h4>
-                            <h4>Speed: <span speed>0</span> MB/s</h4>
+                            <h4>Speed: <span speed>0</span></h4>
                         </div>
                     </div>
                 </div>
@@ -354,7 +334,7 @@
                         <div downloadStatus="" class="collapse">
                             <h4 statusMessage class="text-primary">Download in progress...</h4>
                             <h4>Download: <span transferred>0</span></h4>
-                            <h4>Speed: <span speed>0</span> MB/s</h4>
+                            <h4>Speed: <span speed>0</span></h4>
                         </div>
                     </div>
                 </div>

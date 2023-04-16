@@ -45,9 +45,9 @@ function updateDownloadStatus(selector, state) {
         $(selector).find("[transferred]").text(message);
     }
     else {
-        $(selector).find("[transferred]").text((state.size.transferred / 1024 / 1024).toFixed(2));
+        $(selector).find("[transferred]").text(`${(state.size.transferred / 1024 / 1024).toFixed(2)} MB`);
     }
-    $(selector).find("[speed]").text((state.speed / 1024 / 1024).toFixed(2));
+    $(selector).find("[speed]").text(`${(state.speed / 1024 / 1024).toFixed(2)} MB/s`);
 }
 
 function randomString(length) {
@@ -154,6 +154,13 @@ var programInfo = {
 
 function updateScreen(id) {
     $(`[latestVersion="${id}"]`).text(programInfo[id].latestVersion);
+    if (id == "k-installer") {
+        $(`[installedVersion="${id}"]`).text(programInfo[id].installedVersion);
+        if (programInfo[id].latestVersion != programInfo[id].installedVersion) {
+            $("[downloadButton=k-installer]").removeClass("collapse");
+        }
+        return;
+    }
 
     if (!isInstalledBefore(id)) {
         $(`[installedVersion="${id}"]`).text("(not installed)");
@@ -181,7 +188,7 @@ function checkUpdate(id) {
 
     $.get(programInfo[id].versionCheckUrl, (data) => {
         const latestVersion = programInfo[id].versionModifier ? programInfo[id].versionModifier(data) : data;
-        const installedVersion = localStorage.getItem(programInfo[id].localStorageNameOfInstalledVersion);
+        const installedVersion = (id == "k-installer" ? appVersion : localStorage.getItem(programInfo[id].localStorageNameOfInstalledVersion));
 
         programInfo[id].installedVersion = installedVersion;
         programInfo[id].latestVersion = latestVersion;
@@ -223,8 +230,8 @@ function removeProgram(id) {
 function installProgram(id, targetDirectory) {
     const filename = `${targetDirectory}\\${id}.zip`;
 
-    $buttons = $(`[downloadButton="${id}"]`);
-    $status = $(`[downloadStatus="${id}"]`);
+    var $buttons = $(`[downloadButton="${id}"]`);
+    var $status = $(`[downloadStatus="${id}"]`);
 
     $buttons.hide();
     $status.show();
@@ -349,9 +356,6 @@ function initialization() {
     else {
         $("#communityDirectory").text(window.communityDirectory);
     }
-
-    $("#programVersion").text(appVersion);
-
 
     window.addonSceneryDirectory = localStorage.getItem("p3d-root-directory");
     if (window.addonSceneryDirectory == null) {
