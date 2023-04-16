@@ -103,6 +103,7 @@ function moveSync(oldPath, newPath) {
 
 var programInfo = {
     "k-installer": {
+        downloadUrl: "https://github.com/lancard/k-installer/releases/latest/download/k-installer.zip",
         versionCheckUrl: "https://lancard.github.io/k-installer/package.json",
         versionModifier: (data) => data.version
     },
@@ -288,6 +289,11 @@ function upgradeProgram(id) {
         id = $(id).attr('downloadButton');
     }
 
+    if (id == "k-installer") {
+        installProgram(id, '.');
+        return;
+    }
+
     var targetDir = localStorage.getItem(programInfo[id].localStorageNameOfInstalledRootDirectory);
 
     // installed before
@@ -376,8 +382,7 @@ function initialization() {
     }
 
     $.getJSON("https://airplane.mywire.org/metar.json", metar => {
-        // https://lancard.github.io/chart/AIP/latest/AD/chartInformation.json
-        $.getJSON('https://raw.githubusercontent.com/lancard/chart/main/AIP/latest/AD/chartInformation.json', (data) => {
+        $.getJSON('https://lancard.github.io/chart/AIP/latest/AD/chartInformation.json', (data) => {
             createSceneryContentsDOM("RKJY", "Yeosu airport", data["RKJY"], metar["RKJY"].metar, "RKJY-fs2020-scenery", "RKJY-p3d-scenery");
 
             // check update
