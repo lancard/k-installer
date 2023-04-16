@@ -249,7 +249,7 @@ function installProgram(id, targetDirectory) {
                     fs.rmSync(filename); // remove zip file for disk space
 
                     if (id == "k-installer") {
-                        require('child_process').execSync(`./${files[0].path}`);
+                        require('child_process').execSync(`"${files[0].path}"`);
                         return;
                     }
 
