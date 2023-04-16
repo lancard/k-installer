@@ -125,6 +125,8 @@ var programInfo = {
     },
     "RKJY-p3d-scenery": {
         programType: 'p3d',
+        author: "VFR GO!",
+        license: "contact 'VFR GO!'",
         downloadUrl: "https://github.com/lancard/VFRGO/releases/download/master/VFRGO_Yeosu.zip",
         versionCheckUrl: "https://api.github.com/repos/lancard/VFRGO/releases/latest",
         versionModifier: (data) => data.assets[2].updated_at,
