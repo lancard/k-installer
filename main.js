@@ -17,7 +17,6 @@ function createWindow() {
   electronRemoteMain.enable(mainWindow.webContents);
 
   mainWindow.removeMenu();
-
   mainWindow.maximize();
 
   if (process.env.NODE_ENV == 'development') {
@@ -54,3 +53,8 @@ app.whenReady().then(() => {
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit();
 })
+
+app.on("browser-window-created", (e, win) => {
+  win.removeMenu();
+  win.maximize();
+});
