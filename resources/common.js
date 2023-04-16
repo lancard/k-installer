@@ -363,7 +363,6 @@ function initialization() {
     }
 
     if (window.communityDirectory == null) {
-        $("#communityDirectory").addClass("text-danger");
         $("#communityDirectory").text("Not Found");
     }
     else {
@@ -372,7 +371,6 @@ function initialization() {
 
     window.addonSceneryDirectory = localStorage.getItem("p3d-root-directory");
     if (window.addonSceneryDirectory == null) {
-        $("#addonSceneryDirectory").addClass("text-danger");
         $("#addonSceneryDirectory").text("Not Found");
     }
     else {
