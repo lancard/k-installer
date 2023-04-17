@@ -65,24 +65,16 @@
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Heading -->
-            <div class="sidebar-heading mb-2 mt-4">
+            <div class="sidebar-heading mb-2 mt-4" sceneryAndChart>
                 <i class="fas fa-fw fa-tree"></i> Scenery and Chart
             </div>
 
-            <li class="nav-item">
-                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKJY')">
-                    <span class="font-weight-bold">RKJY</span>
-                    <small class="d-none d-lg-inline"> Yeosu airport</small>
-                    <span updateIcon="RKJY" class="d-none" update-mark-RKJY-fs2020-scenery update-mark-RKJY-p3d-scenery>
-                        <sup class="text-warning">up<i class="fas fa-turn-up text-warning"></i></sup>
-                    </span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('RKPK')">
-                    <span class="font-weight-bold">RKPK</span>
-                    <small class="d-none d-lg-inline"> Gimhae airport</small>
-                    <span updateIcon="RKPK" class="d-none">
+            <!-- airport menu template -->
+            <li class="nav-item collapse" airportMenuTemplate>
+                <a class="nav-link" href="javascript: void(0)" onclick="">
+                    <span menu-icao class="font-weight-bold"></span>
+                    <small menu-name class="d-none d-lg-inline"></small>
+                    <span updateIcon="" class="d-none">
                         <sup class="text-warning">up<i class="fas fa-turn-up text-warning"></i></sup>
                     </span>
                 </a>
@@ -118,7 +110,7 @@
                 <li class="nav-item dropdown no-arrow mx-1">
                     <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="messagesDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        onclick="require('child_process').execSync('start https://github.com/lancard')">
+                        onclick="window.open('https://github.com/lancard')">
                         <i class="fa-brands fa-github"></i>
                         <span class="mx-2">Github Link</span>
                     </a>
@@ -136,12 +128,6 @@
 
             <!-- Main Content -->
             <div id="content">
-
-                <!-- start of airport container -->
-                <div class="container-fluid collapse" id="RKSI"></div>
-                <div class="container-fluid collapse" id="RKJY"></div>
-                <!-- end of airport container -->
-
 
                 <div class="container-fluid" id="k-installer">
                     <div class="m-1">
@@ -246,7 +232,7 @@
     <!-- airport template -->
     <!-- airport template -->
     <!-- airport template -->
-    <div airportTemplate class="collapse">
+    <div airportTemplate class="container-fluid collapse">
         <div class="m-1">
             <h2 class="m-2">
                 <i class="fa-solid fa-plane-departure"></i>
@@ -263,7 +249,11 @@
                 <ul class="airport-description">
                     <li>ICAO: <strong icao></strong></li>
                     <li>NAME: <strong airportName></strong></li>
-                    <li>METAR: <strong class="text-warning" metarArea></strong></li>
+                    <li>METAR: <strong class="text-warning" metarArea></strong>
+                        <button type="button" class="btn btn-sm btn-warning" onclick="updateAllMetar();">
+                            <i class="fa fa-refresh"></i> Refresh
+                        </button>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -341,6 +331,17 @@
             </div>
         </div>
     </div>
+
+    <!-- end of airport template -->
+    <!-- end of airport template -->
+    <!-- end of airport template -->
+    <!-- end of airport template -->
+    <!-- end of airport template -->
+    <!-- end of airport template -->
+    <!-- end of airport template -->
+    <!-- end of airport template -->
+    <!-- end of airport template -->
+    <!-- end of airport template -->
 
     <script src="common.js"></script>
     <script>

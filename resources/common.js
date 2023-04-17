@@ -7,6 +7,15 @@ const request = require('request');
 const progress = require('request-progress');
 const decompress = require("decompress");
 
+const airportInfo = {
+    "RKJY": {
+        icao: "RKJY",
+        name: "Yeosu Airport",
+        fs2020SceneryId: "RKJY-fs2020-scenery",
+        p3dSceneryId: "RKJY-p3d-scenery"
+    }
+}
+
 
 const programInfo = {
     "k-installer": {
@@ -345,6 +354,8 @@ function selectDirectory(program) {
 }
 
 function updateAllMetar() {
+    $(`[airportTemplate]`).find("[metarArea]").text("(Loading...");
+
     $.getJSON("https://airplane.mywire.org/metar.json", metar => {
         for (var airport in metar) {
             $(`[airportTemplate][icao=${airport}]`).find("[metarArea]").text(metar[airport].metar);
@@ -387,7 +398,9 @@ function initialization() {
         $('html > head').append(style);
     }
 
-    createSceneryContentsDOM("RKJY", "Yeosu airport", "RKJY-fs2020-scenery", "RKJY-p3d-scenery");
+    for (var airport in airportInfo) {
+        createSceneryContentsDOM(airportInfo[airport].icao, airportInfo[airport].name, airportInfo[airport].fs2020SceneryId, airportInfo[airport].p3dSceneryId);
+    }
 
     // check update
     for (var id in programInfo) {
@@ -424,9 +437,21 @@ function openChart(elem, chartName) {
 }
 
 function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
-    $clonedDOM = $("[airportTemplate]:not(:visible)").clone().removeClass("collapse");
+    $clonedDOM = $("[airportTemplate]:not(:visible)").clone();
+
+    // menu
+    $clonedMenuDom = $("[airportMenuTemplate]").clone().removeClass("collapse");
+    $clonedMenuDom.find("[menu-icao]").text(icao);
+    $clonedMenuDom.find("[menu-name]").text(airportName);
+    $clonedMenuDom.find("[updateIcon]").attr("updateIcon", icao);
+    $clonedMenuDom.find("[updateIcon]").attr("update-mark-" + fs2020Id, "true");
+    $clonedMenuDom.find("[updateIcon]").attr("update-mark-" + p3dId, "true");
+    $clonedMenuDom.find("a").attr("onclick", `showMenu('${icao}')`);
+
+    $("[sceneryAndChart]").after($clonedMenuDom);
 
     // common
+    $clonedDOM.attr("id", icao);
     $clonedDOM.attr("icao", icao);
     $clonedDOM.find("[icao]").text(icao);
     $clonedDOM.find("[airportName]").text(airportName);
@@ -451,5 +476,5 @@ function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
     $clonedDOM.find("[sceneryType=p3d]").find("[downloadButton]").attr("downloadButton", p3dId);
     $clonedDOM.find("[sceneryType=p3d]").find("[downloadStatus]").attr("downloadStatus", p3dId);
 
-    $clonedDOM.appendTo("#RKJY");
+    $clonedDOM.appendTo(`#content`);
 }
