@@ -379,22 +379,22 @@ function upgradeProgram(id) {
 
     // install first time ----------------------------------
     if (programInfo[id].programType == 'fs2020') {
-        if (window.communityDirectory == null) {
+        if (localStorage.getItem("fs2020-root-directory") == null) {
             alert('select directory in home screen first');
             showMenu('k-installer');
             return;
         }
 
-        targetDir = window.communityDirectory;
+        targetDir = localStorage.getItem("fs2020-root-directory");
     }
     if (programInfo[id].programType == 'p3d') {
-        if (window.addonSceneryDirectory == null) {
+        if (localStorage.getItem("p3d-root-directory") == null) {
             alert('select directory in home screen first');
             showMenu('k-installer');
             return;
         }
 
-        targetDir = window.addonSceneryDirectory;
+        targetDir = localStorage.getItem("p3d-root-directory");
     }
 
     installProgram(id, targetDir);
@@ -436,27 +436,22 @@ function initialization() {
     localStorage.setItem(programInfo["k-installer"].localStorageNameOfInstalledVersion, appVersion);
     localStorage.setItem(programInfo["k-installer"].localStorageNameOfInstalledRootDirectory, ".");
 
-    window.communityDirectory = localStorage.getItem("fs2020-root-directory");
-    if (window.communityDirectory == null) {
-        window.communityDirectory = getCommunityDirectory();
-        if (window.communityDirectory != null) {
-            localStorage.setItem("fs2020-root-directory", window.communityDirectory);
-        }
+    if (localStorage.getItem("fs2020-root-directory") == null) {
+        localStorage.setItem("fs2020-root-directory", getCommunityDirectory());
     }
 
-    if (window.communityDirectory == null) {
+    if (localStorage.getItem("fs2020-root-directory") == null) {
         $("#communityDirectory").text("Not Found");
     }
     else {
-        $("#communityDirectory").text(window.communityDirectory);
+        $("#communityDirectory").text(localStorage.getItem("fs2020-root-directory"));
     }
 
-    window.addonSceneryDirectory = localStorage.getItem("p3d-root-directory");
-    if (window.addonSceneryDirectory == null) {
+    if (localStorage.getItem("p3d-root-directory") == null) {
         $("#addonSceneryDirectory").text("Not Found");
     }
     else {
-        $("#addonSceneryDirectory").text(window.addonSceneryDirectory);
+        $("#addonSceneryDirectory").text(localStorage.getItem("p3d-root-directory"));
     }
 
 
