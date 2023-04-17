@@ -22,7 +22,9 @@ const airportInfo = {
     },
     RKPK: {
         icao: "RKPK",
-        name: "Gimhae intl Airport"
+        name: "Gimhae intl Airport",
+        fs2020SceneryId: "RKPK-fs2020-scenery",
+        p3dSceneryId: "RKPK-p3d-scenery"
     },
     RKTU: {
         icao: "RKTU",
@@ -168,6 +170,38 @@ const programInfo = {
         localStorageNameOfInstalledDirectoryList: "RKNW-p3d-scenery-installed-directory-list",
         directory: {
             "RKNW-main": `RKNW`
+        }
+    },
+    "RKPK-fs2020-scenery": {
+        icao: "RKPK",
+        programType: 'fs2020',
+        author: "me and hongsda",
+        license: "contact me",
+        downloadUrl: "https://github.com/lancard/fs2020-RKPK/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKPK/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "fs2020-RKPK-master",
+        localStorageNameOfInstalledVersion: "RKPK-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKPK-fs2020-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKPK-fs2020-scenery-installed-directory-list",
+        directory: {
+            "thekoreans-airport-rkpk-busan": `Packages\\thekoreans-airport-rkpk-busan`
+        }
+    },
+    "RKPK-p3d-scenery": {
+        icao: "RKPK",
+        programType: 'p3d',
+        author: "hongsda and me",
+        license: "contact me",
+        downloadUrl: "https://github.com/lancard/RKPK/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/RKPK/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "RKPK-master",
+        localStorageNameOfInstalledVersion: "RKNW-p3d-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKNW-p3d-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKNW-p3d-scenery-installed-directory-list",
+        directory: {
+            "Hongs_GimHae": `Hongs_GimHae`
         }
     }
 };
