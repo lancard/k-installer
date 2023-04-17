@@ -58,7 +58,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-plane"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3" style="font-family: 'FontAwesome';">K-Installer</div>
+                <div logo class="sidebar-brand-text mx-3">K-Installer</div>
             </a>
 
             <!-- Divider -->
@@ -84,7 +84,7 @@
 
             <!-- Divider -->
             <div class="bottom-copyright">
-                <hr class="sidebar-divider d-none d-md-block" style="margin-top: 40px;">
+                <hr class="sidebar-divider d-none d-md-block">
 
                 <li class="nav-item">
                     <a class="nav-link" href="javascript:void(0)" role="button"
@@ -118,7 +118,7 @@
             <div id="content">
 
                 <div class="container-fluid" id="k-installer">
-                    <div class="m-1" style="background-color: #0c0c0c;">
+                    <div class="m-1" contentsHeader>
                         <h2 class="p-3">
                             <i class="fa-solid fa-helicopter"></i> Welcome to Korea Program and Scenery Installer!
                         </h2>
@@ -126,17 +126,21 @@
 
                     <div class="row p-4">
                         <div class="col-auto">
-                            <img src="https://lancard.github.io/k-installer/airport.png"
-                                style="box-shadow: 5px 5px 10px #000; border-radius: 25px; width: 30vw;">
+                            <img src="https://lancard.github.io/k-installer/airport.png">
 
                             <div class="map-overlay" onclick="showMenu('RKJY')" style="top: 36.2vw; left: 14vw;">
                                 <div class="bg-gray-800"><i class="fa-solid fa-plane"></i> RKJY</div>
-                                <hr class="m-0" style="border-color: white;">
+                                <hr />
                                 <div>Yeosu</div>
                             </div>
                             <div class="map-overlay" onclick="showMenu('RKPK')" style="top: 34.2vw; left: 20vw;">
                                 <div class="bg-gray-800"><i class="fa-solid fa-plane"></i> RKPK</div>
-                                <hr class="m-0" style="border-color: white;">
+                                <hr />
+                                <div>Gimhae</div>
+                            </div>
+                            <div class="map-overlay" onclick="showMenu('RKPC')" style="top: 34.2vw; left: 20vw;">
+                                <div class="bg-gray-800"><i class="fa-solid fa-plane"></i> RKPC</div>
+                                <hr />
                                 <div>Gimhae</div>
                             </div>
                         </div>
@@ -220,7 +224,7 @@
     <!-- airport template -->
     <!-- airport template -->
     <div airportTemplate class="container-fluid collapse">
-        <div class="m-1" style="background-color: #0c0c0c;">
+        <div class="m-1" contentsHeader>
             <h2 class="p-3">
                 <i class="fa-solid fa-plane-departure"></i>
                 <span icao></span> - <span airportName></span>
@@ -229,8 +233,7 @@
 
         <div class="row px-4 mt-4 mb-2">
             <div class="col-auto">
-                <img airportImage src="" width="400" class="m-1"
-                    style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
+                <img airportImage src="" width="400" class="m-1">
             </div>
             <div class="col m-2">
                 <ul class="airport-description">
