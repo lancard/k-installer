@@ -2,6 +2,11 @@
     height: 100vh;
 }
 
+h2 {
+    font-style: italic;
+    font-size: 1.6rem;
+}
+
 .sidebar {
     width: 15vw !important;
 }
@@ -80,4 +85,13 @@
 
 .text-small {
     font-size: 0.7rem;
+}
+
+[chartarea] button {
+    width: 7rem;
+    background-color: #244044;
+}
+
+[metarRefreshButton] {
+    background-color: #54542a;
 }

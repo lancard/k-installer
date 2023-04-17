@@ -112,16 +112,15 @@
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column p-2">
+        <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
             <div id="content">
 
                 <div class="container-fluid" id="k-installer">
-                    <div class="m-1">
-                        <h2 class="m-2">
-                            <i class="fa-solid fa-helicopter"></i>
-                            Welcome to Korea Program and Scenery Installer!
+                    <div class="m-1" style="background-color: #0c0c0c;">
+                        <h2 class="p-3">
+                            <i class="fa-solid fa-helicopter"></i> Welcome to Korea Program and Scenery Installer!
                         </h2>
                     </div>
 
@@ -158,7 +157,7 @@
                                         </div>
                                         <div class="col-auto">
                                             <button downloadButton="k-installer" type="button"
-                                                class="btn btn-warning mx-2 collapse"
+                                                class="btn btn-warning btn-sm mx-2 collapse"
                                                 onclick="upgradeProgram(this)">Update</button>
                                         </div>
                                     </div>
@@ -176,7 +175,7 @@
                                 </div>
                                 <div class="card-body">
                                     <span id="communityDirectory">(Loading)</span>
-                                    <button type="button" class="btn btn-primary mx-4 p-2"
+                                    <button type="button" class="btn btn-primary btn-sm mx-4 p-2"
                                         onclick="selectDirectory('fs2020');">Select Directory</button>
                                 </div>
                             </div>
@@ -187,7 +186,7 @@
                                 </div>
                                 <div class="card-body">
                                     <span id="addonSceneryDirectory">(Loading)</span>
-                                    <button type="button" class="btn btn-primary mx-4 p-2"
+                                    <button type="button" class="btn btn-primary btn-sm mx-4 p-2"
                                         onclick="selectDirectory('p3d');">Select Directory</button>
                                 </div>
                             </div>
@@ -221,24 +220,25 @@
     <!-- airport template -->
     <!-- airport template -->
     <div airportTemplate class="container-fluid collapse">
-        <div class="m-1">
-            <h2 class="m-2">
+        <div class="m-1" style="background-color: #0c0c0c;">
+            <h2 class="p-3">
                 <i class="fa-solid fa-plane-departure"></i>
                 <span icao></span> - <span airportName></span>
             </h2>
         </div>
 
-        <div class="row p-4">
+        <div class="row px-4 mt-4 mb-2">
             <div class="col-auto">
                 <img airportImage src="" width="400" class="m-1"
                     style="box-shadow: 5px 5px 10px #000; border-radius: 25px;">
             </div>
-            <div class="col mx-0 my-4">
+            <div class="col m-2">
                 <ul class="airport-description">
                     <li>ICAO: <strong icao></strong></li>
                     <li>NAME: <strong airportName></strong></li>
                     <li>METAR: <strong class="text-warning" metarArea></strong>
-                        <button type="button" class="btn btn-sm btn-warning" onclick="updateAllMetar();">
+                        <button type="button" metarRefreshButton class="btn btn-sm btn-warning"
+                            onclick="updateAllMetar();">
                             <i class="fa fa-refresh"></i> Refresh
                         </button>
                     </li>
@@ -248,24 +248,41 @@
 
         <hr />
 
+
+
         <h4 class="mx-4">
-            <i class="fa-solid fa-tree"></i> Charts
+            <i class="fa-solid fa-map-location"></i> Charts - General/Area
         </h4>
+        <div class="row mx-4 mb-4" chartArea="GENERAL"></div>
 
-        <div class="row mx-4" chartArea></div>
 
-        <hr />
 
         <h4 class="mx-4">
-            <i class="fa-solid fa-tree"></i> Scenery
+            <i class="fa-solid fa-car"></i> Charts - Aerodrome
+        </h4>
+        <div class="row mx-4 mb-4" chartArea="AD"></div>
+
+
+        <h4 class="mx-4">
+            <i class="fa-solid fa-route"></i> Charts - Procedures
+        </h4>
+        <div class="row mx-4 mb-4" chartArea="PROCEDURE"></div>
+
+
+        <h4 class="mx-4">
+            <i class="fa-solid fa-mountain-sun"></i> Scenery
         </h4>
         <div class="row mx-4">
             <div class="col">
                 <div class="card" sceneryType="fs2020">
                     <div class="card-header">
                         <i class="fa-solid fa-people-carry-box"></i> FS2020
+                        <button downloadButton="" type="button" class="btn btn-sm btn-primary mx-2"
+                            onclick="upgradeProgram(this)">Install / Update</button>
+                        <button downloadButton="" type="button" class="btn btn-sm btn-danger mx-2"
+                            onclick="removeProgram(this)">Remove</button>
                     </div>
-                    <div class="card-body text-center">
+                    <div class="card-body text-center pt-2 pb-0">
                         <ul class="airport-description text-left">
                             <li>Author: <strong author></strong></li>
                             <li>License: <strong license></strong></li>
@@ -276,10 +293,6 @@
                             </li>
                         </ul>
 
-                        <button downloadButton="" type="button" class="btn btn-primary mx-2"
-                            onclick="upgradeProgram(this)">Install / Update</button>
-                        <button downloadButton="" type="button" class="btn btn-danger mx-2"
-                            onclick="removeProgram(this)">Remove</button>
                         <div downloadStatus="" class="collapse">
                             <h4 statusMessage class="text-primary">Download in progress...</h4>
                             <h4>Download: <span transferred>0</span></h4>
@@ -292,8 +305,12 @@
                 <div class="card" sceneryType="p3d">
                     <div class="card-header">
                         <i class="fa-solid fa-people-carry-box"></i> FSX/P3D
+                        <button downloadButton="" type="button" class="btn btn-sm btn-primary mx-2"
+                            onclick="upgradeProgram(this)">Install / Update</button>
+                        <button downloadButton="" type="button" class="btn btn-sm btn-danger mx-2"
+                            onclick="removeProgram(this)">Remove</button>
                     </div>
-                    <div class="card-body text-center">
+                    <div class="card-body text-center pt-2 pb-0">
                         <ul class="airport-description text-left">
                             <li>Author: <strong author></strong></li>
                             <li>License: <strong license></strong></li>
@@ -303,11 +320,6 @@
                                 <span class="text-small text-white" installedDirectory=""></span>
                             </li>
                         </ul>
-
-                        <button downloadButton="" type="button" class="btn btn-primary mx-2"
-                            onclick="upgradeProgram(this)">Install / Update</button>
-                        <button downloadButton="" type="button" class="btn btn-danger mx-2"
-                            onclick="removeProgram(this)">Remove</button>
 
                         <div downloadStatus="" class="collapse">
                             <h4 statusMessage class="text-primary">Download in progress...</h4>

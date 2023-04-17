@@ -422,7 +422,7 @@ function selectDirectory(program) {
 }
 
 function updateAllMetar() {
-    $(`[airportTemplate]`).find("[metarArea]").text("(Loading...");
+    $(`[airportTemplate]`).find("[metarArea]").text(" (Loading...) ");
 
     $.getJSON("https://airplane.mywire.org/metar.json", metar => {
         for (var airport in metar) {
@@ -481,11 +481,83 @@ function initialization() {
     $.getJSON('https://lancard.github.io/chart/AIP/latest/AD/chartInformation.json', (chart) => {
         // charts
         for (var airport in chart) {
-            for (var chartType in chart[airport]) {
-                if (!chart[airport][chartType])
-                    continue;
+            var chartType = "";
 
-                $(`<button type="button" class="btn btn-info m-2" onclick="openChart(this, '${chartType}')">${chartType}</button>`).appendTo($(`[airportTemplate][icao=${airport}]`).find("[chartArea]"));
+
+            // AD charts
+            chartType = "AD CHART";
+            if (chart[airport][chartType]) {
+                $(`<button type="button" class="btn btn-sm btn-info m-2" onclick="openChart(this, '${chartType}')"><i class="fa fa-location-crosshairs"></i> AD</button>`)
+                    .appendTo($(`[airportTemplate][icao=${airport}]`).find("[chartArea=AD]"));
+            }
+            chartType = "AD GROUND MOVEMENT CHART";
+            if (chart[airport][chartType]) {
+                $(`<button type="button" class="btn btn-sm btn-info m-2" onclick="openChart(this, '${chartType}')"><i class="fa fa-car-side"></i> GND MOVE</button>`)
+                    .appendTo($(`[airportTemplate][icao=${airport}]`).find("[chartArea=AD]"));
+            }
+            chartType = "AIRCRAFT PARKING DOCKING CHART";
+            if (chart[airport][chartType]) {
+                $(`<button type="button" class="btn btn-sm btn-info m-2" onclick="openChart(this, '${chartType}')"><i class="fa fa-square-parking"></i> PARK</button>`)
+                    .appendTo($(`[airportTemplate][icao=${airport}]`).find("[chartArea=AD]"));
+            }
+
+            // procedures
+            chartType = "SID";
+            if (chart[airport][chartType]) {
+                $(`<button type="button" class="btn btn-sm btn-info m-2" onclick="openChart(this, '${chartType}')"><i class="fa fa-plane-departure"></i> SID</button>`)
+                    .appendTo($(`[airportTemplate][icao=${airport}]`).find("[chartArea=PROCEDURE]"));
+            }
+            chartType = "STAR";
+            if (chart[airport][chartType]) {
+                $(`<button type="button" class="btn btn-sm btn-info m-2" onclick="openChart(this, '${chartType}')"><i class="fa fa-plane-arrival"></i> STAR</button>`)
+                    .appendTo($(`[airportTemplate][icao=${airport}]`).find("[chartArea=PROCEDURE]"));
+            }
+            chartType = "INSTR APCH CHART";
+            if (chart[airport][chartType]) {
+                $(`<button type="button" class="btn btn-sm btn-info m-2" onclick="openChart(this, '${chartType}')"><i class="fa fa-tower-broadcast"></i> INSTR APP</button>`)
+                    .appendTo($(`[airportTemplate][icao=${airport}]`).find("[chartArea=PROCEDURE]"));
+            }
+            chartType = "VISUAL APCH CHART";
+            if (chart[airport][chartType]) {
+                $(`<button type="button" class="btn btn-sm btn-info m-2" onclick="openChart(this, '${chartType}')"><i class="fa fa-glasses"></i> VIS APP</button>`)
+                    .appendTo($(`[airportTemplate][icao=${airport}]`).find("[chartArea=PROCEDURE]"));
+            }
+
+            // gen and etc
+            chartType = "TEXT";
+            if (chart[airport][chartType]) {
+                $(`<button type="button" class="btn btn-sm btn-info m-2" onclick="openChart(this, '${chartType}')"><i class="fa fa-t"></i> TEXT</button>`)
+                    .appendTo($(`[airportTemplate][icao=${airport}]`).find("[chartArea=GENERAL]"));
+            }
+            chartType = "AREA CHART";
+            if (chart[airport][chartType]) {
+                $(`<button type="button" class="btn btn-sm btn-info m-2" onclick="openChart(this, '${chartType}')"><i class="fa fa-location-crosshairs"></i> AREA</button>`)
+                    .appendTo($(`[airportTemplate][icao=${airport}]`).find("[chartArea=GENERAL]"));
+            }
+            chartType = "ATC SURVEILLANCE MINIMUM ALTITUDE CHART";
+            if (chart[airport][chartType]) {
+                $(`<button type="button" class="btn btn-sm btn-info m-2" onclick="openChart(this, '${chartType}')"><i class="fa fa-arrow-up-1-9"></i> MSA</button>`)
+                    .appendTo($(`[airportTemplate][icao=${airport}]`).find("[chartArea=GENERAL]"));
+            }
+            chartType = "PRECISION APP TERRAIN CHART";
+            if (chart[airport][chartType]) {
+                $(`<button type="button" class="btn btn-sm btn-info m-2" onclick="openChart(this, '${chartType}')"><i class="fa fa-mountain"></i> TERRAIN</button>`)
+                    .appendTo($(`[airportTemplate][icao=${airport}]`).find("[chartArea=GENERAL]"));
+            }
+            chartType = "BIRD CONCENTRATION CHART";
+            if (chart[airport][chartType]) {
+                $(`<button type="button" class="btn btn-sm btn-info m-2" onclick="openChart(this, '${chartType}')"><i class="fa fa-dove"></i> BIRD</button>`)
+                    .appendTo($(`[airportTemplate][icao=${airport}]`).find("[chartArea=GENERAL]"));
+            }
+            chartType = "AD OBSTACLE CHART TYPE A";
+            if (chart[airport][chartType]) {
+                $(`<button type="button" class="btn btn-sm btn-info m-2" onclick="openChart(this, '${chartType}')"><i class="fa fa-mountain-city"></i> OBST A</button>`)
+                    .appendTo($(`[airportTemplate][icao=${airport}]`).find("[chartArea=GENERAL]"));
+            }
+            chartType = "AD OBSTACLE CHART TYPE B";
+            if (chart[airport][chartType]) {
+                $(`<button type="button" class="btn btn-sm btn-info m-2" onclick="openChart(this, '${chartType}')"><i class="fa fa-mountain-city"></i> OBST B</button>`)
+                    .appendTo($(`[airportTemplate][icao=${airport}]`).find("[chartArea=GENERAL]"));
             }
         }
     });
