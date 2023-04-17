@@ -126,7 +126,7 @@ const programInfo = {
         license: "contact 'VFR GO!'",
         downloadUrl: "https://github.com/lancard/VFRGO/releases/download/master/VFRGO_Yeosu.zip",
         versionCheckUrl: "https://raw.githubusercontent.com/lancard/VFRGO/main/version.txt",
-        versionModifier: (data) => data.assets[2].updated_at,
+        versionModifier: (data) => data.trim(),
         unzippedRootDirectory: ".",
         localStorageNameOfInstalledVersion: "RKJY-p3d-scenery-installed-version",
         localStorageNameOfInstalledRootDirectory: "RKJY-p3d-scenery-installed-directory",
