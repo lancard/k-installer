@@ -8,11 +8,79 @@ const progress = require('request-progress');
 const decompress = require("decompress");
 
 const airportInfo = {
-    "RKJY": {
+    RKSI: {
+        icao: "RKSI",
+        name: "Incheon intl Airport"
+    },
+    RKSS: {
+        icao: "RKSS",
+        name: "Gimpo intl Airport"
+    },
+    RKPC: {
+        icao: "RKPC",
+        name: "Jeju intl Airport"
+    },
+    RKPK: {
+        icao: "RKPK",
+        name: "Gimhae intl Airport"
+    },
+    RKTU: {
+        icao: "RKTU",
+        name: "Cheongju intl Airport"
+    },
+    RKNY: {
+        icao: "RKNY",
+        name: "Yangyang intl Airport"
+    },
+    RKTN: {
+        icao: "RKTN",
+        name: "Daegu intl Airport"
+    },
+    RKJB: {
+        icao: "RKJB",
+        name: "Muan intl Airport"
+    },
+    RKJJ: {
+        icao: "RKJJ",
+        name: "Gwangju Airport"
+    },
+    RKJK: {
+        icao: "RKJK",
+        name: "Gunsan Airport"
+    },
+    RKJY: {
         icao: "RKJY",
         name: "Yeosu Airport",
         fs2020SceneryId: "RKJY-fs2020-scenery",
         p3dSceneryId: "RKJY-p3d-scenery"
+    },
+    RKNW: {
+        icao: "RKNW",
+        name: "Wonju Airport"
+    },
+    RKPS: {
+        icao: "RKPS",
+        name: "Sacheon Airport"
+    },
+    RKPU: {
+        icao: "RKPU",
+        name: "Ulsan Airport"
+    },
+    RKSM: {
+        icao: "RKSM",
+        name: "Seoul Airport"
+    },
+    RKTH: {
+        icao: "RKTH",
+        name: "Pohang Gyeongju Airport"
+    },
+    RKTL: {
+        icao: "RKTL",
+        name: "Uljin Airport"
+    },
+    RKPD: {
+        icao: "RKPD",
+        name: "Jeongseok Airport"
     }
 }
 
@@ -401,6 +469,8 @@ function initialization() {
     for (var airport in airportInfo) {
         createSceneryContentsDOM(airportInfo[airport].icao, airportInfo[airport].name, airportInfo[airport].fs2020SceneryId, airportInfo[airport].p3dSceneryId);
     }
+    $("[airportTemplate]").hide();
+
 
     // check update
     for (var id in programInfo) {
@@ -437,10 +507,10 @@ function openChart(elem, chartName) {
 }
 
 function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
-    $clonedDOM = $("[airportTemplate]:not(:visible)").clone();
+    $clonedDOM = $("[airportTemplate]:not(:visible)").clone().removeClass("collapse");;
 
     // menu
-    $clonedMenuDom = $("[airportMenuTemplate]").clone().removeClass("collapse");
+    $clonedMenuDom = $("[airportMenuTemplate]:not(:visible)").clone().removeClass("collapse");
     $clonedMenuDom.find("[menu-icao]").text(icao);
     $clonedMenuDom.find("[menu-name]").text(airportName);
     $clonedMenuDom.find("[updateIcon]").attr("updateIcon", icao);
@@ -448,7 +518,7 @@ function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
     $clonedMenuDom.find("[updateIcon]").attr("update-mark-" + p3dId, "true");
     $clonedMenuDom.find("a").attr("onclick", `showMenu('${icao}')`);
 
-    $("[sceneryAndChart]").after($clonedMenuDom);
+    $("[sceneryAndChart]").before($clonedMenuDom);
 
     // common
     $clonedDOM.attr("id", icao);
@@ -458,23 +528,33 @@ function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
     $clonedDOM.find("[airportImage]").attr("src", `https://lancard.github.io/k-installer/${icao}.png`);
 
     // fs2020
-    $clonedDOM.find("[sceneryType=fs2020]").find("[author]").text(programInfo[fs2020Id].author);
-    $clonedDOM.find("[sceneryType=fs2020]").find("[license]").text(programInfo[fs2020Id].license);
-    $clonedDOM.find("[sceneryType=fs2020]").find("[latestVersion]").attr("latestVersion", fs2020Id);
-    $clonedDOM.find("[sceneryType=fs2020]").find("[installedVersion]").attr("installedVersion", fs2020Id);
-    $clonedDOM.find("[sceneryType=fs2020]").find("[installedDirectory]").attr("installedDirectory", fs2020Id);
-    $clonedDOM.find("[sceneryType=fs2020]").find("[downloadButton]").attr("downloadButton", fs2020Id);
-    $clonedDOM.find("[sceneryType=fs2020]").find("[downloadStatus]").attr("downloadStatus", fs2020Id);
+    if (fs2020Id) {
+        $clonedDOM.find("[sceneryType=fs2020]").find("[author]").text(programInfo[fs2020Id].author);
+        $clonedDOM.find("[sceneryType=fs2020]").find("[license]").text(programInfo[fs2020Id].license);
+        $clonedDOM.find("[sceneryType=fs2020]").find("[latestVersion]").attr("latestVersion", fs2020Id);
+        $clonedDOM.find("[sceneryType=fs2020]").find("[installedVersion]").attr("installedVersion", fs2020Id);
+        $clonedDOM.find("[sceneryType=fs2020]").find("[installedDirectory]").attr("installedDirectory", fs2020Id);
+        $clonedDOM.find("[sceneryType=fs2020]").find("[downloadButton]").attr("downloadButton", fs2020Id);
+        $clonedDOM.find("[sceneryType=fs2020]").find("[downloadStatus]").attr("downloadStatus", fs2020Id);
+    }
+    else {
+        $clonedDOM.find("[sceneryType=fs2020]").remove();
+    }
 
 
     // p3d
-    $clonedDOM.find("[sceneryType=p3d]").find("[author]").text(programInfo[p3dId].author);
-    $clonedDOM.find("[sceneryType=p3d]").find("[license]").text(programInfo[p3dId].license);
-    $clonedDOM.find("[sceneryType=p3d]").find("[latestVersion]").attr("latestVersion", p3dId);
-    $clonedDOM.find("[sceneryType=p3d]").find("[installedVersion]").attr("installedVersion", p3dId);
-    $clonedDOM.find("[sceneryType=p3d]").find("[installedDirectory]").attr("installedDirectory", p3dId);
-    $clonedDOM.find("[sceneryType=p3d]").find("[downloadButton]").attr("downloadButton", p3dId);
-    $clonedDOM.find("[sceneryType=p3d]").find("[downloadStatus]").attr("downloadStatus", p3dId);
+    if (p3dId) {
+        $clonedDOM.find("[sceneryType=p3d]").find("[author]").text(programInfo[p3dId].author);
+        $clonedDOM.find("[sceneryType=p3d]").find("[license]").text(programInfo[p3dId].license);
+        $clonedDOM.find("[sceneryType=p3d]").find("[latestVersion]").attr("latestVersion", p3dId);
+        $clonedDOM.find("[sceneryType=p3d]").find("[installedVersion]").attr("installedVersion", p3dId);
+        $clonedDOM.find("[sceneryType=p3d]").find("[installedDirectory]").attr("installedDirectory", p3dId);
+        $clonedDOM.find("[sceneryType=p3d]").find("[downloadButton]").attr("downloadButton", p3dId);
+        $clonedDOM.find("[sceneryType=p3d]").find("[downloadStatus]").attr("downloadStatus", p3dId);
+    }
+    else {
+        $clonedDOM.find("[sceneryType=p3d]").remove();
+    }
 
     $clonedDOM.appendTo(`#content`);
 }

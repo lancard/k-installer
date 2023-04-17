@@ -3,16 +3,17 @@
 }
 
 .sidebar {
-    width: 17vw !important;
+    width: 15vw !important;
 }
 
 .sidebar .nav-item .nav-link {
-    padding: 2px;
+    padding: 0px;
     padding-left: 30px;
+    width: 20rem;
 }
 
 .sidebar .nav-item .nav-link span {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
 .sidebar .nav-item small {
