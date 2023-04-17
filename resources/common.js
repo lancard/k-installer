@@ -10,7 +10,8 @@ const decompress = require("decompress");
 const airportInfo = {
     RKSI: {
         icao: "RKSI",
-        name: "Incheon intl Airport"
+        name: "Incheon intl Airport",
+        fs2020SceneryId: "RKSI-fs2020-scenery"
     },
     RKSS: {
         icao: "RKSS",
@@ -104,6 +105,20 @@ const programInfo = {
         versionModifier: (data) => data.version,
         localStorageNameOfInstalledVersion: "k-installer-installed-version",
         localStorageNameOfInstalledRootDirectory: "k-installer-installed-directory"
+    },
+    "RKSI-fs2020-scenery": {
+        icao: "RKSI",
+        programType: 'fs2020',
+        author: "ArtistPilot",
+        license: "contact ArtistPilot",
+        downloadUrl: "https://big.mywire.org/RKSI.zip",
+        versionCheckUrl: "https://big.mywire.org/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: ".",
+        localStorageNameOfInstalledVersion: "RKSI-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKSI-fs2020-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKSI-fs2020-scenery-installed-directory-list",
+        directory: {}
     },
     "RKJY-fs2020-scenery": {
         icao: "RKJY",
