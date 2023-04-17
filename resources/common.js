@@ -434,7 +434,7 @@ function updateAllMetar() {
 function initialization() {
     // save preferences for k-installer
     localStorage.setItem(programInfo["k-installer"].localStorageNameOfInstalledVersion, appVersion);
-    localStorage.setItem(programInfo["k-installer"].localStorageNameOfInstalledRootDirectory, ".");
+    localStorage.setItem(programInfo["k-installer"].localStorageNameOfInstalledRootDirectory, require('os').tmpdir());
 
     if (localStorage.getItem("fs2020-root-directory") == null) {
         localStorage.setItem("fs2020-root-directory", getCommunityDirectory());
