@@ -303,7 +303,7 @@ function upgradeProgram(id) {
     // install first time ----------------------------------
     if (programInfo[id].programType == 'fs2020') {
         if (window.communityDirectory == null) {
-            alert('select directory in home screen');
+            alert('select directory in home screen first');
             showMenu('k-installer');
             return;
         }
@@ -312,7 +312,7 @@ function upgradeProgram(id) {
     }
     if (programInfo[id].programType == 'p3d') {
         if (window.addonSceneryDirectory == null) {
-            alert('select directory in home screen');
+            alert('select directory in home screen first');
             showMenu('k-installer');
             return;
         }
