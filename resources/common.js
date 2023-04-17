@@ -7,6 +7,53 @@ const request = require('request');
 const progress = require('request-progress');
 const decompress = require("decompress");
 
+
+const programInfo = {
+    "k-installer": {
+        downloadUrl: "https://github.com/lancard/k-installer/releases/latest/download/k-installer.zip",
+        versionCheckUrl: "https://lancard.github.io/k-installer/package.json",
+        versionModifier: (data) => data.version,
+        localStorageNameOfInstalledVersion: "k-installer-installed-version",
+        localStorageNameOfInstalledRootDirectory: "k-installer-installed-directory"
+    },
+    "RKJY-fs2020-scenery": {
+        programType: 'fs2020',
+        author: "ArtistPilot",
+        license: "contact ArtistPilot",
+        downloadUrl: "https://github.com/lancard/fs2020-RKJY/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKJY/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "fs2020-RKJY-master",
+        localStorageNameOfInstalledVersion: "RKJY-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKJY-fs2020-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKJY-fs2020-scenery-installed-directory-list",
+        directory: {
+            "rkjy-airport-scene": `fs2020-RKJY-master\\rkjy-airport-scene`,
+            "rkjy": `fs2020-RKJY-master\\rkjy`,
+            "zulu-airport-rkjy-yeosu": `fs2020-RKJY-master\\zulu-airport-rkjy-yeosu`
+        }
+    },
+    "RKJY-p3d-scenery": {
+        programType: 'p3d',
+        author: "VFR GO!",
+        license: "contact 'VFR GO!'",
+        downloadUrl: "https://github.com/lancard/VFRGO/releases/download/master/VFRGO_Yeosu.zip",
+        versionCheckUrl: "https://api.github.com/repos/lancard/VFRGO/releases/latest",
+        versionModifier: (data) => data.assets[2].updated_at,
+        unzippedRootDirectory: ".",
+        localStorageNameOfInstalledVersion: "RKJY-p3d-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKJY-p3d-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKJY-p3d-scenery-installed-directory-list",
+        directory: {
+            "scenery": "RKJY-p3d-scenery\\scenery",
+            "texture": "RKJY-p3d-scenery\\texture"
+        }
+    }
+};
+
+
+
+
 function getCommunityDirectory() {
     var msfsConfigPath = null;
 
@@ -101,65 +148,13 @@ function moveSync(oldPath, newPath) {
     }
 }
 
-var programInfo = {
-    "k-installer": {
-        downloadUrl: "https://github.com/lancard/k-installer/releases/latest/download/k-installer.zip",
-        versionCheckUrl: "https://lancard.github.io/k-installer/package.json",
-        versionModifier: (data) => data.version
-    },
-    "RKJY-fs2020-scenery": {
-        programType: 'fs2020',
-        author: "ArtistPilot",
-        license: "contact ArtistPilot",
-        downloadUrl: "https://github.com/lancard/fs2020-RKJY/archive/master.zip",
-        versionCheckUrl: "https://lancard.github.io/fs2020-RKJY/version.txt",
-        versionModifier: (data) => data.trim(),
-        unzippedRootDirectory: "fs2020-RKJY-master",
-        localStorageNameOfInstalledVersion: "RKJY-fs2020-scenery-installed-version",
-        localStorageNameOfInstalledRootDirectory: "RKJY-fs2020-scenery-installed-directory",
-        localStorageNameOfInstalledDirectoryList: "RKJY-fs2020-scenery-installed-directory-list",
-        directory: {
-            "rkjy-airport-scene": `fs2020-RKJY-master\\rkjy-airport-scene`,
-            "rkjy": `fs2020-RKJY-master\\rkjy`,
-            "zulu-airport-rkjy-yeosu": `fs2020-RKJY-master\\zulu-airport-rkjy-yeosu`
-        }
-    },
-    "RKJY-p3d-scenery": {
-        programType: 'p3d',
-        author: "VFR GO!",
-        license: "contact 'VFR GO!'",
-        downloadUrl: "https://github.com/lancard/VFRGO/releases/download/master/VFRGO_Yeosu.zip",
-        versionCheckUrl: "https://api.github.com/repos/lancard/VFRGO/releases/latest",
-        versionModifier: (data) => data.assets[2].updated_at,
-        unzippedRootDirectory: ".",
-        localStorageNameOfInstalledVersion: "RKJY-p3d-scenery-installed-version",
-        localStorageNameOfInstalledRootDirectory: "RKJY-p3d-scenery-installed-directory",
-        localStorageNameOfInstalledDirectoryList: "RKJY-p3d-scenery-installed-directory-list",
-        directory: {
-            "scenery": "RKJY-p3d-scenery\\scenery",
-            "texture": "RKJY-p3d-scenery\\texture"
-        }
-    },
-    "RKPK-fs2020-scenery": {
-        downloadUrl: "https://github.com/lancard/fs2020-RKPK/archive/master.zip",
-        versionFileName: "https://lancard.github.io/fs2020-RKPK/version.txt",
-        directory: {
-            "Packages\\thekoreans-airport-rkpk-busan": `thekoreans-airport-rkpk-busan`
-        }
-    },
-    "RKPK-p3d-scenery": {
-        directory: {
-            "Packages\\thekoreans-airport-rkpk-busan": `thekoreans-airport-rkpk-busan`
-        }
-    }
-};
 
 
 function updateScreen(id) {
     $(`[latestVersion="${id}"]`).text(programInfo[id].latestVersion);
     if (id == "k-installer") {
-        $(`[installedVersion="${id}"]`).text(programInfo[id].installedVersion);
-        if (programInfo[id].latestVersion != programInfo[id].installedVersion) {
+        $(`[installedVersion="${id}"]`).text(appVersion);
+        if (programInfo[id].latestVersion != appVersion) {
             $("[downloadButton=k-installer]").removeClass("collapse");
         }
         return;
@@ -172,11 +167,11 @@ function updateScreen(id) {
         return;
     }
 
-    $(`[installedVersion="${id}"]`).text(programInfo[id].installedVersion);
+    $(`[installedVersion="${id}"]`).text(localStorage.getItem(programInfo[id].localStorageNameOfInstalledVersion));
     var installedDirectoryList = JSON.parse(localStorage.getItem(programInfo[id].localStorageNameOfInstalledDirectoryList)).join(", ");
     $(`[installedDirectory="${id}"]`).text(installedDirectoryList);
 
-    if (programInfo[id].latestVersion == programInfo[id].installedVersion) {
+    if (programInfo[id].latestVersion == localStorage.getItem(programInfo[id].localStorageNameOfInstalledVersion)) {
         $(`[update-mark-${id}]`).removeClass(`must-show-${id}`);
     }
     else {
@@ -191,9 +186,7 @@ function checkUpdate(id) {
 
     $.get(programInfo[id].versionCheckUrl, (data) => {
         const latestVersion = programInfo[id].versionModifier ? programInfo[id].versionModifier(data) : data;
-        const installedVersion = (id == "k-installer" ? appVersion : localStorage.getItem(programInfo[id].localStorageNameOfInstalledVersion));
 
-        programInfo[id].installedVersion = installedVersion;
         programInfo[id].latestVersion = latestVersion;
 
         updateScreen(id);
@@ -223,8 +216,6 @@ function removeProgram(id) {
     localStorage.removeItem(programInfo[id].localStorageNameOfInstalledRootDirectory);
     localStorage.removeItem(programInfo[id].localStorageNameOfInstalledDirectoryList);
     localStorage.removeItem(programInfo[id].localStorageNameOfInstalledVersion);
-
-    programInfo[id].installedVersion = null;
 
     // update screen
     updateScreen(id);
@@ -269,8 +260,6 @@ function installProgram(id, targetDirectory) {
                     localStorage.setItem(programInfo[id].localStorageNameOfInstalledDirectoryList, JSON.stringify(installedDirectory));
                     localStorage.setItem(programInfo[id].localStorageNameOfInstalledVersion, programInfo[id].latestVersion);
 
-                    programInfo[id].installedVersion = programInfo[id].latestVersion;
-
                     alert(`installation complete: ${id}`);
 
                     // restore hide elements
@@ -295,7 +284,7 @@ function upgradeProgram(id) {
     }
 
     if (id == "k-installer") {
-        installProgram(id, '.');
+        installProgram(id, programInfo[id].localStorageNameOfInstalledRootDirectory);
         return;
     }
 
@@ -364,10 +353,16 @@ function updateAllMetar() {
 }
 
 function initialization() {
+    // save preferences for k-installer
+    localStorage.setItem(programInfo["k-installer"].localStorageNameOfInstalledVersion, appVersion);
+    localStorage.setItem(programInfo["k-installer"].localStorageNameOfInstalledRootDirectory, ".");
+
     window.communityDirectory = localStorage.getItem("fs2020-root-directory");
     if (window.communityDirectory == null) {
         window.communityDirectory = getCommunityDirectory();
-        localStorage.setItem("fs2020-root-directory", window.communityDirectory);
+        if (window.communityDirectory != null) {
+            localStorage.setItem("fs2020-root-directory", window.communityDirectory);
+        }
     }
 
     if (window.communityDirectory == null) {
