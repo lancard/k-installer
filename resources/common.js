@@ -361,7 +361,7 @@ function upgradeProgram(id) {
     }
 
     if (id == "k-installer") {
-        installProgram(id, programInfo[id].localStorageNameOfInstalledRootDirectory);
+        installProgram(id, localStorage.getItem(programInfo[id].localStorageNameOfInstalledRootDirectory));
         return;
     }
 
