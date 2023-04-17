@@ -81,6 +81,14 @@ const airportInfo = {
     RKPD: {
         icao: "RKPD",
         name: "Jeongseok Airport"
+    },
+    ZKPY: {
+        icao: "ZKPY",
+        name: "Pyeongyang intl Airport"
+    },
+    ZKWS: {
+        icao: "ZKWS",
+        name: "Wonsan Kalma intl Airport"
     }
 }
 
@@ -94,6 +102,7 @@ const programInfo = {
         localStorageNameOfInstalledRootDirectory: "k-installer-installed-directory"
     },
     "RKJY-fs2020-scenery": {
+        icao: "RKJY",
         programType: 'fs2020',
         author: "ArtistPilot",
         license: "contact ArtistPilot",
@@ -111,6 +120,7 @@ const programInfo = {
         }
     },
     "RKJY-p3d-scenery": {
+        icao: "RKJY",
         programType: 'p3d',
         author: "VFR GO!",
         license: "contact 'VFR GO!'",
@@ -226,9 +236,44 @@ function moveSync(oldPath, newPath) {
 }
 
 
+function updateAirportMarks(icao) {
+    const fs2020Id = `${icao}-fs2020-scenery`;
+    const p3dId = `${icao}-p3d-scenery`;
+
+    const fs2020installedVersion = localStorage.getItem(programInfo[fs2020Id].localStorageNameOfInstalledVersion);
+    const p3dinstalledVersion = localStorage.getItem(programInfo[p3dId].localStorageNameOfInstalledVersion);
+
+    // installed mark
+    if (fs2020installedVersion != null || p3dinstalledVersion != null) {
+        $(`[map-overlay=${icao}] div.bg-gray-800`).addClass("text-success");
+    }
+    else {
+        $(`[map-overlay=${icao}] div.bg-gray-800`).removeClass("text-success");
+    }
+
+    // update mark
+    var updated = false;
+    if (fs2020installedVersion != null && fs2020installedVersion != programInfo[fs2020Id].latestVersion) {
+        updated = true;
+    }
+    if (p3dinstalledVersion != null && p3dinstalledVersion != programInfo[p3dId].latestVersion) {
+        updated = true;
+    }
+
+
+    if (updated) {
+        $(`[updateIcon=${icao}]`).removeClass("d-none");
+        $(`[map-overlay=${icao}] div.bg-gray-800`).addClass("text-danger");
+    }
+    else {
+        $(`[updateIcon=${icao}]`).addClass("d-none");
+        $(`[map-overlay=${icao}] div.bg-gray-800`).removeClass("text-danger");
+    }
+}
 
 function updateScreen(id) {
     $(`[latestVersion="${id}"]`).text(programInfo[id].latestVersion);
+
     if (id == "k-installer") {
         $(`[installedVersion="${id}"]`).text(appVersion);
         if (programInfo[id].latestVersion != appVersion) {
@@ -237,10 +282,10 @@ function updateScreen(id) {
         return;
     }
 
+
     if (!isInstalledBefore(id)) {
         $(`[installedVersion="${id}"]`).text("(not installed)");
         $(`[installedDirectory="${id}"]`).text("(not installed)");
-        $(`[update-mark-${id}]`).removeClass(`must-show-${id}`);
         return;
     }
 
@@ -248,12 +293,9 @@ function updateScreen(id) {
     var installedDirectoryList = JSON.parse(localStorage.getItem(programInfo[id].localStorageNameOfInstalledDirectoryList)).join(", ");
     $(`[installedDirectory="${id}"]`).text(installedDirectoryList);
 
-    if (programInfo[id].latestVersion == localStorage.getItem(programInfo[id].localStorageNameOfInstalledVersion)) {
-        $(`[update-mark-${id}]`).removeClass(`must-show-${id}`);
-    }
-    else {
-        $(`[update-mark-${id}]`).addClass(`must-show-${id}`);
-    }
+
+    // update marks
+    updateAirportMarks(programInfo[id].icao);
 }
 
 
@@ -454,13 +496,6 @@ function initialization() {
         $("#addonSceneryDirectory").text(localStorage.getItem("p3d-root-directory"));
     }
 
-
-    // add stylesheet for update mark element
-    for (var id in programInfo) {
-        var style = $(`<style>.must-show-${id} { display: inline-block !important; }</style>`);
-        $('html > head').append(style);
-    }
-
     for (var airport in airportInfo) {
         createSceneryContentsDOM(airportInfo[airport].icao, airportInfo[airport].name, airportInfo[airport].fs2020SceneryId, airportInfo[airport].p3dSceneryId);
     }
@@ -581,8 +616,6 @@ function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
     $clonedMenuDom.find("[menu-icao]").text(icao);
     $clonedMenuDom.find("[menu-name]").text(airportName);
     $clonedMenuDom.find("[updateIcon]").attr("updateIcon", icao);
-    $clonedMenuDom.find("[updateIcon]").attr("update-mark-" + fs2020Id, "true");
-    $clonedMenuDom.find("[updateIcon]").attr("update-mark-" + p3dId, "true");
     $clonedMenuDom.find("a").attr("onclick", `showMenu('${icao}')`);
 
     $("[sceneryAndChart]").before($clonedMenuDom);
