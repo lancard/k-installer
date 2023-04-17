@@ -56,7 +56,9 @@ const airportInfo = {
     },
     RKNW: {
         icao: "RKNW",
-        name: "Wonju Airport"
+        name: "Wonju Airport",
+        fs2020SceneryId: "RKNW-fs2020-scenery",
+        p3dSceneryId: "RKNW-p3d-scenery"
     },
     RKPS: {
         icao: "RKPS",
@@ -134,6 +136,38 @@ const programInfo = {
         directory: {
             "scenery": "RKJY-p3d-scenery\\scenery",
             "texture": "RKJY-p3d-scenery\\texture"
+        }
+    },
+    "RKNW-fs2020-scenery": {
+        icao: "RKNW",
+        programType: 'fs2020',
+        author: "ddkk08",
+        license: "contact ddkk08",
+        downloadUrl: "https://github.com/lancard/fs2020-RKNW/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKNW/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "fs2020-RKNW-master",
+        localStorageNameOfInstalledVersion: "RKNW-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKNW-fs2020-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKNW-fs2020-scenery-installed-directory-list",
+        directory: {
+            "wonju-airport": `fs2020-RKNW-master\\wonju-airport`
+        }
+    },
+    "RKNW-p3d-scenery": {
+        icao: "RKNW",
+        programType: 'p3d',
+        author: "Dro(권예준), FSXPlayer",
+        license: "contact both",
+        downloadUrl: "https://github.com/lancard/RKNW/archive/main.zip",
+        versionCheckUrl: "https://lancard.github.io/RKNW/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: ".",
+        localStorageNameOfInstalledVersion: "RKNW-p3d-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKNW-p3d-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKNW-p3d-scenery-installed-directory-list",
+        directory: {
+            "RKNW-main": `RKNW`
         }
     }
 };
