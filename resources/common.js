@@ -355,6 +355,14 @@ function selectDirectory(program) {
     }
 }
 
+function updateAllMetar() {
+    $.getJSON("https://airplane.mywire.org/metar.json", metar => {
+        for (var airport in metar) {
+            $(`[airportTemplate][icao=${airport}]`).find("[metarArea]").text(metar[airport].metar);
+        }
+    });
+}
+
 function initialization() {
     window.communityDirectory = localStorage.getItem("fs2020-root-directory");
     if (window.communityDirectory == null) {
@@ -384,16 +392,29 @@ function initialization() {
         $('html > head').append(style);
     }
 
-    $.getJSON("https://airplane.mywire.org/metar.json", metar => {
-        $.getJSON('https://lancard.github.io/chart/AIP/latest/AD/chartInformation.json', (data) => {
-            createSceneryContentsDOM("RKJY", "Yeosu airport", data["RKJY"], metar["RKJY"].metar, "RKJY-fs2020-scenery", "RKJY-p3d-scenery");
+    createSceneryContentsDOM("RKJY", "Yeosu airport", "RKJY-fs2020-scenery", "RKJY-p3d-scenery");
 
-            // check update
-            for (var id in programInfo) {
-                checkUpdate(id);
+    // check update
+    for (var id in programInfo) {
+        checkUpdate(id);
+    }
+
+    // update chart
+    $.getJSON('https://lancard.github.io/chart/AIP/latest/AD/chartInformation.json', (chart) => {
+        // charts
+        for (var airport in chart) {
+            for (var chartType in chart[airport]) {
+                if (!chart[airport][chartType])
+                    continue;
+
+                $(`<button type="button" class="btn btn-info m-2" onclick="openChart(this, '${chartType}')">${chartType}</button>`).appendTo($(`[airportTemplate][icao=${airport}]`).find("[chartArea]"));
             }
-        });
+        }
     });
+
+    // update metar and register interval
+    updateAllMetar();
+    setInterval(updateAllMetar, 10 * 60 * 1000);
 }
 
 function showMenu(selectedId) {
@@ -407,7 +428,7 @@ function openChart(elem, chartName) {
     window.open(`https://lancard.github.io/chart/AIP/latest/AD/${icao}/${chartName}.pdf`);
 }
 
-function createSceneryContentsDOM(icao, airportName, chartMap, metar, fs2020Id, p3dId) {
+function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
     $clonedDOM = $("[airportTemplate]:not(:visible)").clone().removeClass("collapse");
 
     // common
@@ -415,18 +436,6 @@ function createSceneryContentsDOM(icao, airportName, chartMap, metar, fs2020Id, 
     $clonedDOM.find("[icao]").text(icao);
     $clonedDOM.find("[airportName]").text(airportName);
     $clonedDOM.find("[airportImage]").attr("src", `https://lancard.github.io/k-installer/${icao}.png`);
-
-    // metar
-    $clonedDOM.find("[metarArea]").text(metar);
-
-    // charts
-    for (var chartType in chartMap) {
-        if (!chartMap[chartType])
-            continue;
-
-        $(`<button type="button" class="btn btn-info m-2" onclick="openChart(this, '${chartType}')">${chartType}</button>`).appendTo($clonedDOM.find("[chartArea]"));
-    }
-
 
     // fs2020
     $clonedDOM.find("[sceneryType=fs2020]").find("[author]").text(programInfo[fs2020Id].author);
