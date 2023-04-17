@@ -1,4 +1,5 @@
 const { app, BrowserWindow, globalShortcut } = require('electron');
+app.commandLine.appendSwitch("disable-http-cache");
 const electronRemoteMain = require('@electron/remote/main');
 
 function createWindow() {
