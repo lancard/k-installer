@@ -33,7 +33,8 @@ const airportInfo = {
     },
     RKTU: {
         icao: "RKTU",
-        name: "Cheongju intl Airport"
+        name: "Cheongju intl Airport",
+        p3dSceneryId: "RKTU-p3d-scenery"
     },
     RKNY: {
         icao: "RKNY",
@@ -213,6 +214,24 @@ const programInfo = {
         localStorageNameOfInstalledDirectoryList: "RKPK-p3d-scenery-installed-directory-list",
         directory: {
             "Hongs_GimHae": `Hongs_GimHae`
+        }
+    },
+    "RKTU-p3d-scenery": {
+        icao: "RKTU",
+        programType: 'p3d',
+        author: "me and 유이 (https://hosii.info)",
+        license: "contact https://hosii.info",
+        donation: "contact https://hosii.info",
+        downloadUrl: "https://github.com/lancard/RKTU/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/RKTU/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "RKTU-master",
+        localStorageNameOfInstalledVersion: "RKTU-p3d-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKTU-p3d-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKTU-p3d-scenery-installed-directory-list",
+        directory: {
+            "scenery": "RKTU-p3d-scenery\\scenery",
+            "texture": "RKTU-p3d-scenery\\texture"
         }
     },
     "RKJY-fs2020-scenery": {
