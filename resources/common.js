@@ -6,6 +6,7 @@ const dialog = require('@electron/remote').dialog;
 const request = require('request');
 const progress = require('request-progress');
 const child_process = require('child_process');
+var programRootDirectory = (process.env.NODE_ENV == "development" ? "." : require('@electron/remote').app.getAppPath() + ".unpacked");
 
 const airportInfo = {
     RKSI: {
@@ -223,7 +224,7 @@ const programInfo = {
 
 
 function decompress(zipFilename, targetDirectory, callback) {
-    child_process.exec(`7za x "${zipFilename}" -y -bd -o"${targetDirectory}"`, (error, stdout, stderr) => {
+    child_process.exec(`${programRootDirectory}\\7za.exe x "${zipFilename}" -y -bd -o"${targetDirectory}"`, (error, stdout, stderr) => {
         if (error) {
             alert(`extract error: ${error}`);
             return;
@@ -234,7 +235,7 @@ function decompress(zipFilename, targetDirectory, callback) {
 }
 
 function getZipfileList(filename) {
-    return child_process.execSync(`7za l -ba -slt "${filename}"`).toString().split("\r\n").filter(e => e.startsWith('Path = ')).map(e => e.substring(7));
+    return child_process.execSync(`${programRootDirectory}\\7za.exe l -ba -slt "${filename}"`).toString().split("\r\n").filter(e => e.startsWith('Path = ')).map(e => e.substring(7));
 }
 
 function getCommunityDirectory() {
@@ -454,8 +455,6 @@ function installProgram(id, targetDirectory) {
                 fs.rmSync(filename); // remove zip file for disk space
 
                 if (id == "k-installer") {
-                    fs.readdirSync(targetDirectory).filter(e => e.endsWith(".exe"));
-
                     var zipcontents = getZipfileList(filename);
                     child_process.execSync(`"${localStorage.getItem(programInfo[id].localStorageNameOfInstalledRootDirectory)}\\${zipcontents[0]}"`);
                     return;

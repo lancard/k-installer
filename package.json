@@ -1,9 +1,12 @@
 {
   "name": "k-installer",
-  "version": "0.9.13",
+  "version": "0.9.14",
   "description": "installer for korean program and scenery",
   "main": "main.js",
   "build": {
+    "asarUnpack": [
+      "7za.exe"
+    ],
     "win": {
       "icon": "./resources/icon.png"
     }
