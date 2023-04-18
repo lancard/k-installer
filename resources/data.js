@@ -303,8 +303,8 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKJJ-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKJJ-p3d-scenery-installed-directory-list",
         directory: {
-            "scenery": "RKJJ-p3d-scenery\\scenery",
-            "texture": "RKJJ-p3d-scenery\\texture"
+            "RKJJ-p3d-scenery\\scenery": "RKJJ-master\\scenery",
+            "RKJJ-p3d-scenery\\texture": "RKJJ-master\\texture"
         }
     },
     "RKJK-fs2020-scenery": {
@@ -319,7 +319,7 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKJK-fs2020-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKJK-fs2020-scenery-installed-directory-list",
         directory: {
-            "JejuFlight-scenery-gunsan": `fs2020-RKJY-master\\JejuFlight-scenery-gunsan`
+            "JejuFlight-scenery-gunsan": `fs2020-RKJK-master\\JejuFlight-scenery-gunsan`
         }
     },
     "RKJK-p3d-scenery": {
@@ -334,8 +334,8 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKJK-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKJK-p3d-scenery-installed-directory-list",
         directory: {
-            "scenery": "RKJK-p3d-scenery\\scenery",
-            "texture": "RKJK-p3d-scenery\\texture"
+            "RKJK-p3d-scenery\\scenery": "RKJK-master\\scenery",
+            "RKJK-p3d-scenery\\texture": "RKJK-master\\texture"
         }
     },
     "RKJY-fs2020-scenery": {
