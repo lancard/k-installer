@@ -2,6 +2,17 @@ const { app, BrowserWindow, globalShortcut } = require('electron');
 app.commandLine.appendSwitch("disable-http-cache");
 const electronRemoteMain = require('@electron/remote/main');
 
+function upsertKeyValue(header, keyToChange, value) {
+  for (const key of Object.keys(header)) {
+    if (key.toLowerCase() === keyToChange.toLowerCase()) {
+      header[key] = value;
+      return;
+    }
+  }
+
+  header[keyToChange] = value;
+};
+
 function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 1280,
@@ -23,15 +34,15 @@ function createWindow() {
   // CORS
   mainWindow.webContents.session.webRequest.onBeforeSendHeaders((details, callback) => {
     const { requestHeaders } = details;
-    requestHeaders['Access-Control-Allow-Origin'] = '*';
+    upsertKeyValue(requestHeaders, 'Access-Control-Allow-Origin', '*');
     callback({ requestHeaders });
   });
 
   mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
     const { responseHeaders } = details;
     console.dir(responseHeaders);
-    responseHeaders['Access-Control-Allow-Origin'] = '*';
-    responseHeaders['Access-Control-Allow-Headers'] = '*';
+    upsertKeyValue(responseHeaders, 'Access-Control-Allow-Origin', ['*']);
+    upsertKeyValue(responseHeaders, 'Access-Control-Allow-Headers', ['*']);
     callback({ responseHeaders });
   });
 
