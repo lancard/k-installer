@@ -533,14 +533,14 @@ const programInfo = {
         author: "me",
         license: "contact me",
         donation: "contact me",
-        downloadUrl: "https://github.com/lancard/ZKWS/archive/master.zip",
+        downloadUrl: "https://github.com/lancard/ZKWS/archive/main.zip",
         versionCheckUrl: "https://lancard.github.io/ZKWS/version.txt",
         versionModifier: (data) => data.trim(),
         localStorageNameOfInstalledVersion: "ZKWS-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "ZKWS-p3d-scenery-installed-directory-list",
         directory: {
-            "ZKWS-p3d-scenery\\scenery": "ZKWS-master\\scenery",
-            "ZKWS-p3d-scenery\\texture": "ZKWS-master\\texture"
+            "ZKWS-p3d-scenery\\scenery": "ZKWS-main\\scenery",
+            "ZKWS-p3d-scenery\\texture": "ZKWS-main\\texture"
         }
     }
 };
