@@ -101,11 +101,13 @@ const airportInfo = {
     },
     ZKPY: {
         icao: "ZKPY",
-        name: "Pyeongyang intl Airport"
+        name: "Pyeongyang intl Airport",
+        p3dSceneryId: "ZKPY-p3d-scenery"
     },
     ZKWS: {
         icao: "ZKWS",
-        name: "Wonsan Kalma intl Airport"
+        name: "Wonsan Kalma intl Airport",
+        p3dSceneryId: "ZKWS-p3d-scenery"
     }
 }
 
@@ -539,6 +541,42 @@ const programInfo = {
         directory: {
             "scenery": "RKTL-p3d-scenery\\scenery",
             "texture": "RKTL-p3d-scenery\\texture"
+        }
+    },
+    "ZKPY-p3d-scenery": {
+        icao: "ZKPY",
+        programType: 'p3d',
+        author: "me",
+        license: "contact me",
+        donation: "contact me",
+        downloadUrl: "https://github.com/lancard/ZKPY/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/ZKPY/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "ZKPY-master",
+        localStorageNameOfInstalledVersion: "ZKPY-p3d-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "ZKPY-p3d-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "ZKPY-p3d-scenery-installed-directory-list",
+        directory: {
+            "scenery": "ZKPY-p3d-scenery\\scenery",
+            "texture": "ZKPY-p3d-scenery\\texture"
+        }
+    },
+    "ZKWS-p3d-scenery": {
+        icao: "ZKWS",
+        programType: 'p3d',
+        author: "me",
+        license: "contact me",
+        donation: "contact me",
+        downloadUrl: "https://github.com/lancard/ZKWS/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/ZKWS/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "ZKWS-master",
+        localStorageNameOfInstalledVersion: "ZKWS-p3d-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "ZKWS-p3d-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "ZKWS-p3d-scenery-installed-directory-list",
+        directory: {
+            "scenery": "ZKWS-p3d-scenery\\scenery",
+            "texture": "ZKWS-p3d-scenery\\texture"
         }
     }
 };
