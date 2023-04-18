@@ -476,8 +476,8 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKTH-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKTH-p3d-scenery-installed-directory-list",
         directory: {
-            "scenery": "RKTH-p3d-scenery\\scenery",
-            "texture": "RKTH-p3d-scenery\\texture"
+            "RKTH-p3d-scenery\\scenery": "RKTH-master\\scenery",
+            "RKTH-p3d-scenery\\texture": "RKTH-master\\texture"
         }
     },
     "RKRS-fs2020-scenery": {
@@ -492,7 +492,7 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKRS-fs2020-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKRS-fs2020-scenery-installed-directory-list",
         directory: {
-            "kim-airport-rkrs-susaek": `kim-airport-rkrs-susaek`
+            "kim-airport-rkrs-susaek": `fs2020-RKRS-master\\kim-airport-rkrs-susaek`
         }
     },
     "RKTL-p3d-scenery": {
