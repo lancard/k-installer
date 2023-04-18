@@ -252,6 +252,23 @@ const programInfo = {
             "texture": "RKNY-p3d-scenery\\texture"
         }
     },
+    "RKTN-p3d-scenery": {
+        icao: "RKTN",
+        programType: 'p3d',
+        author: "rentonflight",
+        license: "contact rentonflight",
+        donation: "contact rentonflight",
+        downloadUrl: "https://github.com/lancard/RKTN/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/RKTN/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "RKTN-master",
+        localStorageNameOfInstalledVersion: "RKTN-p3d-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKTN-p3d-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKTN-p3d-scenery-installed-directory-list",
+        directory: {
+            "RKTN-p3d-scenery": "1. Daegu International Airport RKTN VER1.0"
+        }
+    },
     "RKJY-fs2020-scenery": {
         icao: "RKJY",
         programType: 'fs2020',
@@ -499,7 +516,7 @@ function updateScreen(id) {
     $(`[installedDirectory="${id}"]`).text(installedDirectoryList);
 
     // update mark to scenery
-    if(programInfo[id].latestVersion != localStorage.getItem(programInfo[id].localStorageNameOfInstalledVersion))
+    if (programInfo[id].latestVersion != localStorage.getItem(programInfo[id].localStorageNameOfInstalledVersion))
         $(`[updateNotify="${id}"]`).removeClass("collapse");
 
     // update marks to airport
