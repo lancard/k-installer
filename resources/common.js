@@ -356,6 +356,8 @@ function updateAllMetar() {
     $(`[airportTemplate]`).find("[metarArea]").text(" (Loading...) ");
 
     $.getJSON("https://airplane.mywire.org/metar.json", metar => {
+        $(`[airportTemplate]`).find("[metarArea]").text(" (No Metar Information) ");
+
         for (var airport in metar) {
             $(`[airportTemplate][icao=${airport}]`).find("[metarArea]").text(metar[airport].metar);
         }
