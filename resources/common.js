@@ -173,6 +173,7 @@ function updateScreen(id) {
     if (!isInstalledBefore(id)) {
         $(`[installedVersion="${id}"]`).text("(not installed)");
         $(`[installedDirectory="${id}"]`).text("(not installed)");
+        updateAirportMarks(programInfo[id].icao);
         return;
     }
 
