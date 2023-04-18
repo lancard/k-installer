@@ -201,12 +201,12 @@ const programInfo = {
         downloadUrl: "https://github.com/lancard/fs2020-RKPK/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/fs2020-RKPK/version.txt",
         versionModifier: (data) => data.trim(),
-        unzippedRootDirectory: "fs2020-RKPK-master",
+        unzippedRootDirectory: "fs2020-RKPK-master\\Packages",
         localStorageNameOfInstalledVersion: "RKPK-fs2020-scenery-installed-version",
         localStorageNameOfInstalledRootDirectory: "RKPK-fs2020-scenery-installed-directory",
         localStorageNameOfInstalledDirectoryList: "RKPK-fs2020-scenery-installed-directory-list",
         directory: {
-            "thekoreans-airport-rkpk-busan": `Packages\\thekoreans-airport-rkpk-busan`
+            "thekoreans-airport-rkpk-busan": `thekoreans-airport-rkpk-busan`
         }
     },
     "RKPK-p3d-scenery": {
