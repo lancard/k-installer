@@ -22,7 +22,8 @@ const airportInfo = {
     },
     RKPC: {
         icao: "RKPC",
-        name: "Jeju intl Airport"
+        name: "Jeju intl Airport",
+        p3dSceneryId: "RKPC-p3d-scenery"
     },
     RKPK: {
         icao: "RKPK",
@@ -159,6 +160,55 @@ const programInfo = {
             "Hongs_GimPo": "RKSS-master\\Hongs_GimPo"
         }
     },
+    "RKPC-p3d-scenery": {
+        icao: "RKPC",
+        programType: 'p3d',
+        author: "business and me",
+        license: "contact me",
+        downloadUrl: "https://github.com/lancard/RKPC/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/RKPC/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "RKPC-master",
+        localStorageNameOfInstalledVersion: "RKPC-p3d-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKPC-p3d-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKPC-p3d-scenery-installed-directory-list",
+        directory: {
+            "scenery": "RKPC-p3d-scenery\\scenery",
+            "texture": "RKPC-p3d-scenery\\texture"
+        }
+    },
+    "RKPK-fs2020-scenery": {
+        icao: "RKPK",
+        programType: 'fs2020',
+        author: "me and hongsda",
+        license: "contact me",
+        downloadUrl: "https://github.com/lancard/fs2020-RKPK/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKPK/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "fs2020-RKPK-master",
+        localStorageNameOfInstalledVersion: "RKPK-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKPK-fs2020-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKPK-fs2020-scenery-installed-directory-list",
+        directory: {
+            "thekoreans-airport-rkpk-busan": `Packages\\thekoreans-airport-rkpk-busan`
+        }
+    },
+    "RKPK-p3d-scenery": {
+        icao: "RKPK",
+        programType: 'p3d',
+        author: "hongsda and me",
+        license: "contact me",
+        downloadUrl: "https://github.com/lancard/RKPK/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/RKPK/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "RKPK-master",
+        localStorageNameOfInstalledVersion: "RKPK-p3d-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKPK-p3d-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKPK-p3d-scenery-installed-directory-list",
+        directory: {
+            "Hongs_GimHae": `Hongs_GimHae`
+        }
+    },
     "RKJY-fs2020-scenery": {
         icao: "RKJY",
         programType: 'fs2020',
@@ -224,38 +274,6 @@ const programInfo = {
         localStorageNameOfInstalledDirectoryList: "RKNW-p3d-scenery-installed-directory-list",
         directory: {
             "RKNW-main": `RKNW`
-        }
-    },
-    "RKPK-fs2020-scenery": {
-        icao: "RKPK",
-        programType: 'fs2020',
-        author: "me and hongsda",
-        license: "contact me",
-        downloadUrl: "https://github.com/lancard/fs2020-RKPK/archive/master.zip",
-        versionCheckUrl: "https://lancard.github.io/fs2020-RKPK/version.txt",
-        versionModifier: (data) => data.trim(),
-        unzippedRootDirectory: "fs2020-RKPK-master",
-        localStorageNameOfInstalledVersion: "RKPK-fs2020-scenery-installed-version",
-        localStorageNameOfInstalledRootDirectory: "RKPK-fs2020-scenery-installed-directory",
-        localStorageNameOfInstalledDirectoryList: "RKPK-fs2020-scenery-installed-directory-list",
-        directory: {
-            "thekoreans-airport-rkpk-busan": `Packages\\thekoreans-airport-rkpk-busan`
-        }
-    },
-    "RKPK-p3d-scenery": {
-        icao: "RKPK",
-        programType: 'p3d',
-        author: "hongsda and me",
-        license: "contact me",
-        downloadUrl: "https://github.com/lancard/RKPK/archive/master.zip",
-        versionCheckUrl: "https://lancard.github.io/RKPK/version.txt",
-        versionModifier: (data) => data.trim(),
-        unzippedRootDirectory: "RKPK-master",
-        localStorageNameOfInstalledVersion: "RKNW-p3d-scenery-installed-version",
-        localStorageNameOfInstalledRootDirectory: "RKNW-p3d-scenery-installed-directory",
-        localStorageNameOfInstalledDirectoryList: "RKNW-p3d-scenery-installed-directory-list",
-        directory: {
-            "Hongs_GimHae": `Hongs_GimHae`
         }
     }
 };
