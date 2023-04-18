@@ -287,8 +287,8 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKJB-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKJB-p3d-scenery-installed-directory-list",
         directory: {
-            "scenery": "RKJB-p3d-scenery\\scenery",
-            "texture": "RKJB-p3d-scenery\\texture"
+            "RKJB-p3d-scenery\\scenery": "RKJB-master\\scenery",
+            "RKJB-p3d-scenery\\texture": "RKJB-master\\texture"
         }
     },
     "RKJJ-p3d-scenery": {
