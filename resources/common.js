@@ -59,6 +59,7 @@ const airportInfo = {
     RKJK: {
         icao: "RKJK",
         name: "Gunsan Airport",
+        fs2020SceneryId: "RKJK-fs2020-scenery",
         p3dSceneryId: "RKJK-p3d-scenery"
     },
     RKJY: {
@@ -308,6 +309,23 @@ const programInfo = {
         directory: {
             "scenery": "RKJJ-p3d-scenery\\scenery",
             "texture": "RKJJ-p3d-scenery\\texture"
+        }
+    },
+    "RKJK-fs2020-scenery": {
+        icao: "RKJK",
+        programType: 'fs2020',
+        author: "JejuFlight",
+        license: "contact JejuFlight",
+        donation: "contact JejuFlight",
+        downloadUrl: "https://github.com/lancard/fs2020-RKJK/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKJK/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "fs2020-RKJK-master",
+        localStorageNameOfInstalledVersion: "RKJK-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKJK-fs2020-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKJK-fs2020-scenery-installed-directory-list",
+        directory: {
+            "JejuFlight-scenery-gunsan": `fs2020-RKJY-master\\JejuFlight-scenery-gunsan`
         }
     },
     "RKJK-p3d-scenery": {
