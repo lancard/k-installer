@@ -460,8 +460,8 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKPU-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKPU-p3d-scenery-installed-directory-list",
         directory: {
-            "RKPU-p3d-scenery\\scenery": "scenery",
-            "RKPU-p3d-scenery\\texture": "texture"
+            "RKPU-p3d-scenery\\scenery": "RKPU-master\\scenery",
+            "RKPU-p3d-scenery\\texture": "RKPU-master\\texture"
         }
     },
     "RKTH-p3d-scenery": {
