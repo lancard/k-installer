@@ -34,6 +34,7 @@ const airportInfo = {
     RKTN: {
         icao: "RKTN",
         name: "Daegu intl Airport",
+        fs2020SceneryId: "RKTN-fs2020-scenery",
         p3dSceneryId: "RKTN-p3d-scenery"
     },
     RKJB: {
@@ -259,6 +260,23 @@ const programInfo = {
         directory: {
             "scenery": "RKNY-p3d-scenery\\scenery",
             "texture": "RKNY-p3d-scenery\\texture"
+        }
+    },
+    "RKTN-fs2020-scenery": {
+        icao: "RKTN",
+        programType: 'fs2020',
+        author: "KoreaFix team",
+        license: "contact KoreaFix team",
+        donation: "https://www.buymeacoffee.com/KoreaFix",
+        downloadUrl: "https://github.com/lancard/fs2020-RKTN/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKTN/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "fs2020-RKTN-master",
+        localStorageNameOfInstalledVersion: "RKTN-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKTN-fs2020-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKTN-fs2020-scenery-installed-directory-list",
+        directory: {
+            "Daegu-airport": `fs2020-RKTN-master\\Daegu-airport`
         }
     },
     "RKTN-p3d-scenery": {
