@@ -113,8 +113,9 @@ const programInfo = {
     "RKSI-fs2020-scenery": {
         icao: "RKSI",
         programType: 'fs2020',
-        author: "ArtistPilot",
+        author: "ArtistPilot, KIS, KoreaSim, Real Wing, DDKK8, JEJUFLIGHT, LAZ, MCRN KARAKUM",
         license: "contact ArtistPilot",
+        donation: "contact ArtistPilot",
         downloadUrl: "https://big.mywire.org/RKSI.zip",
         versionCheckUrl: "https://big.mywire.org/version.txt",
         versionModifier: (data) => data.trim(),
@@ -133,6 +134,7 @@ const programInfo = {
         programType: 'fs2020',
         author: "Rusion",
         license: "refer https://github.com/lancard/fs2020-RKSS and contact Rusion",
+        donation: "Kookmin bank, 27430104173050",
         downloadUrl: "https://github.com/lancard/fs2020-RKSS/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/fs2020-RKSS/version.txt",
         versionModifier: (data) => data.trim(),
@@ -149,6 +151,7 @@ const programInfo = {
         programType: 'p3d',
         author: "hongsda and me",
         license: "contact me",
+        donation: "contact me",
         downloadUrl: "https://github.com/lancard/RKSS/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/RKSS/version.txt",
         versionModifier: (data) => data.trim(),
@@ -165,6 +168,7 @@ const programInfo = {
         programType: 'p3d',
         author: "business and me",
         license: "contact me",
+        donation: "contact me",
         downloadUrl: "https://github.com/lancard/RKPC/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/RKPC/version.txt",
         versionModifier: (data) => data.trim(),
@@ -182,6 +186,7 @@ const programInfo = {
         programType: 'fs2020',
         author: "me and hongsda",
         license: "contact me",
+        donation: "contact me",
         downloadUrl: "https://github.com/lancard/fs2020-RKPK/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/fs2020-RKPK/version.txt",
         versionModifier: (data) => data.trim(),
@@ -198,6 +203,7 @@ const programInfo = {
         programType: 'p3d',
         author: "hongsda and me",
         license: "contact me",
+        donation: "contact me",
         downloadUrl: "https://github.com/lancard/RKPK/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/RKPK/version.txt",
         versionModifier: (data) => data.trim(),
@@ -214,6 +220,7 @@ const programInfo = {
         programType: 'fs2020',
         author: "ArtistPilot",
         license: "contact ArtistPilot",
+        donation: "contact ArtistPilot",
         downloadUrl: "https://github.com/lancard/fs2020-RKJY/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/fs2020-RKJY/version.txt",
         versionModifier: (data) => data.trim(),
@@ -232,6 +239,7 @@ const programInfo = {
         programType: 'p3d',
         author: "VFR GO!",
         license: "contact 'VFR GO!'",
+        donation: "contact 'VFR GO!'",
         downloadUrl: "https://github.com/lancard/VFRGO/releases/download/master/VFRGO_Yeosu.zip",
         versionCheckUrl: "https://raw.githubusercontent.com/lancard/VFRGO/main/version.txt",
         versionModifier: (data) => data.trim(),
@@ -249,6 +257,7 @@ const programInfo = {
         programType: 'fs2020',
         author: "ddkk08",
         license: "contact ddkk08",
+        donation: "contact ddkk08",
         downloadUrl: "https://github.com/lancard/fs2020-RKNW/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/fs2020-RKNW/version.txt",
         versionModifier: (data) => data.trim(),
@@ -265,6 +274,7 @@ const programInfo = {
         programType: 'p3d',
         author: "Dro(권예준), FSXPlayer",
         license: "contact both",
+        donation: "contact both",
         downloadUrl: "https://github.com/lancard/RKNW/archive/main.zip",
         versionCheckUrl: "https://lancard.github.io/RKNW/version.txt",
         versionModifier: (data) => data.trim(),
@@ -792,6 +802,7 @@ function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
     if (fs2020Id) {
         $clonedDOM.find("[sceneryType=fs2020]").find("[author]").text(programInfo[fs2020Id].author);
         $clonedDOM.find("[sceneryType=fs2020]").find("[license]").text(programInfo[fs2020Id].license);
+        $clonedDOM.find("[sceneryType=fs2020]").find("[donation]").text(programInfo[fs2020Id].donation);
         $clonedDOM.find("[sceneryType=fs2020]").find("[latestVersion]").attr("latestVersion", fs2020Id);
         $clonedDOM.find("[sceneryType=fs2020]").find("[installedVersion]").attr("installedVersion", fs2020Id);
         $clonedDOM.find("[sceneryType=fs2020]").find("[installedDirectory]").attr("installedDirectory", fs2020Id);
@@ -807,6 +818,7 @@ function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
     if (p3dId) {
         $clonedDOM.find("[sceneryType=p3d]").find("[author]").text(programInfo[p3dId].author);
         $clonedDOM.find("[sceneryType=p3d]").find("[license]").text(programInfo[p3dId].license);
+        $clonedDOM.find("[sceneryType=p3d]").find("[donation]").text(programInfo[p3dId].donation);
         $clonedDOM.find("[sceneryType=p3d]").find("[latestVersion]").attr("latestVersion", p3dId);
         $clonedDOM.find("[sceneryType=p3d]").find("[installedVersion]").attr("installedVersion", p3dId);
         $clonedDOM.find("[sceneryType=p3d]").find("[installedDirectory]").attr("installedDirectory", p3dId);
