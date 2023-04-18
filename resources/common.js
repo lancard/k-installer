@@ -345,8 +345,8 @@ function updateAirportMarks(icao) {
     const fs2020Id = `${icao}-fs2020-scenery`;
     const p3dId = `${icao}-p3d-scenery`;
 
-    const fs2020installedVersion = programInfo[fs2020Id].localStorageNameOfInstalledVersion ? localStorage.getItem(programInfo[fs2020Id].localStorageNameOfInstalledVersion) : null;
-    const p3dinstalledVersion = programInfo[p3dId].localStorageNameOfInstalledVersion ? localStorage.getItem(programInfo[p3dId].localStorageNameOfInstalledVersion) : null;
+    const fs2020installedVersion = programInfo[fs2020Id] ? localStorage.getItem(programInfo[fs2020Id].localStorageNameOfInstalledVersion) : null;
+    const p3dinstalledVersion = programInfo[p3dId] ? localStorage.getItem(programInfo[p3dId].localStorageNameOfInstalledVersion) : null;
 
     // installed mark
     if (fs2020installedVersion != null || p3dinstalledVersion != null) {
