@@ -225,8 +225,8 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKTU-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKTU-p3d-scenery-installed-directory-list",
         directory: {
-            "scenery": "RKTU-p3d-scenery\\scenery",
-            "texture": "RKTU-p3d-scenery\\texture"
+            "RKTU-p3d-scenery\\scenery": "RKTU-master\\scenery",
+            "RKTU-p3d-scenery\\texture": "RKTU-master\\texture"
         }
     },
     "RKNY-p3d-scenery": {
@@ -241,8 +241,8 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKNY-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKNY-p3d-scenery-installed-directory-list",
         directory: {
-            "scenery": "RKNY-p3d-scenery\\scenery",
-            "texture": "RKNY-p3d-scenery\\texture"
+            "RKNY-p3d-scenery\\scenery": "RKNY-master\\scenery",
+            "RKNY-p3d-scenery\\texture": "RKNY-master\\texture"
         }
     },
     "RKTN-fs2020-scenery": {
