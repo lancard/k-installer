@@ -72,7 +72,9 @@ const airportInfo = {
     },
     RKPU: {
         icao: "RKPU",
-        name: "Ulsan Airport"
+        name: "Ulsan Airport",
+        fs2020SceneryId: "RKPU-fs2020-scenery",
+        p3dSceneryId: "RKPU-p3d-scenery"
     },
     RKSM: {
         icao: "RKSM",
@@ -442,6 +444,41 @@ const programInfo = {
         directory: {
             "scenery": "RKPS-p3d-scenery\\scenery",
             "texture": "RKPS-p3d-scenery\\texture"
+        }
+    },
+    "RKPU-fs2020-scenery": {
+        icao: "RKPU",
+        programType: 'fs2020',
+        author: "ArtistPilot",
+        license: "contact ArtistPilot",
+        donation: "contact ArtistPilot",
+        downloadUrl: "https://github.com/lancard/fs2020-RKPU/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKPU/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "fs2020-RKPU-master",
+        localStorageNameOfInstalledVersion: "RKPU-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKPU-fs2020-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKPU-fs2020-scenery-installed-directory-list",
+        directory: {
+            "kim-airport-rkpu-ulsan": `fs2020-RKPU-master\\kim-airport-rkpu-ulsan`
+        }
+    },
+    "RKPU-p3d-scenery": {
+        icao: "RKPU",
+        programType: 'p3d',
+        author: "유이 (https://hosii.info)",
+        license: "contact https://hosii.info",
+        donation: "contact https://hosii.info",
+        downloadUrl: "https://github.com/lancard/RKPU/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/RKPU/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "RKPU-master",
+        localStorageNameOfInstalledVersion: "RKPU-p3d-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKPU-p3d-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKPU-p3d-scenery-installed-directory-list",
+        directory: {
+            "scenery": "RKPU-p3d-scenery\\scenery",
+            "texture": "RKPU-p3d-scenery\\texture"
         }
     }
 };
