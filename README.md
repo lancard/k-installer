@@ -1,3 +1,5 @@
+![GitHub downloads](https://img.shields.io/github/downloads/lancard/k-installer/total)
+
 # k-installer
 installer for flight simulator and atc
 
