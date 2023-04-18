@@ -257,7 +257,7 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKTN-fs2020-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKTN-fs2020-scenery-installed-directory-list",
         directory: {
-            "Daegu-airport": `fs2020-RKTN-master\\Daegu-airport`
+            "Daegu-airport": `fs2020-RKTN-master\\Deagu-airport`
         }
     },
     "RKTN-p3d-scenery": {
@@ -272,7 +272,7 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKTN-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKTN-p3d-scenery-installed-directory-list",
         directory: {
-            "RKTN-p3d-scenery": "1. Daegu International Airport RKTN VER1.0"
+            "RKTN-p3d-scenery": "RKTN-master\\1. Daegu International Airport RKTN VER1.0"
         }
     },
     "RKJB-p3d-scenery": {
