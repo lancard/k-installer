@@ -398,7 +398,8 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKNW-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKNW-p3d-scenery-installed-directory-list",
         directory: {
-            "RKNW-main": `RKNW`
+            "RKNW-p3d-scenery\\scenery": `RKNW-main\\scenery`,
+            "RKNW-p3d-scenery\\texture": `RKNW-main\\texture`
         }
     },
     "RKPS-fs2020-scenery": {
