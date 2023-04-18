@@ -82,7 +82,8 @@ const airportInfo = {
     },
     RKTH: {
         icao: "RKTH",
-        name: "Pohang Gyeongju Airport"
+        name: "Pohang Gyeongju Airport",
+        p3dSceneryId: "RKTH-p3d-scenery"
     },
     RKTL: {
         icao: "RKTL",
@@ -91,6 +92,10 @@ const airportInfo = {
     RKPD: {
         icao: "RKPD",
         name: "Jeongseok Airport"
+    },
+    RKRS: {
+        icao: "RKRS",
+        name: "Susaek Airport"
     },
     ZKPY: {
         icao: "ZKPY",
@@ -479,6 +484,41 @@ const programInfo = {
         directory: {
             "scenery": "RKPU-p3d-scenery\\scenery",
             "texture": "RKPU-p3d-scenery\\texture"
+        }
+    },
+    "RKTH-p3d-scenery": {
+        icao: "RKTH",
+        programType: 'p3d',
+        author: "me",
+        license: "contact me",
+        donation: "contact me",
+        downloadUrl: "https://github.com/lancard/RKTH/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/RKTH/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "RKTH-master",
+        localStorageNameOfInstalledVersion: "RKTH-p3d-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKTH-p3d-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKTH-p3d-scenery-installed-directory-list",
+        directory: {
+            "scenery": "RKTH-p3d-scenery\\scenery",
+            "texture": "RKTH-p3d-scenery\\texture"
+        }
+    },
+    "RKRS-fs2020-scenery": {
+        icao: "RKRS",
+        programType: 'fs2020',
+        author: "ArtistPilot",
+        license: "contact ArtistPilot",
+        donation: "contact ArtistPilot",
+        downloadUrl: "https://github.com/lancard/fs2020-RKRS/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKRS/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "fs2020-RKRS-master",
+        localStorageNameOfInstalledVersion: "RKRS-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKRS-fs2020-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKRS-fs2020-scenery-installed-directory-list",
+        directory: {
+            "kim-airport-rkrs-susaek": `fs2020-RKRS-master\\kim-airport-rkrs-susaek`
         }
     }
 };
