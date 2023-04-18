@@ -445,7 +445,7 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKPU-fs2020-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKPU-fs2020-scenery-installed-directory-list",
         directory: {
-            "kim-airport-rkpu-ulsan": `kim-airport-rkpu-ulsan`
+            "kim-airport-rkpu-ulsan": `fs2020-RKPU-master\\kim-airport-rkpu-ulsan`
         }
     },
     "RKPU-p3d-scenery": {
@@ -460,8 +460,8 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKPU-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKPU-p3d-scenery-installed-directory-list",
         directory: {
-            "scenery": "RKPU-p3d-scenery\\scenery",
-            "texture": "RKPU-p3d-scenery\\texture"
+            "RKPU-p3d-scenery\\scenery": "scenery",
+            "RKPU-p3d-scenery\\texture": "texture"
         }
     },
     "RKTH-p3d-scenery": {
