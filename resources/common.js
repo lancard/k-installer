@@ -503,8 +503,12 @@ function showMenu(selectedId) {
 function openChart(elem, chartName) {
     var icao = $(elem).parents("div[airportTemplate]").attr("icao");
 
-    // window.open(`https://lancard.github.io/chart/AIP/latest/AD/${icao}/${chartName}.pdf`);
-    child_process.execSync(`start "https://lancard.github.io/chart/AIP/latest/AD/${icao}/${chartName}.pdf"`);
+    if ($("[downloadstatus]:visible").length > 0) {
+        alert('please use chart button after all download complete.');
+        return;
+    }
+
+    window.open(`https://lancard.github.io/chart/AIP/latest/AD/${icao}/${chartName}.pdf`);
 }
 
 function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
