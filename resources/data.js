@@ -87,7 +87,8 @@ const airportInfo = {
     },
     RKTL: {
         icao: "RKTL",
-        name: "Uljin Airport"
+        name: "Uljin Airport",
+        p3dSceneryId: "RKTL-p3d-scenery"
     },
     RKPD: {
         icao: "RKPD",
@@ -520,6 +521,24 @@ const programInfo = {
         localStorageNameOfInstalledDirectoryList: "RKRS-fs2020-scenery-installed-directory-list",
         directory: {
             "kim-airport-rkrs-susaek": `kim-airport-rkrs-susaek`
+        }
+    },
+    "RKTL-p3d-scenery": {
+        icao: "RKTL",
+        programType: 'p3d',
+        author: "VFR GO!",
+        license: "contact 'VFR GO!'",
+        donation: "contact 'VFR GO!'",
+        downloadUrl: "https://github.com/lancard/VFRGO/releases/download/master/VFRGO_Uljin.zip",
+        versionCheckUrl: "https://raw.githubusercontent.com/lancard/VFRGO/main/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: ".",
+        localStorageNameOfInstalledVersion: "RKTL-p3d-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKTL-p3d-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKTL-p3d-scenery-installed-directory-list",
+        directory: {
+            "scenery": "RKTL-p3d-scenery\\scenery",
+            "texture": "RKTL-p3d-scenery\\texture"
         }
     }
 };
