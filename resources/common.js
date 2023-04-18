@@ -204,7 +204,7 @@ function checkUpdate(id) {
 }
 
 function isInstalledBefore(id) {
-    return localStorage.getItem(programInfo[id].localStorageNameOfInstalledRootDirectory) != null;
+    return localStorage.getItem(programInfo[id].localStorageNameOfInstalledVersion) != null;
 }
 
 function removeProgram(id) {
@@ -223,7 +223,6 @@ function removeProgram(id) {
     });
 
     // remove storage
-    localStorage.removeItem(programInfo[id].localStorageNameOfInstalledRootDirectory);
     localStorage.removeItem(programInfo[id].localStorageNameOfInstalledDirectoryList);
     localStorage.removeItem(programInfo[id].localStorageNameOfInstalledVersion);
 
@@ -231,8 +230,37 @@ function removeProgram(id) {
     updateScreen(id);
 }
 
-function installProgram(id, targetDirectory) {
-    const filename = `${targetDirectory}\\${id}.zip`;
+function installProgram(id) {
+
+    var targetDirectory = ""
+
+    if (id == "k-installer") {
+        targetDirectory = require('os').tmpdir();
+    }
+
+    if (programInfo[id].programType == 'fs2020') {
+        if (localStorage.getItem("fs2020-root-directory") == null) {
+            alert('select directory in home screen first');
+            showMenu('k-installer');
+            return;
+        }
+
+        targetDirectory = localStorage.getItem("fs2020-root-directory");
+    }
+    if (programInfo[id].programType == 'p3d') {
+        if (localStorage.getItem("p3d-root-directory") == null) {
+            alert('select directory in home screen first');
+            showMenu('k-installer');
+            return;
+        }
+
+        targetDirectory = localStorage.getItem("p3d-root-directory");
+    }
+
+    const unzippedDirectory = `${targetDirectory}\\${randomString(32)}`;
+    const filename = `${unzippedDirectory}\\${id}.zip`;
+
+    fs.mkdirSync(unzippedDirectory);
 
     var $buttons = $(`[downloadButton="${id}"]`);
     var $status = $(`[downloadStatus="${id}"]`);
@@ -245,11 +273,11 @@ function installProgram(id, targetDirectory) {
         () => {
             $status.find("[statusMessage]").text("decompressing...");
 
-            decompress(filename, targetDirectory, () => {
+            decompress(filename, unzippedDirectory, () => {
                 if (id == "k-installer") {
                     var zipcontents = getZipfileList(filename);
                     fs.rmSync(filename); // remove zip file for disk space
-                    child_process.execSync(`"${localStorage.getItem(programInfo[id].localStorageNameOfInstalledRootDirectory)}\\${zipcontents[0]}"`);
+                    child_process.execSync(`"${unzippedDirectory}\\${zipcontents[0]}"`);
                     return;
                 }
 
@@ -258,16 +286,13 @@ function installProgram(id, targetDirectory) {
                 // replacement for unzipped files
                 var installedDirectory = [];
                 for (var dir in programInfo[id].directory) {
-                    moveSync(`${targetDirectory}\\${programInfo[id].unzippedRootDirectory}\\${dir}`, `${targetDirectory}\\${programInfo[id].directory[dir]}`);
-                    installedDirectory.push(`${targetDirectory}\\${programInfo[id].directory[dir]}`);
+                    moveSync(`${unzippedDirectory}\\${programInfo[id].directory[dir]}`, `${targetDirectory}\\${dir}`);
+                    installedDirectory.push(`${targetDirectory}\\${dir}`);
                 }
 
-                if (programInfo[id].unzippedRootDirectory != ".") {
-                    fs.rmSync(`${targetDirectory}\\${programInfo[id].unzippedRootDirectory}`, { recursive: true, force: true }); // remove zip root directory
-                }
+                fs.rmSync(unzippedDirectory, { recursive: true, force: true }); // remove zip root directory
 
                 // save installed information
-                localStorage.setItem(programInfo[id].localStorageNameOfInstalledRootDirectory, targetDirectory);
                 localStorage.setItem(programInfo[id].localStorageNameOfInstalledDirectoryList, JSON.stringify(installedDirectory));
                 localStorage.setItem(programInfo[id].localStorageNameOfInstalledVersion, programInfo[id].latestVersion);
 
@@ -292,43 +317,23 @@ function upgradeProgram(id) {
     }
 
     if (id == "k-installer") {
-        installProgram(id, localStorage.getItem(programInfo[id].localStorageNameOfInstalledRootDirectory));
+        installProgram(id);
         return;
     }
 
-    var targetDir = localStorage.getItem(programInfo[id].localStorageNameOfInstalledRootDirectory);
+    var installedDirectory = localStorage.getItem(programInfo[id].localStorageNameOfInstalledVersion);
 
     // installed before
-    if (targetDir != null) {
+    if (installedDirectory != null) {
         // remove first
         removeProgram(id);
 
-        installProgram(id, targetDir);
+        installProgram(id);
 
         return;
     }
 
-    // install first time ----------------------------------
-    if (programInfo[id].programType == 'fs2020') {
-        if (localStorage.getItem("fs2020-root-directory") == null) {
-            alert('select directory in home screen first');
-            showMenu('k-installer');
-            return;
-        }
-
-        targetDir = localStorage.getItem("fs2020-root-directory");
-    }
-    if (programInfo[id].programType == 'p3d') {
-        if (localStorage.getItem("p3d-root-directory") == null) {
-            alert('select directory in home screen first');
-            showMenu('k-installer');
-            return;
-        }
-
-        targetDir = localStorage.getItem("p3d-root-directory");
-    }
-
-    installProgram(id, targetDir);
+    installProgram(id);
 }
 
 function selectDirectory(program) {
@@ -367,7 +372,6 @@ function updateAllMetar() {
 function initialization() {
     // save preferences for k-installer
     localStorage.setItem(programInfo["k-installer"].localStorageNameOfInstalledVersion, appVersion);
-    localStorage.setItem(programInfo["k-installer"].localStorageNameOfInstalledRootDirectory, require('os').tmpdir());
 
     if (localStorage.getItem("fs2020-root-directory") == null) {
         localStorage.setItem("fs2020-root-directory", getCommunityDirectory());
