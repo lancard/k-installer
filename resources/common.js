@@ -246,13 +246,14 @@ function installProgram(id, targetDirectory) {
             $status.find("[statusMessage]").text("decompressing...");
 
             decompress(filename, targetDirectory, () => {
-                fs.rmSync(filename); // remove zip file for disk space
-
                 if (id == "k-installer") {
                     var zipcontents = getZipfileList(filename);
+                    fs.rmSync(filename); // remove zip file for disk space
                     child_process.execSync(`"${localStorage.getItem(programInfo[id].localStorageNameOfInstalledRootDirectory)}\\${zipcontents[0]}"`);
                     return;
                 }
+
+                fs.rmSync(filename); // remove zip file for disk space
 
                 // replacement for unzipped files
                 var installedDirectory = [];
