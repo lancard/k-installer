@@ -5,7 +5,7 @@ const appVersion = process.env.npm_package_version ? process.env.npm_package_ver
 const dialog = require('@electron/remote').dialog;
 const request = require('request');
 const progress = require('request-progress');
-const decompress = require("decompress");
+const child_process = require('child_process');
 
 const airportInfo = {
     RKSI: {
@@ -222,7 +222,20 @@ const programInfo = {
 };
 
 
+function decompress(zipFilename, targetDirectory, callback) {
+    child_process.exec(`7za x "${zipFilename}" -y -bd -o"${targetDirectory}"`, (error, stdout, stderr) => {
+        if (error) {
+            alert(`extract error: ${error}`);
+            return;
+        }
 
+        callback();
+    });
+}
+
+function getZipfileList(filename) {
+    return child_process.execSync(`7za l -ba -slt "${filename}"`).toString().split("\r\n").filter(e => e.startsWith('Path = ')).map(e => e.substring(7));
+}
 
 function getCommunityDirectory() {
     var msfsConfigPath = null;
@@ -437,43 +450,42 @@ function installProgram(id, targetDirectory) {
         () => {
             $status.find("[statusMessage]").text("decompressing...");
 
-            decompress(filename, targetDirectory)
-                .then((files) => {
-                    fs.rmSync(filename); // remove zip file for disk space
+            decompress(filename, targetDirectory, () => {
+                fs.rmSync(filename); // remove zip file for disk space
 
-                    if (id == "k-installer") {
-                        require('child_process').execSync(`"${localStorage.getItem(programInfo[id].localStorageNameOfInstalledRootDirectory)}\\${files[0].path}"`);
-                        return;
-                    }
+                if (id == "k-installer") {
+                    fs.readdirSync(targetDirectory).filter(e => e.endsWith(".exe"));
 
-                    // replacement for unzipped files
-                    var installedDirectory = [];
-                    for (var dir in programInfo[id].directory) {
-                        moveSync(`${targetDirectory}\\${programInfo[id].unzippedRootDirectory}\\${dir}`, `${targetDirectory}\\${programInfo[id].directory[dir]}`);
-                        installedDirectory.push(`${targetDirectory}\\${programInfo[id].directory[dir]}`);
-                    }
+                    var zipcontents = getZipfileList(filename);
+                    child_process.execSync(`"${localStorage.getItem(programInfo[id].localStorageNameOfInstalledRootDirectory)}\\${zipcontents[0]}"`);
+                    return;
+                }
 
-                    if (programInfo[id].unzippedRootDirectory != ".") {
-                        fs.rmSync(programInfo[id].unzippedRootDirectory, { recursive: true, force: true }); // remove zip root directory
-                    }
+                // replacement for unzipped files
+                var installedDirectory = [];
+                for (var dir in programInfo[id].directory) {
+                    moveSync(`${targetDirectory}\\${programInfo[id].unzippedRootDirectory}\\${dir}`, `${targetDirectory}\\${programInfo[id].directory[dir]}`);
+                    installedDirectory.push(`${targetDirectory}\\${programInfo[id].directory[dir]}`);
+                }
 
-                    // save installed information
-                    localStorage.setItem(programInfo[id].localStorageNameOfInstalledRootDirectory, targetDirectory);
-                    localStorage.setItem(programInfo[id].localStorageNameOfInstalledDirectoryList, JSON.stringify(installedDirectory));
-                    localStorage.setItem(programInfo[id].localStorageNameOfInstalledVersion, programInfo[id].latestVersion);
+                if (programInfo[id].unzippedRootDirectory != ".") {
+                    fs.rmSync(programInfo[id].unzippedRootDirectory, { recursive: true, force: true }); // remove zip root directory
+                }
 
-                    alert(`installation complete: ${id}`);
+                // save installed information
+                localStorage.setItem(programInfo[id].localStorageNameOfInstalledRootDirectory, targetDirectory);
+                localStorage.setItem(programInfo[id].localStorageNameOfInstalledDirectoryList, JSON.stringify(installedDirectory));
+                localStorage.setItem(programInfo[id].localStorageNameOfInstalledVersion, programInfo[id].latestVersion);
 
-                    // restore hide elements
-                    $buttons.show();
-                    $status.hide();
+                alert(`installation complete: ${id}`);
 
-                    // check update again
-                    updateScreen(id);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+                // restore hide elements
+                $buttons.show();
+                $status.hide();
+
+                // check update again
+                updateScreen(id);
+            });
         },
         (state) => {
             updateDownloadStatus($status, state);
