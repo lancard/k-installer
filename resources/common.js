@@ -234,6 +234,24 @@ const programInfo = {
             "texture": "RKTU-p3d-scenery\\texture"
         }
     },
+    "RKNY-p3d-scenery": {
+        icao: "RKNY",
+        programType: 'p3d',
+        author: "VFR GO!",
+        license: "contact 'VFR GO!'",
+        donation: "contact 'VFR GO!'",
+        downloadUrl: "https://github.com/lancard/VFRGO/releases/download/master/VFRGO_YangYang.zip",
+        versionCheckUrl: "https://raw.githubusercontent.com/lancard/VFRGO/main/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: ".",
+        localStorageNameOfInstalledVersion: "RKNY-p3d-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKNY-p3d-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKNY-p3d-scenery-installed-directory-list",
+        directory: {
+            "scenery": "RKNY-p3d-scenery\\scenery",
+            "texture": "RKNY-p3d-scenery\\texture"
+        }
+    },
     "RKJY-fs2020-scenery": {
         icao: "RKJY",
         programType: 'fs2020',
