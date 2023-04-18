@@ -416,6 +416,40 @@ function initialization() {
 
     // update chart
     $.getJSON('https://lancard.github.io/chart/AIP/latest/AD/chartInformation.json', (chart) => {
+        // add DPRK chart
+        chart["ZKPY"] = {
+            "AD CHART": "https://docs.google.com/drawings/d/1i5-MPOAG82jDGAm02Vgn1sIow4qArLh8jdKC36zkJ9k/edit?usp=sharing",
+            "AD GROUND MOVEMENT CHART": "https://docs.google.com/drawings/d/1i5-MPOAG82jDGAm02Vgn1sIow4qArLh8jdKC36zkJ9k/edit?usp=sharing",
+            "AD OBSTACLE CHART TYPE A": false,
+            "AD OBSTACLE CHART TYPE B": false,
+            "AIRCRAFT PARKING DOCKING CHART": "https://docs.google.com/drawings/d/1pS3pQOvoIkasIqEVvwI4QhE8Xoiz72WIcp7O6ESl5Fo/edit?usp=sharing",
+            "AREA CHART": false,
+            "ATC SURVEILLANCE MINIMUM ALTITUDE CHART": false,
+            "BIRD CONCENTRATION CHART": false,
+            "INSTR APCH CHART": "https://docs.google.com/drawings/d/1XPadjZpe-4uQ8-ls_y9AacdV1WtjSSictudLyMvYiT4/edit?usp=sharing",
+            "PRECISION APP TERRAIN CHART": false,
+            "SID": false,
+            "STAR": false,
+            "TEXT": false,
+            "VISUAL APCH CHART": false
+        };
+        chart["ZKWS"] = {
+            "AD CHART": false,
+            "AD GROUND MOVEMENT CHART": false,
+            "AD OBSTACLE CHART TYPE A": false,
+            "AD OBSTACLE CHART TYPE B": false,
+            "AIRCRAFT PARKING DOCKING CHART": false,
+            "AREA CHART": false,
+            "ATC SURVEILLANCE MINIMUM ALTITUDE CHART": false,
+            "BIRD CONCENTRATION CHART": false,
+            "INSTR APCH CHART": "asfsf",
+            "PRECISION APP TERRAIN CHART": false,
+            "SID": "https://docs.google.com/drawings/d/15SYvGTXsQFpewbWRBK-QpAoeYWUy3Xj9zZ8UHC4CBHE/edit?usp=sharing",
+            "STAR": "https://docs.google.com/drawings/d/1_P7gqcQbMTlIcXF619k1AiOgMNr0WRV7MagiftFtEL4/edit?usp=sharing",
+            "TEXT": false,
+            "VISUAL APCH CHART": false
+        };
+
         // charts
         for (var airport in chart) {
             var chartType = "";
@@ -511,6 +545,60 @@ function showMenu(selectedId) {
 
 function openChart(elem, chartName) {
     var icao = $(elem).parents("div[airportTemplate]").attr("icao");
+
+    if (icao == "ZKPY" && chartName == "AD CHART") {
+        child_process.execSync("start https://docs.google.com/drawings/d/1i5-MPOAG82jDGAm02Vgn1sIow4qArLh8jdKC36zkJ9k/edit?usp=sharing");
+        return;
+    }
+    if (icao == "ZKPY" && chartName == "AD GROUND MOVEMENT CHART") {
+        child_process.execSync("start https://docs.google.com/drawings/d/1i5-MPOAG82jDGAm02Vgn1sIow4qArLh8jdKC36zkJ9k/edit?usp=sharing");
+        return;
+    }
+    if (icao == "ZKPY" && chartName == "AIRCRAFT PARKING DOCKING CHART") {
+        child_process.execSync("start https://docs.google.com/drawings/d/1pS3pQOvoIkasIqEVvwI4QhE8Xoiz72WIcp7O6ESl5Fo/edit?usp=sharing");
+        return;
+    }
+    if (icao == "ZKPY" && chartName == "INSTR APCH CHART") {
+        if (confirm('View ILS 35?')) {
+            child_process.execSync("start https://docs.google.com/drawings/d/1XPadjZpe-4uQ8-ls_y9AacdV1WtjSSictudLyMvYiT4/edit?usp=sharing");
+            return;
+        }
+        if (confirm('View ILS/DME 17?')) {
+            child_process.execSync("start https://docs.google.com/drawings/d/186aWUvRcJOuadxu6QEcsDWyz5M4Wc4T5qhz_lU0hkIs/edit?usp=sharing");
+            return;
+        }
+        if (confirm('View RNP 35?')) {
+            child_process.execSync("start https://docs.google.com/drawings/d/1cpO68EiuOin4n9P7b1gCgpXThzVehP0d31BKfF2DOZ8/edit?usp=sharing");
+            return;
+        }
+        if (confirm('View RNP 17?')) {
+            child_process.execSync("start https://docs.google.com/drawings/d/15aEW6B54jhTT7e-LEOelqpBH89iVGs3tBEUewCouZyQ/edit?usp=sharing");
+            return;
+        }
+        alert('no more INSTR APCH CHART');
+        return;
+    }
+
+    if (icao == "ZKWS" && chartName == "SID") {
+        child_process.execSync("start https://docs.google.com/drawings/d/15SYvGTXsQFpewbWRBK-QpAoeYWUy3Xj9zZ8UHC4CBHE/edit?usp=sharing");
+        return;
+    }
+    if (icao == "ZKWS" && chartName == "STAR") {
+        child_process.execSync("start https://docs.google.com/drawings/d/1_P7gqcQbMTlIcXF619k1AiOgMNr0WRV7MagiftFtEL4/edit?usp=sharing");
+        return;
+    }
+    if (icao == "ZKWS" && chartName == "INSTR APCH CHART") {
+        if (confirm('View ILS 15L?')) {
+            child_process.execSync("start https://docs.google.com/drawings/d/1BlTYFSnlrGW5e2FgEwv7b2Zoa26dqTEMzydzN-crDEM/edit?usp=sharing");
+            return;
+        }
+        if (confirm('View RNAV chart?')) {
+            child_process.execSync("start https://docs.google.com/drawings/d/1Cy27EQnWx6FSwibdAlG-JXoSJq5k0cQ7E345uVKv09A/edit?usp=sharing");
+            return;
+        }
+        alert('no more INSTR APCH CHART');
+        return;
+    }
 
     if (numberOfInstalling > 0) {
         alert('please use chart button after all download complete.');
