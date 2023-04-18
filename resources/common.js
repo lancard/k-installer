@@ -16,7 +16,9 @@ const airportInfo = {
     },
     RKSS: {
         icao: "RKSS",
-        name: "Gimpo intl Airport"
+        name: "Gimpo intl Airport",
+        fs2020SceneryId: "RKSS-fs2020-scenery",
+        p3dSceneryId: "RKSS-p3d-scenery"
     },
     RKPC: {
         icao: "RKPC",
@@ -123,6 +125,22 @@ const programInfo = {
             "airport-rksi-model": "airport-rksi-model",
             "Fly Together Korea-RKSI Aerial": "Fly Together Korea-RKSI Aerial",
             "ftk-airport-rksi-seoul-incheon": "ftk-airport-rksi-seoul-incheon"
+        }
+    },
+    "RKSS-fs2020-scenery": {
+        icao: "RKSS",
+        programType: 'fs2020',
+        author: "Rusion",
+        license: "refer https://github.com/lancard/fs2020-RKSS and contact Rusion",
+        downloadUrl: "https://github.com/lancard/fs2020-RKSS/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKSS/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "fs2020-RKSS-master",
+        localStorageNameOfInstalledVersion: "RKSS-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKSS-fs2020-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKSS-fs2020-scenery-installed-directory-list",
+        directory: {
+            "msapgimpo-msapgimpo": "fs2020-RKSS-master\\msapgimpo-msapgimpo"
         }
     },
     "RKJY-fs2020-scenery": {

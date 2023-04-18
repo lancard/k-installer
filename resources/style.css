@@ -34,6 +34,10 @@ h2 {
     bottom: 10px;
 }
 
+.contribution {
+    margin-top: 6vw !important;
+}
+
 .sidebar .bottom-copyright .nav-link span {
     font-size: 1rem !important;
     font-style: italic !important;

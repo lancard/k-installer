@@ -40,7 +40,6 @@ function createWindow() {
 
   mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
     const { responseHeaders } = details;
-    console.dir(responseHeaders);
     upsertKeyValue(responseHeaders, 'Access-Control-Allow-Origin', ['*']);
     upsertKeyValue(responseHeaders, 'Access-Control-Allow-Headers', ['*']);
     callback({ responseHeaders });
