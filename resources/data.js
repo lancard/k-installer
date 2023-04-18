@@ -367,8 +367,8 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKJY-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKJY-p3d-scenery-installed-directory-list",
         directory: {
-            "scenery": "RKJY-p3d-scenery\\scenery",
-            "texture": "RKJY-p3d-scenery\\texture"
+            "RKJY-p3d-scenery\\scenery": "scenery",
+            "RKJY-p3d-scenery\\texture": "texture"
         }
     },
     "RKNW-fs2020-scenery": {
@@ -506,8 +506,8 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKTL-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKTL-p3d-scenery-installed-directory-list",
         directory: {
-            "scenery": "RKTL-p3d-scenery\\scenery",
-            "texture": "RKTL-p3d-scenery\\texture"
+            "RKTL-p3d-scenery\\scenery": "scenery",
+            "RKTL-p3d-scenery\\texture": "texture"
         }
     },
     "ZKPY-p3d-scenery": {
