@@ -20,6 +20,21 @@ function createWindow() {
   mainWindow.removeMenu();
   mainWindow.maximize();
 
+  // CORS
+  mainWindow.webContents.session.webRequest.onBeforeSendHeaders((details, callback) => {
+    const { requestHeaders } = details;
+    requestHeaders['Access-Control-Allow-Origin'] = '*';
+    callback({ requestHeaders });
+  });
+
+  mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
+    const { responseHeaders } = details;
+    console.dir(responseHeaders);
+    responseHeaders['Access-Control-Allow-Origin'] = '*';
+    responseHeaders['Access-Control-Allow-Headers'] = '*';
+    callback({ responseHeaders });
+  });
+
   if (process.env.NODE_ENV == 'development') {
     globalShortcut.register('F5', () => {
       mainWindow.isFocused() && mainWindow.reload();
