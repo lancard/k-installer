@@ -179,8 +179,8 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKPC-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKPC-p3d-scenery-installed-directory-list",
         directory: {
-            "scenery": "RKPC-master\\scenery",
-            "texture": "RKPC-master\\texture"
+            "RKPC-p3d-scenery\\scenery": "RKPC-master\\scenery",
+            "RKPC-p3d-scenery\\texture": "RKPC-master\\texture"
         }
     },
     "RKPK-fs2020-scenery": {
@@ -195,7 +195,7 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKPK-fs2020-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKPK-fs2020-scenery-installed-directory-list",
         directory: {
-            "thekoreans-airport-rkpk-busan": `fs2020-RKPK\\thekoreans-airport-rkpk-busan`
+            "thekoreans-airport-rkpk-busan": `fs2020-RKPK-master\\Packages\\thekoreans-airport-rkpk-busan`
         }
     },
     "RKPK-p3d-scenery": {
@@ -210,7 +210,7 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKPK-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKPK-p3d-scenery-installed-directory-list",
         directory: {
-            "Hongs_GimHae": `Hongs_GimHae`
+            "Hongs_GimHae": `RKPK-master\\Hongs_GimHae`
         }
     },
     "RKTU-p3d-scenery": {
