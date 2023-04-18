@@ -261,7 +261,7 @@ function installProgram(id, targetDirectory) {
                 }
 
                 if (programInfo[id].unzippedRootDirectory != ".") {
-                    fs.rmSync(programInfo[id].unzippedRootDirectory, { recursive: true, force: true }); // remove zip root directory
+                    fs.rmSync(`${targetDirectory}\\${programInfo[id].unzippedRootDirectory}`, { recursive: true, force: true }); // remove zip root directory
                 }
 
                 // save installed information

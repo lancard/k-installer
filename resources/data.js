@@ -466,7 +466,7 @@ const programInfo = {
         localStorageNameOfInstalledRootDirectory: "RKPU-fs2020-scenery-installed-directory",
         localStorageNameOfInstalledDirectoryList: "RKPU-fs2020-scenery-installed-directory-list",
         directory: {
-            "kim-airport-rkpu-ulsan": `fs2020-RKPU-master\\kim-airport-rkpu-ulsan`
+            "kim-airport-rkpu-ulsan": `kim-airport-rkpu-ulsan`
         }
     },
     "RKPU-p3d-scenery": {
