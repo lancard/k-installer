@@ -58,7 +58,8 @@ const airportInfo = {
     },
     RKJK: {
         icao: "RKJK",
-        name: "Gunsan Airport"
+        name: "Gunsan Airport",
+        p3dSceneryId: "RKJK-p3d-scenery"
     },
     RKJY: {
         icao: "RKJY",
@@ -307,6 +308,24 @@ const programInfo = {
         directory: {
             "scenery": "RKJJ-p3d-scenery\\scenery",
             "texture": "RKJJ-p3d-scenery\\texture"
+        }
+    },
+    "RKJK-p3d-scenery": {
+        icao: "RKJK",
+        programType: 'p3d',
+        author: "유이 (https://hosii.info)",
+        license: "contact https://hosii.info",
+        donation: "contact https://hosii.info",
+        downloadUrl: "https://github.com/lancard/RKJK/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/RKJK/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "RKJK-master",
+        localStorageNameOfInstalledVersion: "RKJK-p3d-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKJK-p3d-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKJK-p3d-scenery-installed-directory-list",
+        directory: {
+            "scenery": "RKJK-p3d-scenery\\scenery",
+            "texture": "RKJK-p3d-scenery\\texture"
         }
     },
     "RKJY-fs2020-scenery": {
