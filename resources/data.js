@@ -241,8 +241,8 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKNY-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKNY-p3d-scenery-installed-directory-list",
         directory: {
-            "RKNY-p3d-scenery\\scenery": "RKNY-master\\scenery",
-            "RKNY-p3d-scenery\\texture": "RKNY-master\\texture"
+            "RKNY-p3d-scenery\\scenery": "scenery",
+            "RKNY-p3d-scenery\\texture": "texture"
         }
     },
     "RKTN-fs2020-scenery": {
