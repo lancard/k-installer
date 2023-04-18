@@ -519,7 +519,7 @@ const programInfo = {
         localStorageNameOfInstalledRootDirectory: "RKRS-fs2020-scenery-installed-directory",
         localStorageNameOfInstalledDirectoryList: "RKRS-fs2020-scenery-installed-directory-list",
         directory: {
-            "kim-airport-rkrs-susaek": `fs2020-RKRS-master\\kim-airport-rkrs-susaek`
+            "kim-airport-rkrs-susaek": `kim-airport-rkrs-susaek`
         }
     }
 };
