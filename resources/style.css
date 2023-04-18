@@ -115,8 +115,14 @@ div[logo] {
     background-color: #0c0c0c;
 }
 
-img {
+.all-image {
     box-shadow: 5px 5px 10px #000;
     border-radius: 25px;
     width: 30vw;
+}
+
+.airport-image {
+    box-shadow: 5px 5px 10px #000;
+    border-radius: 25px;
+    height: 20vh;
 }
