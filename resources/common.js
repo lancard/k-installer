@@ -439,6 +439,7 @@ function updateAirportMarks(icao) {
 }
 
 function updateScreen(id) {
+    $(`[updateNotify="${id}"]`).addClass("collapse");
     $(`[latestVersion="${id}"]`).text(programInfo[id].latestVersion);
 
     if (id == "k-installer") {
@@ -460,8 +461,11 @@ function updateScreen(id) {
     var installedDirectoryList = JSON.parse(localStorage.getItem(programInfo[id].localStorageNameOfInstalledDirectoryList)).join(", ");
     $(`[installedDirectory="${id}"]`).text(installedDirectoryList);
 
+    // update mark to scenery
+    if(programInfo[id].latestVersion != localStorage.getItem(programInfo[id].localStorageNameOfInstalledVersion))
+        $(`[updateNotify="${id}"]`).removeClass("collapse");
 
-    // update marks
+    // update marks to airport
     updateAirportMarks(programInfo[id].icao);
 }
 
@@ -806,6 +810,7 @@ function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
         $clonedDOM.find("[sceneryType=fs2020]").find("[latestVersion]").attr("latestVersion", fs2020Id);
         $clonedDOM.find("[sceneryType=fs2020]").find("[installedVersion]").attr("installedVersion", fs2020Id);
         $clonedDOM.find("[sceneryType=fs2020]").find("[installedDirectory]").attr("installedDirectory", fs2020Id);
+        $clonedDOM.find("[sceneryType=fs2020]").find("[updateNotify]").attr("updateNotify", fs2020Id);
         $clonedDOM.find("[sceneryType=fs2020]").find("[downloadButton]").attr("downloadButton", fs2020Id);
         $clonedDOM.find("[sceneryType=fs2020]").find("[downloadStatus]").attr("downloadStatus", fs2020Id);
     }
@@ -822,6 +827,7 @@ function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
         $clonedDOM.find("[sceneryType=p3d]").find("[latestVersion]").attr("latestVersion", p3dId);
         $clonedDOM.find("[sceneryType=p3d]").find("[installedVersion]").attr("installedVersion", p3dId);
         $clonedDOM.find("[sceneryType=p3d]").find("[installedDirectory]").attr("installedDirectory", p3dId);
+        $clonedDOM.find("[sceneryType=p3d]").find("[updateNotify]").attr("updateNotify", p3dId);
         $clonedDOM.find("[sceneryType=p3d]").find("[downloadButton]").attr("downloadButton", p3dId);
         $clonedDOM.find("[sceneryType=p3d]").find("[downloadStatus]").attr("downloadStatus", p3dId);
     }
