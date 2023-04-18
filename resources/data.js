@@ -423,14 +423,14 @@ const programInfo = {
         author: "me",
         license: "contact me",
         donation: "contact me",
-        downloadUrl: "https://github.com/lancard/RKPS/archive/master.zip",
+        downloadUrl: "https://github.com/lancard/RKPS/archive/main.zip",
         versionCheckUrl: "https://lancard.github.io/RKPS/version.txt",
         versionModifier: (data) => data.trim(),
         localStorageNameOfInstalledVersion: "RKPS-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKPS-p3d-scenery-installed-directory-list",
         directory: {
-            "scenery": "RKPS-p3d-scenery\\scenery",
-            "texture": "RKPS-p3d-scenery\\texture"
+            "RKPS-p3d-scenery\\scenery": "RKPS-main\\scenery",
+            "RKPS-p3d-scenery\\texture": "RKPS-main\\texture"
         }
     },
     "RKPU-fs2020-scenery": {
