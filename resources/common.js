@@ -119,7 +119,11 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKSI-fs2020-scenery-installed-version",
         localStorageNameOfInstalledRootDirectory: "RKSI-fs2020-scenery-installed-directory",
         localStorageNameOfInstalledDirectoryList: "RKSI-fs2020-scenery-installed-directory-list",
-        directory: {}
+        directory: {
+            "airport-rksi-model": "airport-rksi-model",
+            "Fly Together Korea-RKSI Aerial": "Fly Together Korea-RKSI Aerial",
+            "ftk-airport-rksi-seoul-incheon": "ftk-airport-rksi-seoul-incheon"
+        }
     },
     "RKJY-fs2020-scenery": {
         icao: "RKJY",
@@ -317,6 +321,10 @@ function downloadFile(filename, url, callback, progressCallback) {
 }
 
 function moveSync(oldPath, newPath) {
+    if (oldPath == newPath) {
+        return;
+    }
+
     // create directory first
     if (!fs.existsSync(path.dirname(newPath))) {
         fs.mkdirSync(path.dirname(newPath), { recursive: true });
@@ -337,8 +345,8 @@ function updateAirportMarks(icao) {
     const fs2020Id = `${icao}-fs2020-scenery`;
     const p3dId = `${icao}-p3d-scenery`;
 
-    const fs2020installedVersion = localStorage.getItem(programInfo[fs2020Id].localStorageNameOfInstalledVersion);
-    const p3dinstalledVersion = localStorage.getItem(programInfo[p3dId].localStorageNameOfInstalledVersion);
+    const fs2020installedVersion = programInfo[fs2020Id].localStorageNameOfInstalledVersion ? localStorage.getItem(programInfo[fs2020Id].localStorageNameOfInstalledVersion) : null;
+    const p3dinstalledVersion = programInfo[p3dId].localStorageNameOfInstalledVersion ? localStorage.getItem(programInfo[p3dId].localStorageNameOfInstalledVersion) : null;
 
     // installed mark
     if (fs2020installedVersion != null || p3dinstalledVersion != null) {
