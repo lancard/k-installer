@@ -95,7 +95,8 @@ const airportInfo = {
     },
     RKRS: {
         icao: "RKRS",
-        name: "Susaek Airport"
+        name: "Susaek Airport",
+        fs2020SceneryId: "RKRS-fs2020-scenery"
     },
     ZKPY: {
         icao: "ZKPY",
