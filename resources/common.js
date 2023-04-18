@@ -38,11 +38,13 @@ const airportInfo = {
     },
     RKNY: {
         icao: "RKNY",
-        name: "Yangyang intl Airport"
+        name: "Yangyang intl Airport",
+        p3dSceneryId: "RKNY-p3d-scenery"
     },
     RKTN: {
         icao: "RKTN",
-        name: "Daegu intl Airport"
+        name: "Daegu intl Airport",
+        p3dSceneryId: "RKTN-p3d-scenery"
     },
     RKJB: {
         icao: "RKJB",
