@@ -523,8 +523,8 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "ZKPY-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "ZKPY-p3d-scenery-installed-directory-list",
         directory: {
-            "scenery": "ZKPY-p3d-scenery\\scenery",
-            "texture": "ZKPY-p3d-scenery\\texture"
+            "ZKPY-p3d-scenery\\scenery": "ZKPY-master\\scenery",
+            "ZKPY-p3d-scenery\\texture": "ZKPY-master\\texture"
         }
     },
     "ZKWS-p3d-scenery": {
@@ -539,8 +539,8 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "ZKWS-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "ZKWS-p3d-scenery-installed-directory-list",
         directory: {
-            "scenery": "ZKWS-p3d-scenery\\scenery",
-            "texture": "ZKWS-p3d-scenery\\texture"
+            "ZKWS-p3d-scenery\\scenery": "ZKWS-master\\scenery",
+            "ZKWS-p3d-scenery\\texture": "ZKWS-master\\texture"
         }
     }
 };
