@@ -143,6 +143,22 @@ const programInfo = {
             "msapgimpo-msapgimpo": "fs2020-RKSS-master\\msapgimpo-msapgimpo"
         }
     },
+    "RKSS-p3d-scenery": {
+        icao: "RKSS",
+        programType: 'p3d',
+        author: "hongsda and me",
+        license: "contact me",
+        downloadUrl: "https://github.com/lancard/RKSS/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/RKSS/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "RKSS-master",
+        localStorageNameOfInstalledVersion: "RKSS-p3d-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKSS-p3d-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKSS-p3d-scenery-installed-directory-list",
+        directory: {
+            "Hongs_GimPo": "RKSS-master\\Hongs_GimPo"
+        }
+    },
     "RKJY-fs2020-scenery": {
         icao: "RKJY",
         programType: 'fs2020',
