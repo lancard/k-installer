@@ -49,11 +49,12 @@ const airportInfo = {
     RKJB: {
         icao: "RKJB",
         name: "Muan intl Airport",
-        p3dSceneryId: "RKTN-p3d-scenery"
+        p3dSceneryId: "RKJB-p3d-scenery"
     },
     RKJJ: {
         icao: "RKJJ",
-        name: "Gwangju Airport"
+        name: "Gwangju Airport",
+        p3dSceneryId: "RKJJ-p3d-scenery"
     },
     RKJK: {
         icao: "RKJK",
@@ -288,6 +289,24 @@ const programInfo = {
         directory: {
             "scenery": "RKJB-p3d-scenery\\scenery",
             "texture": "RKJB-p3d-scenery\\texture"
+        }
+    },
+    "RKJJ-p3d-scenery": {
+        icao: "RKJB",
+        programType: 'p3d',
+        author: "유이 (https://hosii.info)",
+        license: "contact https://hosii.info",
+        donation: "contact https://hosii.info",
+        downloadUrl: "https://github.com/lancard/RKJJ/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/RKJJ/version.txt",
+        versionModifier: (data) => data.trim(),
+        unzippedRootDirectory: "RKJJ-master",
+        localStorageNameOfInstalledVersion: "RKJJ-p3d-scenery-installed-version",
+        localStorageNameOfInstalledRootDirectory: "RKJJ-p3d-scenery-installed-directory",
+        localStorageNameOfInstalledDirectoryList: "RKJJ-p3d-scenery-installed-directory-list",
+        directory: {
+            "scenery": "RKJJ-p3d-scenery\\scenery",
+            "texture": "RKJJ-p3d-scenery\\texture"
         }
     },
     "RKJY-fs2020-scenery": {
