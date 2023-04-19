@@ -1,12 +1,12 @@
 // common library
 const fs = require('fs');
 const path = require('path');
-const appVersion = process.env.npm_package_version ? process.env.npm_package_version : JSON.parse(fs.readFileSync('resources/app.asar/package.json')).version;
-const dialog = require('@electron/remote').dialog;
-const request = require('request');
-const progress = require('request-progress');
+const https = require('follow-redirects').https;
 const child_process = require('child_process');
-var programRootDirectory = (process.env.NODE_ENV == "development" ? "." : require('@electron/remote').app.getAppPath() + ".unpacked");
+const dialog = require('@electron/remote').dialog;
+
+const appVersion = process.env.npm_package_version ? process.env.npm_package_version : JSON.parse(fs.readFileSync('resources/app.asar/package.json')).version;
+const programRootDirectory = (process.env.NODE_ENV == "development" ? "." : require('@electron/remote').app.getAppPath() + ".unpacked");
 
 function decompress(zipFilename, targetDirectory, callback) {
     child_process.exec(`${programRootDirectory}\\7za.exe x "${zipFilename}" -y -bd -o"${targetDirectory}"`, (error, stdout, stderr) => {
@@ -16,6 +16,62 @@ function decompress(zipFilename, targetDirectory, callback) {
         }
 
         callback();
+    });
+}
+
+function downloadFile(filename, url, callback, progressCallback) {
+    https.get(url, response => {
+        const tempPath = path.join(path.dirname(filename), randomString(32));
+        const fileStream = fs.createWriteStream(tempPath);
+
+        var transferred = 0;
+        const startTime = dayjs();
+        var lastReportedTime = startTime;
+        const total = response.headers['content-length'];
+
+        console.dir(response);
+
+        response.on('data', chunk => {
+            fileStream.write(chunk);
+            transferred += chunk.length;
+
+            var now = dayjs();
+
+            // every second
+            if (now.diff(lastReportedTime, 'second', true) > 1) {
+                lastReportedTime = now;
+                var diff = now.diff(startTime, 'second', true);
+                var speed = 0
+                if (diff != 0) {
+                    speed = transferred / diff;
+                }
+                progressCallback(transferred, speed, total);
+            }
+        });
+
+        response.on('error', (err) => {
+            fileStream.close();
+            console.error(err);
+        })
+
+        response.on('end', () => {
+            fileStream.close();
+            fs.renameSync(tempPath, filename);
+
+            // last report
+            var now = dayjs();
+            var diff = now.diff(startTime, 'second', true);
+            var speed = 0
+            if (diff != 0) {
+                speed = transferred / diff;
+            }
+            progressCallback(transferred, speed, total);
+
+            // callback
+            callback(filename, url);
+        });
+    }).on('error', (err) => {
+        console.error(err);
     });
 }
 
@@ -55,15 +111,15 @@ function getCommunityDirectory() {
     }
 }
 
-function updateDownloadStatus(selector, state) {
-    if (state.percent) {
-        var message = `${(state.size.transferred / 1024 / 1024).toFixed(2)} MB / ${(state.size.total / 1024 / 1024).toFixed(2)} MB (${(state.percent * 100).toFixed(0)}%)`;
+function updateDownloadStatus(selector, transferred, speed, total) {
+    if (total) {
+        var message = `${(transferred / 1024 / 1024).toFixed(2)} MB / ${(total / 1024 / 1024).toFixed(2)} MB (${(transferred * 100 / total).toFixed(0)}%)`;
         $(selector).find("[transferred]").text(message);
     }
     else {
-        $(selector).find("[transferred]").text(`${(state.size.transferred / 1024 / 1024).toFixed(2)} MB`);
+        $(selector).find("[transferred]").text(`${(transferred / 1024 / 1024).toFixed(2)} MB`);
     }
-    $(selector).find("[speed]").text(`${(state.speed / 1024 / 1024).toFixed(2)} MB/s`);
+    $(selector).find("[speed]").text(`${(speed / 1024 / 1024).toFixed(2)} MB/s`);
 }
 
 function randomString(length) {
@@ -72,33 +128,6 @@ function randomString(length) {
     var result = '';
     for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
     return result;
-}
-
-
-function downloadFile(filename, url, callback, progressCallback) {
-    const oldPath = path.join(path.dirname(filename), randomString(32));
-    const file = fs.createWriteStream(oldPath);
-
-    // The options argument is optional so you can omit it
-    progress(request(url), {
-        // throttle: 2000,                    // Throttle the progress event to 2000ms, defaults to 1000ms
-        // delay: 1000,                       // Only start to emit after 1000ms delay, defaults to 0ms
-        // lengthHeader: 'x-transfer-length'  // Length header to use, defaults to content-length
-    })
-        .on('progress', function (state) {
-            if (progressCallback)
-                progressCallback(state);
-        })
-        .on('error', function (err) {
-            console.error(err);
-            // Do something with err
-        })
-        .on('end', function () {
-            file.close();
-            fs.renameSync(oldPath, filename);
-            callback(filename, url);
-        })
-        .pipe(file);
 }
 
 function moveSync(oldPath, newPath) {
@@ -207,11 +236,18 @@ function isInstalledBefore(id) {
     return localStorage.getItem(programInfo[id].localStorageNameOfInstalledVersion) != null;
 }
 
-function removeProgram(id) {
-    if (typeof (id) != 'string') {
-        id = $(id).attr('downloadButton');
-    }
+function removeProgramFromUI(elem) {
+    id = $(elem).attr('downloadButton');
 
+    if (!confirm('want to delete?'))
+        return;
+
+    removeProgram(id);
+
+    alert('removed!');
+}
+
+function removeProgram(id) {
     if (!isInstalledBefore(id))
         return;
 
@@ -311,8 +347,8 @@ function installProgram(id) {
                 numberOfInstalling--;
             });
         },
-        (state) => {
-            updateDownloadStatus($status, state);
+        (transferred, speed, total) => {
+            updateDownloadStatus($status, transferred, speed, total);
         });
 }
 

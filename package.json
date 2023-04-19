@@ -1,6 +1,6 @@
 {
   "name": "k-installer",
-  "version": "0.9.17",
+  "version": "1.0.0",
   "description": "installer for korean program and scenery",
   "main": "main.js",
   "build": {
@@ -20,8 +20,7 @@
   "author": "Sungho Kim",
   "dependencies": {
     "@electron/remote": "^2.0.9",
-    "request": "^2.88.2",
-    "request-progress": "^3.0.0"
+    "follow-redirects": "^1.15.2"
   },
   "devDependencies": {
     "electron": "^24.0.0",
