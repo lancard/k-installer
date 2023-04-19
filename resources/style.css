@@ -138,7 +138,14 @@ div[logo] {
     font-style: italic !important;
 }
 
-@media screen and (max-height: 900px) {
+.sidebar .bottom-copyright .nav-item .nav-link {
+    padding: 0px;
+    padding-left: 30px;
+    width: 14rem;
+}
+
+
+@media screen and (max-height: 1000px) {
     .bottom-copyright {
         display: none;
     }

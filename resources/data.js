@@ -578,5 +578,16 @@ const programInfo = {
             "ZKWS-p3d-scenery\\scenery": "ZKWS-main\\scenery",
             "ZKWS-p3d-scenery\\texture": "ZKWS-main\\texture"
         }
+    },
+    "yeouido": {
+        programType: 'fs2020',
+        downloadUrl: "https://github.com/lancard/fs2020-yeouido/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-yeouido/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "yeouido-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "yeouido-fs2020-scenery-installed-directory-list",
+        directory: {
+            "mycompany-airport-rksy-yeoido-airport": "fs2020-yeouido-master\\mycompany-airport-rksy-yeoido-airport"
+        }
     }
 };
