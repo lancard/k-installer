@@ -8,6 +8,12 @@ const dialog = require('@electron/remote').dialog;
 const appVersion = process.env.npm_package_version ? process.env.npm_package_version : JSON.parse(fs.readFileSync('resources/app.asar/package.json')).version;
 const programRootDirectory = (process.env.NODE_ENV == "development" ? "." : require('@electron/remote').app.getAppPath() + ".unpacked");
 
+if (appVersion.indexOf('1.0') != 0) {
+    alert('open beta finished! use 1.0.0 version plz');
+    location.href = 'https://github.com/lancard/release';
+    return;
+}
+
 function decompress(zipFilename, targetDirectory, callback) {
     child_process.exec(`${programRootDirectory}\\7za.exe x "${zipFilename}" -y -bd -o"${targetDirectory}"`, (error, stdout, stderr) => {
         if (error) {
