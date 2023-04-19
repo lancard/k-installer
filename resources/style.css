@@ -29,18 +29,9 @@ h2 {
     color: rgb(228, 228, 228) !important;
 }
 
-.sidebar .bottom-copyright {
-    position: absolute;
-    bottom: 10px;
-}
 
 .contribution {
     margin-top: 6vw !important;
-}
-
-.sidebar .bottom-copyright .nav-link span {
-    font-size: 1rem !important;
-    font-style: italic !important;
 }
 
 #wrapper #content-wrapper {
@@ -125,4 +116,30 @@ div[logo] {
     box-shadow: 5px 5px 10px #000;
     border-radius: 25px;
     height: 20vh;
+}
+
+.navbar-nav {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+.navbar-nav ul {
+    z-index: 10;
+}
+
+.sidebar .bottom-copyright {
+    position: absolute;
+    bottom: 10px;
+}
+
+.sidebar .bottom-copyright .nav-link span {
+    font-size: 1rem !important;
+    font-style: italic !important;
+}
+
+@media screen and (max-height: 900px) {
+    .bottom-copyright {
+        display: none;
+    }
 }
