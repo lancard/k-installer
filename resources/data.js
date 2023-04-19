@@ -75,7 +75,7 @@ const airportInfo = {
     RKPU: {
         icao: "RKPU",
         name: "Ulsan Airport",
-        fs2020SceneryId: "RKPU-fs2020-scenery",
+        // fs2020SceneryId: "RKPU-fs2020-scenery",
         p3dSceneryId: "RKPU-p3d-scenery"
     },
     RKSM: {
@@ -451,6 +451,7 @@ const programInfo = {
             "RKPS-p3d-scenery\\texture": "RKPS-main\\texture"
         }
     },
+    /*
     "RKPU-fs2020-scenery": {
         icao: "RKPU",
         programType: 'fs2020',
@@ -466,6 +467,7 @@ const programInfo = {
             "kim-airport-rkpu-ulsan": `fs2020-RKPU-master\\kim-airport-rkpu-ulsan`
         }
     },
+    */
     "RKPU-p3d-scenery": {
         icao: "RKPU",
         programType: 'p3d',
