@@ -11,7 +11,6 @@ const programRootDirectory = (process.env.NODE_ENV == "development" ? "." : requ
 if (appVersion.indexOf('1.0') != 0) {
     alert('open beta finished! use 1.0.0 version plz');
     location.href = 'https://github.com/lancard/release';
-    return;
 }
 
 function decompress(zipFilename, targetDirectory, callback) {
