@@ -94,7 +94,8 @@ const airportInfo = {
     },
     RKPD: {
         icao: "RKPD",
-        name: "Jeongseok Airport"
+        name: "Jeongseok Airport",
+        p3dSceneryId: "RKPD-p3d-scenery"
     },
     RKRS: {
         icao: "RKRS",
@@ -497,19 +498,20 @@ const programInfo = {
             "RKTH-p3d-scenery\\texture": "RKTH-master\\texture"
         }
     },
-    "RKRS-fs2020-scenery": {
-        icao: "RKRS",
-        programType: 'fs2020',
-        author: "ArtistPilot",
-        license: "contact ArtistPilot",
-        donation: "contact ArtistPilot",
-        downloadUrl: "https://github.com/lancard/fs2020-RKRS/archive/master.zip",
-        versionCheckUrl: "https://lancard.github.io/fs2020-RKRS/version.txt",
+    "RKPD-p3d-scenery": {
+        icao: "RKPD",
+        programType: 'p3d',
+        author: "NewMarine(choiminsuhworker@naver.com)",
+        license: "contact NewMarine",
+        donation: "contact NewMarine",
+        downloadUrl: "https://github.com/lancard/RKPD/archive/p3d.zip",
+        versionCheckUrl: "https://lancard.github.io/RKPD/version.txt",
         versionModifier: (data) => data.trim(),
-        localStorageNameOfInstalledVersion: "RKRS-fs2020-scenery-installed-version",
-        localStorageNameOfInstalledDirectoryList: "RKRS-fs2020-scenery-installed-directory-list",
+        localStorageNameOfInstalledVersion: "RKPD-p3d-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "RKPD-p3d-scenery-installed-directory-list",
         directory: {
-            "kim-airport-rkrs-susaek": `fs2020-RKRS-master\\kim-airport-rkrs-susaek`
+            "RKPD-p3d-scenery\\scenery": "RKPD-p3d\\scenery",
+            "RKPD-p3d-scenery\\texture": "RKPD-p3d\\texture"
         }
     },
     "RKTL-p3d-scenery": {
@@ -526,6 +528,21 @@ const programInfo = {
         directory: {
             "RKTL-p3d-scenery\\scenery": "scenery",
             "RKTL-p3d-scenery\\texture": "texture"
+        }
+    },
+    "RKRS-fs2020-scenery": {
+        icao: "RKRS",
+        programType: 'fs2020',
+        author: "ArtistPilot",
+        license: "contact ArtistPilot",
+        donation: "contact ArtistPilot",
+        downloadUrl: "https://github.com/lancard/fs2020-RKRS/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKRS/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "RKRS-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "RKRS-fs2020-scenery-installed-directory-list",
+        directory: {
+            "kim-airport-rkrs-susaek": `fs2020-RKRS-master\\kim-airport-rkrs-susaek`
         }
     },
     "ZKPY-p3d-scenery": {

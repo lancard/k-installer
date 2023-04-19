@@ -413,6 +413,8 @@ function initialization() {
     $("span[menu-icao=RKTU]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
     $("[icao=RKTU] [scenerytype=fs2020] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
 
+    $("span[menu-icao=RKPD]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
+    $("[icao=RKPD] [scenerytype=p3d] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
 
     
     // check update
