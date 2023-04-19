@@ -414,8 +414,20 @@
                     <li>ICAO: <strong icao></strong></li>
                     <li>NAME: <strong airportName></strong></li>
                     <li>METAR: <strong class="text-warning" metarArea></strong>
-                        <button type="button" metarRefreshButton class="btn btn-sm btn-warning"
-                            onclick="updateAllMetar();">
+                        <button type="button" metarRefreshButton class="btn btn-sm btn-warning p-1"
+                            onclick="updateAllMetarAndRunway();">
+                            <i class="fa fa-refresh"></i> Refresh
+                        </button>
+                    </li>
+                    <li>RUNWAY(BY AMOS): <strong class="text-info" runwayAreaAmos></strong>
+                        <button type="button" runwayRefreshButton class="btn btn-sm btn-info p-1"
+                            onclick="updateAllMetarAndRunway();">
+                            <i class="fa fa-refresh"></i> Refresh
+                        </button>
+                    </li>
+                    <li>RUNWAY(BY WIND): <strong class="text-info" runwayAreaWind></strong>
+                        <button type="button" runwayRefreshButton class="btn btn-sm btn-info p-1"
+                            onclick="updateAllMetarAndRunway();">
                             <i class="fa fa-refresh"></i> Refresh
                         </button>
                     </li>
@@ -530,6 +542,7 @@
     <!-- end of airport template -->
     <!-- end of airport template -->
 
+    <script src="metar-parser.js"></script>
     <script src="data.js"></script>
     <script src="common.js"></script>
     <script>

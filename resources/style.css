@@ -98,6 +98,10 @@ h2 {
     background-color: #54542a;
 }
 
+[runwayRefreshButton] {
+    background-color: #3c656a;
+}
+
 div[logo] {
     font-family: 'FontAwesome';
 }

@@ -362,15 +362,153 @@ function selectDirectory(program) {
     }
 }
 
-function updateAllMetar() {
+
+function suggestRunwayList(airport, wind) {
+    if (airport == "RKSI") {
+        if (wind > 60 && wind < 240) { return "15L(MAIN), 15R(MAIN), 16L, 16R"; }
+        else { return "33L(MAIN), 33R(MAIN), 34L, 34R"; }
+    }
+    if (airport == "RKSS") {
+        if (wind > 50 && wind < 230) { return "14L, 14R"; }
+        else { return "32L, 32R"; }
+    }
+    if (airport == "RKPC") {
+        if (wind >= 170 && wind < 330) {
+            if (wind > 220) {
+                return "25(MAIN), 31";
+            }
+            else {
+                return "25";
+            }
+        }
+        else {
+            if (wind > 220) {
+                return "07(MAIN), 31";
+            }
+            else {
+                return "07";
+            }
+        }
+    }
+    if (airport == "RKJB") {
+        if (wind >= 110 && wind <= 270) { return "19"; }
+        else { return "01"; }
+    }
+    if (airport == "RKPU") {
+        if (wind > 90 && wind < 270) { return "18"; }
+        else { return "36"; }
+    }
+    if (airport == "RKNY") {
+        if (wind > 60 && wind < 240) { return "15"; }
+        else { return "33"; }
+    }
+    if (airport == "RKJY") {
+        if (wind >= 80 && wind <= 260) { return "17"; }
+        else { return "35"; }
+    }
+    if (airport == "RKPK") {
+        if (wind > 90 && wind < 270) { return "18R(MAIN), 18L"; }
+        else { return "36L(MAIN), 36R"; }
+    }
+    if (airport == "RKTU") {
+        if (wind >= 150 && wind <= 330) { return "24R(MAIN), 24L"; }
+        else { return "06L(MAIN), 06R"; }
+    }
+    if (airport == "RKTN") {
+        if (wind >= 40 && wind <= 220) { return "13R(MAIN), 13L"; }
+        else { return "31L(MAIN), 31R"; }
+    }
+    if (airport == "RKJJ") {
+        if (wind >= 140 && wind <= 330) { return "22L(MAIN), 22R"; }
+        else { return "04R(MAIN), 04L"; }
+    }
+    if (airport == "RKJJ") {
+        if (wind >= 140 && wind <= 330) { return "22L(MAIN), 22R"; }
+        else { return "04R(MAIN), 04L"; }
+    }
+    if (airport == "RKTH") {
+        if (wind >= 200 && wind <= 360) { return "28"; }
+        else { return "10"; }
+    }
+    if (airport == "RKPS") {
+        if (wind >= 150 && wind <= 330) { return "24L, 24R"; }
+        else { return "06L, 06R"; }
+    }
+    if (airport == "RKNW") {
+        if (wind >= 130 && wind <= 290) { return "21"; }
+        else { return "03"; }
+    }
+    if (airport == "RKTL") {
+        if (wind >= 80 && wind <= 260) { return "17"; }
+        else { return "35"; }
+    }
+    if (airport == "RKTP") {
+        if (wind >= 130 && wind <= 320) { return "21L, 21R"; }
+        else { return "03L, 03R"; }
+    }
+    if (airport == "RKSO") {
+        if (wind >= 0 && wind <= 180) { return "09L, 09R"; }
+        else { return "27L, 27R"; }
+    }
+    if (airport == "RKTI") {
+        if (wind > 90 && wind < 270) { return "18L, 18R"; }
+        else { return "36L, 36R"; }
+    }
+    if (airport == "RKTY") {
+        if (wind >= 200 && wind <= 360) { return "28"; }
+        else { return "10"; }
+    }
+    if (airport == "RKSM") {
+        if (wind >= 110 && wind <= 270) { return "19, 20"; }
+        else { return "01, 02"; }
+    }
+    if (airport == "RKSW") {
+        if (wind > 60 && wind < 240) { return "15L, 15R"; }
+        else { return "33L, 33R"; }
+    }
+    if (airport == "RKJK") {
+        if (wind > 90 && wind < 270) { return "18"; }
+        else { return "36"; }
+    }
+    if (airport == "RKNN") {
+        if (wind > 170 && wind < 350) { return "26"; }
+        else { return "08"; }
+    }
+
+    return "";
+}
+
+function updateAllMetarAndRunway() {
     $(`[airportTemplate]`).find("[metarArea]").text(" (Loading...) ");
+    $(`[airportTemplate]`).find("[runwayAreaAmos]").text(" (Loading...) ");
+    $(`[airportTemplate]`).find("[runwayAreaWind]").text(" (Loading...) ");
 
     $.getJSON("https://airplane.mywire.org/metar.json", metar => {
-        $(`[airportTemplate]`).find("[metarArea]").text(" (No Metar Information) ");
+        $.getJSON("https://airplane.mywire.org/runway.json", runway => {
+            $(`[airportTemplate]`).find("[metarArea]").text(" (No Metar Information) ");
+            $(`[airportTemplate]`).find("[runwayAreaAmos]").text(" (No Runway Information) ");
+            $(`[airportTemplate]`).find("[runwayAreaWind]").text(" (No Runway Information) ");
 
-        for (var airport in metar) {
-            $(`[airportTemplate][icao=${airport}]`).find("[metarArea]").text(metar[airport].metar);
-        }
+            for (var airport in metar) {
+                $(`[airportTemplate][icao=${airport}]`).find("[metarArea]").text(metar[airport].metar);
+            }
+
+            for (var airport in runway) {
+                var arr = [];
+
+                for (var r in runway[airport]) {
+                    if (runway[airport][r].use)
+                        arr.push(r);
+                }
+
+                if (metar[airport]) {
+                    var metarObject = metarParser(metar[airport].metar);
+                    var windRunway = suggestRunwayList(airport, metarObject.wind.direction);
+                    $(`[airportTemplate][icao=${airport}]`).find("[runwayAreaAmos]").text(arr.join(","));
+                    $(`[airportTemplate][icao=${airport}]`).find("[runwayAreaWind]").text(windRunway);
+                }
+            }
+        });
     });
 }
 
@@ -422,7 +560,7 @@ function initialization() {
     $("span[menu-icao=RKJK]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
     $("[icao=RKJK] [scenerytype=p3d] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
 
-    
+
     // check update
     for (var id in programInfo) {
         checkUpdate(id);
@@ -547,9 +685,9 @@ function initialization() {
         }
     });
 
-    // update metar and register interval
-    updateAllMetar();
-    setInterval(updateAllMetar, 10 * 60 * 1000);
+    // update metar/runway and register interval
+    updateAllMetarAndRunway();
+    setInterval(updateAllMetarAndRunway, 13 * 60 * 1000);
 }
 
 function showMenu(selectedId) {
