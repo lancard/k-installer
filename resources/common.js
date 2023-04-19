@@ -416,6 +416,9 @@ function initialization() {
     $("span[menu-icao=RKPD]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
     $("[icao=RKPD] [scenerytype=p3d] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
 
+    $("span[menu-icao=RKNY]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
+    $("[icao=RKNY] [scenerytype=p3d] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
+
     
     // check update
     for (var id in programInfo) {
