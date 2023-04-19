@@ -402,13 +402,19 @@ function initialization() {
     $("[airportTemplate]").hide();
 
     // give start to major airport
-    $("span[menu-icao=RKSI]").prepend("<i class='text-warning fas fa-star'></i>")
-    $("span[menu-icao=RKSS]").prepend("<i class='text-warning fas fa-star'></i>")
-    $("span[menu-icao=RKPC]").prepend("<i class='text-warning fas fa-star'></i>")
-    $("span[menu-icao=RKPK]").prepend("<i class='text-warning fas fa-star'></i>")
-    $("span[menu-icao=ZKPY]").prepend("<i class='text-warning fas fa-star'></i>")
+    $("span[menu-icao=RKSI]").prepend("<i class='text-warning fas fa-star'></i>");
+    $("span[menu-icao=RKSS]").prepend("<i class='text-warning fas fa-star'></i>");
+    $("span[menu-icao=RKPC]").prepend("<i class='text-warning fas fa-star'></i>");
+    $("span[menu-icao=RKPK]").prepend("<i class='text-warning fas fa-star'></i>");
+    $("span[menu-icao=ZKPY]").prepend("<i class='text-warning fas fa-star'></i>");
 
 
+    // new airport!
+    $("span[menu-icao=RKTU]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
+    $("[icao=RKTU] [scenerytype=fs2020] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
+
+
+    
     // check update
     for (var id in programInfo) {
         checkUpdate(id);

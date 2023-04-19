@@ -24,6 +24,7 @@ const airportInfo = {
     RKTU: {
         icao: "RKTU",
         name: "Cheongju intl Airport",
+        fs2020SceneryId: "RKTU-fs2020-scenery",
         p3dSceneryId: "RKTU-p3d-scenery"
     },
     RKNY: {
@@ -211,6 +212,22 @@ const programInfo = {
         localStorageNameOfInstalledDirectoryList: "RKPK-p3d-scenery-installed-directory-list",
         directory: {
             "Hongs_GimHae": `RKPK-master\\Hongs_GimHae`
+        }
+    },
+    "RKTU-fs2020-scenery": {
+        icao: "RKTU",
+        programType: 'fs2020',
+        author: "KOREA SIM",
+        license: "contact 'KOREA SIM'",
+        donation: "https://toss.me/krsim",
+        downloadUrl: "https://github.com/lancard/fs2020-RKTU/releases/latest/download/RKTU.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKTU/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "RKTU-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "RKTU-fs2020-scenery-installed-directory-list",
+        directory: {
+            "CHEONGJUAIRPORT": "CHEONGJUAIRPORT",
+            "cheongju-airport": "cheongju-airport"
         }
     },
     "RKTU-p3d-scenery": {
