@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const child_process = require('child_process');
-const dialog = require('@electron/remote').dialog;
+const remote = require('@electron/remote');
 
 const appVersion = process.env.npm_package_version ? process.env.npm_package_version : JSON.parse(fs.readFileSync('resources/app.asar/package.json')).version;
 const programRootDirectory = (process.env.NODE_ENV == "development" ? "." : require('@electron/remote').app.getAppPath() + ".unpacked");
@@ -11,9 +11,6 @@ if (!appVersion.startsWith('1.0')) {
     alert('open beta finished! use 1.0.X version plz');
     location.href = 'https://github.com/lancard/k-installer/releases';
 }
-
-const https = require('follow-redirects').https;
-
 
 function decompress(zipFilename, targetDirectory, callback) {
     child_process.exec(`${programRootDirectory}\\7za.exe x "${zipFilename}" -y -bd -o"${targetDirectory}"`, (error, stdout, stderr) => {
@@ -26,6 +23,7 @@ function decompress(zipFilename, targetDirectory, callback) {
     });
 }
 
+const https = require('follow-redirects').https;
 function downloadFile(filename, url, callback, progressCallback) {
     https.get(url, response => {
         const tempPath = path.join(path.dirname(filename), randomString(32));
@@ -383,7 +381,7 @@ function upgradeProgram(id) {
 }
 
 function selectDirectory(program) {
-    var ret = dialog.showOpenDialogSync({ properties: ["openDirectory"] });
+    var ret = remote.dialog.showOpenDialogSync({ properties: ["openDirectory"] });
     if (!ret) {
         alert('abort');
         return;
