@@ -9,7 +9,7 @@ const programRootDirectory = (process.env.NODE_ENV == "development" ? "." : requ
 
 if (!appVersion.startsWith('1.0')) {
     alert('open beta finished! use 1.0.X version plz');
-    location.href = 'https://github.com/lancard/k-installer/releases';
+    child_process.execSync("start https://github.com/lancard/k-installer/releases");
 }
 
 function decompress(zipFilename, targetDirectory, callback) {
