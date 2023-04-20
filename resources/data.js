@@ -506,14 +506,14 @@ const programInfo = {
         author: "NewMarine(choiminsuhworker@naver.com)",
         license: "contact NewMarine",
         donation: "contact NewMarine",
-        downloadUrl: "https://github.com/lancard/RKPD/archive/p3d.zip",
+        downloadUrl: "https://github.com/lancard/RKPD/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/RKPD/version.txt",
         versionModifier: (data) => data.trim(),
         localStorageNameOfInstalledVersion: "RKPD-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKPD-p3d-scenery-installed-directory-list",
         directory: {
-            "RKPD-p3d-scenery\\scenery": "RKPD-p3d\\scenery",
-            "RKPD-p3d-scenery\\texture": "RKPD-p3d\\texture"
+            "RKPD-p3d-scenery\\scenery": "RKPD-master\\scenery",
+            "RKPD-p3d-scenery\\texture": "RKPD-master\\texture"
         }
     },
     "RKTL-p3d-scenery": {
