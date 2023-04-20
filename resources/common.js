@@ -36,8 +36,6 @@ function downloadFile(filename, url, callback, progressCallback) {
         var lastReportedTime = startTime;
         const total = response.headers['content-length'];
 
-        console.dir(response);
-
         response.on('data', chunk => {
             fileStream.write(chunk);
             transferred += chunk.length;
@@ -273,7 +271,6 @@ function removeProgram(id) {
     updateScreen(id);
 }
 
-var numberOfInstalling = 0;
 function installProgram(id) {
 
     var targetDirectory = ""
@@ -312,7 +309,6 @@ function installProgram(id) {
     $buttons.hide();
     $status.show();
     $status.find("[statusMessage]").text("downloading...");
-    numberOfInstalling++;
 
     downloadFile(filename, programInfo[id].downloadUrl,
         () => {
@@ -323,7 +319,6 @@ function installProgram(id) {
                     var zipcontents = getZipfileList(filename);
                     fs.rmSync(filename); // remove zip file for disk space
                     child_process.execSync(`"${unzippedDirectory}\\${zipcontents[0]}"`);
-                    numberOfInstalling--;
                     return;
                 }
 
@@ -350,8 +345,6 @@ function installProgram(id) {
 
                 // check update again
                 updateScreen(id);
-
-                numberOfInstalling--;
             });
         },
         (transferred, speed, total) => {
@@ -794,11 +787,6 @@ function openChart(elem, chartName) {
         alert('no more INSTR APCH CHART');
         return;
     }
-
-//    if (numberOfInstalling > 0) {
-//        alert('please use chart button after all download complete.');
-//        return;
-//    }
 
     window.open(`https://lancard.github.io/chart/AIP/latest/AD/${icao}/${chartName}.pdf`);
 }
