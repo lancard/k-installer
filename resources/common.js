@@ -8,7 +8,7 @@ const appVersion = process.env.npm_package_version ? process.env.npm_package_ver
 const programRootDirectory = (process.env.NODE_ENV == "development" ? "." : require('@electron/remote').app.getAppPath() + ".unpacked");
 
 if (!appVersion.startsWith('1.0')) {
-    alert('open beta finished! use 1.0.0 version plz');
+    alert('open beta finished! use 1.0.X version plz');
     location.href = 'https://github.com/lancard/k-installer/releases';
 }
 
