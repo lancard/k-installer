@@ -380,7 +380,7 @@ const programInfo = {
         license: "contact 'VFR GO!'",
         donation: "contact 'VFR GO!'",
         downloadUrl: "https://github.com/lancard/VFRGO/releases/download/master/VFRGO_Yeosu.zip",
-        versionCheckUrl: "https://raw.githubusercontent.com/lancard/VFRGO/main/version.txt",
+        versionCheckUrl: "https://raw.githubusercontent.com/lancard/VFRGO/master/version.txt",
         versionModifier: (data) => data.trim(),
         localStorageNameOfInstalledVersion: "RKJY-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKJY-p3d-scenery-installed-directory-list",
@@ -410,14 +410,14 @@ const programInfo = {
         author: "드로",
         license: "contact https://sites.google.com/view/airbornelabs",
         donation: "contact https://sites.google.com/view/airbornelabs",
-        downloadUrl: "https://github.com/lancard/RKNW/archive/main.zip",
+        downloadUrl: "https://github.com/lancard/RKNW/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/RKNW/version.txt",
         versionModifier: (data) => data.trim(),
         localStorageNameOfInstalledVersion: "RKNW-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKNW-p3d-scenery-installed-directory-list",
         directory: {
-            "RKNW-p3d-scenery\\scenery": `RKNW-main\\scenery`,
-            "RKNW-p3d-scenery\\texture": `RKNW-main\\texture`
+            "RKNW-p3d-scenery\\scenery": `RKNW-master\\scenery`,
+            "RKNW-p3d-scenery\\texture": `RKNW-master\\texture`
         }
     },
     "RKPS-fs2020-scenery": {
@@ -441,14 +441,14 @@ const programInfo = {
         author: "me",
         license: "contact me",
         donation: "contact me",
-        downloadUrl: "https://github.com/lancard/RKPS/archive/main.zip",
+        downloadUrl: "https://github.com/lancard/RKPS/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/RKPS/version.txt",
         versionModifier: (data) => data.trim(),
         localStorageNameOfInstalledVersion: "RKPS-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKPS-p3d-scenery-installed-directory-list",
         directory: {
-            "RKPS-p3d-scenery\\scenery": "RKPS-main\\scenery",
-            "RKPS-p3d-scenery\\texture": "RKPS-main\\texture"
+            "RKPS-p3d-scenery\\scenery": "RKPS-master\\scenery",
+            "RKPS-p3d-scenery\\texture": "RKPS-master\\texture"
         }
     },
     /*
@@ -523,7 +523,7 @@ const programInfo = {
         license: "contact 'VFR GO!'",
         donation: "contact 'VFR GO!'",
         downloadUrl: "https://github.com/lancard/VFRGO/releases/download/master/VFRGO_Uljin.zip",
-        versionCheckUrl: "https://raw.githubusercontent.com/lancard/VFRGO/main/version.txt",
+        versionCheckUrl: "https://raw.githubusercontent.com/lancard/VFRGO/master/version.txt",
         versionModifier: (data) => data.trim(),
         localStorageNameOfInstalledVersion: "RKTL-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKTL-p3d-scenery-installed-directory-list",
@@ -569,14 +569,14 @@ const programInfo = {
         author: "me",
         license: "contact me",
         donation: "contact me",
-        downloadUrl: "https://github.com/lancard/ZKWS/archive/main.zip",
+        downloadUrl: "https://github.com/lancard/ZKWS/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/ZKWS/version.txt",
         versionModifier: (data) => data.trim(),
         localStorageNameOfInstalledVersion: "ZKWS-p3d-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "ZKWS-p3d-scenery-installed-directory-list",
         directory: {
-            "ZKWS-p3d-scenery\\scenery": "ZKWS-main\\scenery",
-            "ZKWS-p3d-scenery\\texture": "ZKWS-main\\texture"
+            "ZKWS-p3d-scenery\\scenery": "ZKWS-master\\scenery",
+            "ZKWS-p3d-scenery\\texture": "ZKWS-master\\texture"
         }
     },
     "yeouido": {
