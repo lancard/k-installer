@@ -139,19 +139,21 @@ function randomString(length) {
     return result;
 }
 
-function deleteSync(path) {
-    if (fs.existsSync(path)) {
-        fs.readdirSync(path).forEach(function (file) {
-            var curPath = path + "\\" + file;
-            if (fs.lstatSync(curPath).isDirectory()) { // recurse
-                deleteSync(curPath);
-            } else { // delete file
-                fs.unlinkSync(curPath);
-            }
-        });
-        fs.rmdirSync(path);
+function rmSync(path) {
+    try {
+        fs.rmSync(path, { recursive: true, force: true });
     }
-};
+    catch (e) {
+        $.toast({
+            heading: 'Error',
+            text: `unable to remove: ${path}`,
+            position: 'top-right',
+            hideAfter: false,
+            icon: 'error'
+        });
+        throw new Error(`unable to remove: ${path}`);
+    }
+}
 
 function moveSync(oldPath, newPath) {
     if (oldPath == newPath) {
@@ -169,7 +171,7 @@ function moveSync(oldPath, newPath) {
     } catch (e) {
         // if fail, (different device) copy and remove
         fs.copyFileSync(oldPath, newPath);
-        deleteSync(oldPath);
+        rmSync(oldPath);
     }
 }
 
@@ -284,7 +286,7 @@ function removeProgram(id) {
 
     // remove first
     installedDirectoryArray.forEach(e => {
-        fs.rmSync(e, { recursive: true, force: true });
+        rmSync(e);
     });
 
     // remove storage
@@ -331,7 +333,7 @@ function installProgram(id) {
                 alert('abort');
                 return;
             }
-            deleteSync(newPath);
+            rmSync(newPath);
         }
     }
 
@@ -355,13 +357,13 @@ function installProgram(id) {
             decompress(filename, unzippedDirectory, () => {
                 if (id == "k-installer") {
                     var zipcontents = getZipfileList(filename);
-                    fs.rmSync(filename); // remove zip file for disk space
+                    rmSync(filename); // remove zip file for disk space
                     child_process.execSync(`"${unzippedDirectory}\\${zipcontents[0]}"`);
                     numberOfInstalling--;
                     return;
                 }
 
-                fs.rmSync(filename); // remove zip file for disk space
+                rmSync(filename); // remove zip file for disk space
 
                 // replacement for unzipped files
                 var installedDirectory = [];
@@ -370,7 +372,7 @@ function installProgram(id) {
                     installedDirectory.push(`${targetDirectory}\\${dir}`);
                 }
 
-                fs.rmSync(unzippedDirectory, { recursive: true, force: true }); // remove zip root directory
+                rmSync(unzippedDirectory); // remove zip root directory
 
                 // save installed information
                 localStorage.setItem(programInfo[id].localStorageNameOfInstalledDirectoryList, JSON.stringify(installedDirectory));
