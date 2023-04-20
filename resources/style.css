@@ -1,3 +1,21 @@
+#initialLoadingBar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    font-size: 10vw;
+    padding-top: 30vh;
+    background-color: #272b30;
+    z-index: 100000;
+    color: #f6c23e;
+    text-align: center;
+}
+
+body {
+    background-color: #272b30 !important;
+}
+
 #wrapper {
     height: 100vh;
 }

@@ -53,6 +53,9 @@
 </head>
 
 <body>
+    <div id="initialLoadingBar">
+        Loading...
+    </div>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -533,9 +536,6 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 
     <!-- end of airport template -->
@@ -553,6 +553,7 @@
     <script src="data.js"></script>
     <script src="common.js"></script>
     <script>
+        $("#initialLoadingBar").hide();
         initialization();
     </script>
 </body>
