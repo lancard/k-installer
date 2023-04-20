@@ -144,6 +144,15 @@ function moveSync(oldPath, newPath) {
         return;
     }
 
+    // check alread exist
+    if (fs.existsSync(newPath)) {
+        if (!confirm(`directory ${newPath} already exist. do you want to overwrite?`)) {
+            alert('abort');
+            return;
+        }
+        fs.unlinkSync(newPath);
+    }
+
     // create directory first
     if (!fs.existsSync(path.dirname(newPath))) {
         fs.mkdirSync(path.dirname(newPath), { recursive: true });
@@ -312,7 +321,7 @@ function installProgram(id) {
     const unzippedDirectory = `${targetDirectory}\\${randomString(32)}`;
     const filename = `${unzippedDirectory}\\${id}.zip`;
 
-    fs.mkdirSync(unzippedDirectory);
+    fs.mkdirSync(unzippedDirectory, { recursive: true });
 
     var $buttons = $(`[downloadButton="${id}"]`);
     var $status = $(`[downloadStatus="${id}"]`);
@@ -579,7 +588,8 @@ function initialization() {
     localStorage.setItem(programInfo["k-installer"].localStorageNameOfInstalledVersion, appVersion);
 
     if (localStorage.getItem("fs2020-root-directory") == null) {
-        localStorage.setItem("fs2020-root-directory", getCommunityDirectory());
+        if (getCommunityDirectory() != null)
+            localStorage.setItem("fs2020-root-directory", getCommunityDirectory());
     }
 
     if (localStorage.getItem("fs2020-root-directory") == null) {
