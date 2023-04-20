@@ -36,8 +36,6 @@ function downloadFile(filename, url, callback, progressCallback) {
         var lastReportedTime = startTime;
         const total = response.headers['content-length'];
 
-        console.dir(response);
-
         response.on('data', chunk => {
             fileStream.write(chunk);
             transferred += chunk.length;
