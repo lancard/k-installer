@@ -15,7 +15,13 @@ if (!appVersion.startsWith('1.0')) {
 function decompress(zipFilename, targetDirectory, callback) {
     child_process.exec(`${programRootDirectory}\\7za.exe x "${zipFilename}" -y -bd -o"${targetDirectory}"`, (error, stdout, stderr) => {
         if (error) {
-            alert(`extract error: ${error}`);
+            $.toast({
+                heading: 'Error',
+                text: `extract error: ${error}`,
+                position: 'top-right',
+                hideAfter: false,
+                icon: 'error'
+            });
             return;
         }
 
@@ -247,7 +253,13 @@ function removeProgramFromUI(elem) {
 
     removeProgram(id);
 
-    alert('removed!');
+    $.toast({
+        heading: 'Success',
+        text: `Removed: ${id}`,
+        position: 'top-right',
+        hideAfter: false,
+        icon: 'success'
+    });
 }
 
 function removeProgram(id) {
@@ -338,7 +350,13 @@ function installProgram(id) {
                 localStorage.setItem(programInfo[id].localStorageNameOfInstalledDirectoryList, JSON.stringify(installedDirectory));
                 localStorage.setItem(programInfo[id].localStorageNameOfInstalledVersion, programInfo[id].latestVersion);
 
-                alert(`installation complete: ${id}`);
+                $.toast({
+                    heading: 'Success',
+                    text: `installation complete: ${id}`,
+                    position: 'top-right',
+                    hideAfter: false,
+                    icon: 'success'
+                });
 
                 // restore hide elements
                 $buttons.show();
@@ -383,11 +401,16 @@ function upgradeProgram(id) {
 function selectDirectory(program) {
     var ret = remote.dialog.showOpenDialogSync({ properties: ["openDirectory"] });
     if (!ret) {
-        alert('abort');
         return;
     }
     if (!fs.existsSync(ret[0])) {
-        alert(`path not exist: ${ret[0]}`);
+        $.toast({
+            heading: 'Error',
+            text: `path not exist: ${ret[0]}`,
+            position: 'top-right',
+            hideAfter: false,
+            icon: 'error'
+        });
         return;
     }
 
@@ -792,7 +815,13 @@ function openChart(elem, chartName) {
     }
 
     if (numberOfInstalling > 0) {
-        alert('please use chart button after all download complete.');
+        $.toast({
+            heading: 'Error',
+            text: 'please use chart button after all download complete.',
+            position: 'top-right',
+            hideAfter: false,
+            icon: 'error'
+        });
         return;
     }
 
