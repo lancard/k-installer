@@ -795,10 +795,10 @@ function openChart(elem, chartName) {
         return;
     }
 
-    if (numberOfInstalling > 0) {
-        alert('please use chart button after all download complete.');
-        return;
-    }
+//    if (numberOfInstalling > 0) {
+//        alert('please use chart button after all download complete.');
+//        return;
+//    }
 
     window.open(`https://lancard.github.io/chart/AIP/latest/AD/${icao}/${chartName}.pdf`);
 }
