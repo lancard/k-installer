@@ -139,18 +139,23 @@ function randomString(length) {
     return result;
 }
 
+function deleteSync(path) {
+    if (fs.existsSync(path)) {
+        fs.readdirSync(path).forEach(function (file) {
+            var curPath = path + "\\" + file;
+            if (fs.lstatSync(curPath).isDirectory()) { // recurse
+                deleteSync(curPath);
+            } else { // delete file
+                fs.unlinkSync(curPath);
+            }
+        });
+        fs.rmdirSync(path);
+    }
+};
+
 function moveSync(oldPath, newPath) {
     if (oldPath == newPath) {
         return;
-    }
-
-    // check alread exist
-    if (fs.existsSync(newPath)) {
-        if (!confirm(`directory ${newPath} already exist. do you want to overwrite?`)) {
-            alert('abort');
-            return;
-        }
-        fs.unlinkSync(newPath);
     }
 
     // create directory first
@@ -164,7 +169,7 @@ function moveSync(oldPath, newPath) {
     } catch (e) {
         // if fail, (different device) copy and remove
         fs.copyFileSync(oldPath, newPath);
-        fs.unlinkSync(oldPath);
+        deleteSync(oldPath);
     }
 }
 
@@ -316,6 +321,18 @@ function installProgram(id) {
         }
 
         targetDirectory = localStorage.getItem("p3d-root-directory");
+    }
+
+    // check already directory exist
+    for (var dir in programInfo[id].directory) {
+        var newPath = `${targetDirectory}\\${dir}`
+        if (fs.existsSync(newPath)) {
+            if (!confirm(`directory ${newPath} already exist. do you want to delete before install?`)) {
+                alert('abort');
+                return;
+            }
+            deleteSync(newPath);
+        }
     }
 
     const unzippedDirectory = `${targetDirectory}\\${randomString(32)}`;
