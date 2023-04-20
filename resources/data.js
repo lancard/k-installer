@@ -125,7 +125,7 @@ const programInfo = {
     "RKSI-fs2020-scenery": {
         icao: "RKSI",
         programType: 'fs2020',
-        author: "ArtistPilot, KIS, KoreaSim, Real Wing, DDKK8, JEJUFLIGHT, LAZ, MCRN KARAKUM",
+        author: "ArtistPilot, KIS, KoreaSim, Real Wing, DDKK08, JEJUFLIGHT, LAZ, MCRN KARAKUM",
         license: "contact ArtistPilot",
         donation: "contact ArtistPilot",
         downloadUrl: "https://big.mywire.org/RKSI.zip",
