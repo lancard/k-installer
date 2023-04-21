@@ -9,7 +9,11 @@ const programRootDirectory = (process.env.NODE_ENV == "development" ? "." : requ
 
 if (!appVersion.startsWith('1.0')) {
     alert('open beta finished! use 1.0.X version plz');
-    child_process.execSync("start https://github.com/lancard/k-installer/releases");
+    openExternalBrowser("https://github.com/lancard/k-installer/releases");
+}
+
+function openExternalBrowser(url) {
+    child_process.execSync(`start ${url}`);
 }
 
 function decompress(zipFilename, targetDirectory, callback) {
@@ -800,32 +804,32 @@ function openChart(elem, chartName) {
     var icao = $(elem).parents("div[airportTemplate]").attr("icao");
 
     if (icao == "ZKPY" && chartName == "AD CHART") {
-        child_process.execSync("start https://docs.google.com/drawings/d/1i5-MPOAG82jDGAm02Vgn1sIow4qArLh8jdKC36zkJ9k/edit?usp=sharing");
+        openExternalBrowser("https://docs.google.com/drawings/d/1i5-MPOAG82jDGAm02Vgn1sIow4qArLh8jdKC36zkJ9k/edit?usp=sharing");
         return;
     }
     if (icao == "ZKPY" && chartName == "AD GROUND MOVEMENT CHART") {
-        child_process.execSync("start https://docs.google.com/drawings/d/1i5-MPOAG82jDGAm02Vgn1sIow4qArLh8jdKC36zkJ9k/edit?usp=sharing");
+        openExternalBrowser("https://docs.google.com/drawings/d/1i5-MPOAG82jDGAm02Vgn1sIow4qArLh8jdKC36zkJ9k/edit?usp=sharing");
         return;
     }
     if (icao == "ZKPY" && chartName == "AIRCRAFT PARKING DOCKING CHART") {
-        child_process.execSync("start https://docs.google.com/drawings/d/1pS3pQOvoIkasIqEVvwI4QhE8Xoiz72WIcp7O6ESl5Fo/edit?usp=sharing");
+        openExternalBrowser("https://docs.google.com/drawings/d/1pS3pQOvoIkasIqEVvwI4QhE8Xoiz72WIcp7O6ESl5Fo/edit?usp=sharing");
         return;
     }
     if (icao == "ZKPY" && chartName == "INSTR APCH CHART") {
         if (confirm('View ILS 35?')) {
-            child_process.execSync("start https://docs.google.com/drawings/d/1XPadjZpe-4uQ8-ls_y9AacdV1WtjSSictudLyMvYiT4/edit?usp=sharing");
+            openExternalBrowser("https://docs.google.com/drawings/d/1XPadjZpe-4uQ8-ls_y9AacdV1WtjSSictudLyMvYiT4/edit?usp=sharing");
             return;
         }
         if (confirm('View ILS/DME 17?')) {
-            child_process.execSync("start https://docs.google.com/drawings/d/186aWUvRcJOuadxu6QEcsDWyz5M4Wc4T5qhz_lU0hkIs/edit?usp=sharing");
+            openExternalBrowser("https://docs.google.com/drawings/d/186aWUvRcJOuadxu6QEcsDWyz5M4Wc4T5qhz_lU0hkIs/edit?usp=sharing");
             return;
         }
         if (confirm('View RNP 35?')) {
-            child_process.execSync("start https://docs.google.com/drawings/d/1cpO68EiuOin4n9P7b1gCgpXThzVehP0d31BKfF2DOZ8/edit?usp=sharing");
+            openExternalBrowser("https://docs.google.com/drawings/d/1cpO68EiuOin4n9P7b1gCgpXThzVehP0d31BKfF2DOZ8/edit?usp=sharing");
             return;
         }
         if (confirm('View RNP 17?')) {
-            child_process.execSync("start https://docs.google.com/drawings/d/15aEW6B54jhTT7e-LEOelqpBH89iVGs3tBEUewCouZyQ/edit?usp=sharing");
+            openExternalBrowser("https://docs.google.com/drawings/d/15aEW6B54jhTT7e-LEOelqpBH89iVGs3tBEUewCouZyQ/edit?usp=sharing");
             return;
         }
         alert('no more INSTR APCH CHART');
@@ -833,20 +837,20 @@ function openChart(elem, chartName) {
     }
 
     if (icao == "ZKWS" && chartName == "SID") {
-        child_process.execSync("start https://docs.google.com/drawings/d/15SYvGTXsQFpewbWRBK-QpAoeYWUy3Xj9zZ8UHC4CBHE/edit?usp=sharing");
+        openExternalBrowser("https://docs.google.com/drawings/d/15SYvGTXsQFpewbWRBK-QpAoeYWUy3Xj9zZ8UHC4CBHE/edit?usp=sharing");
         return;
     }
     if (icao == "ZKWS" && chartName == "STAR") {
-        child_process.execSync("start https://docs.google.com/drawings/d/1_P7gqcQbMTlIcXF619k1AiOgMNr0WRV7MagiftFtEL4/edit?usp=sharing");
+        openExternalBrowser("https://docs.google.com/drawings/d/1_P7gqcQbMTlIcXF619k1AiOgMNr0WRV7MagiftFtEL4/edit?usp=sharing");
         return;
     }
     if (icao == "ZKWS" && chartName == "INSTR APCH CHART") {
         if (confirm('View ILS 15L?')) {
-            child_process.execSync("start https://docs.google.com/drawings/d/1BlTYFSnlrGW5e2FgEwv7b2Zoa26dqTEMzydzN-crDEM/edit?usp=sharing");
+            openExternalBrowser("https://docs.google.com/drawings/d/1BlTYFSnlrGW5e2FgEwv7b2Zoa26dqTEMzydzN-crDEM/edit?usp=sharing");
             return;
         }
         if (confirm('View RNAV chart?')) {
-            child_process.execSync("start https://docs.google.com/drawings/d/1Cy27EQnWx6FSwibdAlG-JXoSJq5k0cQ7E345uVKv09A/edit?usp=sharing");
+            openExternalBrowser("https://docs.google.com/drawings/d/1Cy27EQnWx6FSwibdAlG-JXoSJq5k0cQ7E345uVKv09A/edit?usp=sharing");
             return;
         }
         alert('no more INSTR APCH CHART');
@@ -890,7 +894,7 @@ function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
     if (fs2020Id) {
         $clonedDOM.find("[sceneryType=fs2020]").find("[author]").text(programInfo[fs2020Id].author);
         $clonedDOM.find("[sceneryType=fs2020]").find("[license]").text(programInfo[fs2020Id].license);
-        $clonedDOM.find("[sceneryType=fs2020]").find("[donation]").text(programInfo[fs2020Id].donation);
+        $clonedDOM.find("[sceneryType=fs2020]").find("[donation]").html(programInfo[fs2020Id].donation);
         $clonedDOM.find("[sceneryType=fs2020]").find("[latestVersion]").attr("latestVersion", fs2020Id);
         $clonedDOM.find("[sceneryType=fs2020]").find("[installedVersion]").attr("installedVersion", fs2020Id);
         $clonedDOM.find("[sceneryType=fs2020]").find("[installedDirectory]").attr("installedDirectory", fs2020Id);
@@ -907,7 +911,7 @@ function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
     if (p3dId) {
         $clonedDOM.find("[sceneryType=p3d]").find("[author]").text(programInfo[p3dId].author);
         $clonedDOM.find("[sceneryType=p3d]").find("[license]").text(programInfo[p3dId].license);
-        $clonedDOM.find("[sceneryType=p3d]").find("[donation]").text(programInfo[p3dId].donation);
+        $clonedDOM.find("[sceneryType=p3d]").find("[donation]").html(programInfo[p3dId].donation);
         $clonedDOM.find("[sceneryType=p3d]").find("[latestVersion]").attr("latestVersion", p3dId);
         $clonedDOM.find("[sceneryType=p3d]").find("[installedVersion]").attr("installedVersion", p3dId);
         $clonedDOM.find("[sceneryType=p3d]").find("[installedDirectory]").attr("installedDirectory", p3dId);
