@@ -580,14 +580,14 @@ function updateAllMetarAndRunway() {
     $(`[airportTemplate]`).find("[runwayAreaAmos]").text(" (Loading...) ");
     $(`[airportTemplate]`).find("[runwayAreaWind]").text(" (Loading...) ");
 
-    $.getJSON("https://airplane.mywire.org/metar.json", metar => {
+    $.getJSON("https://lancard.github.io/get_metar/metar.json", metar => {
         $.getJSON("https://airplane.mywire.org/runway.json", runway => {
             $(`[airportTemplate]`).find("[metarArea]").text(" (No Metar Information) ");
             $(`[airportTemplate]`).find("[runwayAreaAmos]").text(" (No Runway Information) ");
             $(`[airportTemplate]`).find("[runwayAreaWind]").text(" (No Runway Information) ");
 
             for (var airport in metar) {
-                $(`[airportTemplate][icao=${airport}]`).find("[metarArea]").text(metar[airport].metar);
+                $(`[airportTemplate][icao=${airport}]`).find("[metarArea]").text(metar[airport]);
             }
 
             for (var airport in runway) {
@@ -599,7 +599,7 @@ function updateAllMetarAndRunway() {
                 }
 
                 if (metar[airport]) {
-                    var metarObject = metarParser(metar[airport].metar);
+                    var metarObject = metarParser(metar[airport]);
                     var windRunway = suggestRunwayList(airport, metarObject.wind.direction);
                     $(`[airportTemplate][icao=${airport}]`).find("[runwayAreaAmos]").text(arr.join(","));
                     $(`[airportTemplate][icao=${airport}]`).find("[runwayAreaWind]").text(windRunway);
