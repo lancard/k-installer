@@ -600,6 +600,10 @@ function updateAllMetarAndRunway() {
             }
         });
     });
+
+    $.getJSON('https://lancard.github.io/chart/AIP/effectiveDateInformation.json', dateList => {
+        $("[chartEffectiveDate]").text(dateList[0]);
+    });
 }
 
 function initialization() {
