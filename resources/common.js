@@ -581,7 +581,7 @@ function updateAllMetarAndRunway() {
     $(`[airportTemplate]`).find("[runwayAreaWind]").text(" (Loading...) ");
 
     $.getJSON("https://lancard.github.io/get_metar/metar.json", metar => {
-        $.getJSON("https://airplane.mywire.org/runway.json", runway => {
+        $.getJSON("https://lancard.github.io/get_runway/runway.json", runway => {
             $(`[airportTemplate]`).find("[metarArea]").text(" (No Metar Information) ");
             $(`[airportTemplate]`).find("[runwayAreaAmos]").text(" (No Runway Information) ");
             $(`[airportTemplate]`).find("[runwayAreaWind]").text(" (No Runway Information) ");
