@@ -297,7 +297,7 @@ function removeProgram(id) {
     updateScreen(id);
 }
 
-var numberOfInstalling = 0;
+var downloadCount = 0;
 function installProgram(id) {
 
     var targetDirectory = ""
@@ -348,7 +348,8 @@ function installProgram(id) {
     $buttons.hide();
     $status.show();
     $status.find("[statusMessage]").text("downloading...");
-    numberOfInstalling++;
+    downloadCount++;
+    $("[downloadCount]").text(downloadCount);
 
     downloadFile(filename, programInfo[id].downloadUrl,
         () => {
@@ -359,7 +360,8 @@ function installProgram(id) {
                     var zipcontents = getZipfileList(filename);
                     rmSync(filename); // remove zip file for disk space
                     child_process.execSync(`"${unzippedDirectory}\\${zipcontents[0]}"`);
-                    numberOfInstalling--;
+                    downloadCount--;
+                    $("[downloadCount]").text(downloadCount);
                     return;
                 }
 
@@ -393,7 +395,8 @@ function installProgram(id) {
                 // check update again
                 updateScreen(id);
 
-                numberOfInstalling--;
+                downloadCount--;
+                $("[downloadCount]").text(downloadCount);
             });
         },
         (transferred, speed, total) => {
@@ -655,6 +658,9 @@ function initialization() {
     $("span[menu-icao=RKJK]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
     $("[icao=RKJK] [scenerytype=p3d] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
 
+    $("span[menu-icao=ZKWS]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
+    $("[icao=ZKWS] [scenerytype=fs2020] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
+
 
     // check update
     for (var id in programInfo) {
@@ -847,7 +853,7 @@ function openChart(elem, chartName) {
         return;
     }
 
-    if (numberOfInstalling > 0) {
+    if (downloadCount > 0) {
         $.toast({
             heading: 'Error',
             text: 'please use chart button after all download complete.',

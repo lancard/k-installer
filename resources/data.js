@@ -110,6 +110,7 @@ const airportInfo = {
     ZKWS: {
         icao: "ZKWS",
         name: "Wonsan Kalma intl Airport",
+        fs2020SceneryId: "ZKWS-fs2020-scenery",
         p3dSceneryId: "ZKWS-p3d-scenery"
     }
 }
@@ -561,6 +562,22 @@ const programInfo = {
         directory: {
             "ZKPY-p3d-scenery\\scenery": "ZKPY-master\\scenery",
             "ZKPY-p3d-scenery\\texture": "ZKPY-master\\texture"
+        }
+    },
+    "ZKWS-fs2020-scenery": {
+        icao: "ZKWS",
+        programType: 'fs2020',
+        author: "Ottomeme",
+        license: "contact Ottomeme",
+        donation: "contact Ottomeme",
+        downloadUrl: "https://github.com/lancard/fs2020-ZKWS/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-ZKWS/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "ZKWS-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "ZKWS-fs2020-scenery-installed-directory-list",
+        directory: {
+            "airport-zkwsaerial": `fs2020-ZKWS-master\\airport-zkwsaerial`,
+            "airport-zkwskalma": `fs2020-ZKWS-master\\airport-zkwskalma`
         }
     },
     "ZKWS-p3d-scenery": {
