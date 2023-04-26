@@ -30,6 +30,7 @@ const airportInfo = {
     RKNY: {
         icao: "RKNY",
         name: "Yangyang intl Airport",
+        fs2020SceneryId: "RKNY-fs2020-scenery",
         p3dSceneryId: "RKNY-p3d-scenery"
     },
     RKTN: {
@@ -251,6 +252,21 @@ const programInfo = {
         directory: {
             "RKTU-p3d-scenery\\scenery": "RKTU-master\\scenery",
             "RKTU-p3d-scenery\\texture": "RKTU-master\\texture"
+        }
+    },
+    "RKNY-fs2020-scenery": {
+        icao: "RKNY",
+        programType: 'fs2020',
+        author: "Snowynest",
+        license: "contact Snowynest",
+        donation: "contact Snowynest",
+        downloadUrl: "https://github.com/lancard/fs2020-RKNY/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKNY/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "RKNY-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "RKNY-fs2020-scenery-installed-directory-list",
+        directory: {
+            "YangyangAirport": `fs2020-RKNY-master\\YangyangAirport`
         }
     },
     "RKNY-p3d-scenery": {
