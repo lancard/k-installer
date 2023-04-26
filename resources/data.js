@@ -102,6 +102,11 @@ const airportInfo = {
         name: "Susaek Airport",
         fs2020SceneryId: "RKRS-fs2020-scenery"
     },
+    RKDU: {
+        icao: "RKDU",
+        name: "Ulleung Airport (virtual)",
+        fs2020SceneryId: "RKDU-fs2020-scenery"
+    },
     ZKPY: {
         icao: "ZKPY",
         name: "Pyeongyang intl Airport",
@@ -546,6 +551,21 @@ const programInfo = {
         localStorageNameOfInstalledDirectoryList: "RKRS-fs2020-scenery-installed-directory-list",
         directory: {
             "kim-airport-rkrs-susaek": `fs2020-RKRS-master\\kim-airport-rkrs-susaek`
+        }
+    },
+    "RKDU-fs2020-scenery": {
+        icao: "RKDU",
+        programType: 'fs2020',
+        author: "JejuFlight",
+        license: "contact JejuFlight",
+        donation: "contact JejuFlight",
+        downloadUrl: "https://github.com/lancard/fs2020-RKDU/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKDU/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "RKDU-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "RKDU-fs2020-scenery-installed-directory-list",
+        directory: {
+            "JejuFlight-UlleungAirport": `fs2020-RKDU-master\\JejuFlight-UlleungAirport`
         }
     },
     "ZKPY-p3d-scenery": {
