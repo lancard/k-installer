@@ -2,7 +2,7 @@
 installer for flight simulator and atc
 
 # Youtube Setting tutorial (Click to watch)
-- [![Install tutorial](https://img.youtube.com/vi/-Pol8HEmIaY/0.jpg)](https://youtu.be/-Pol8HEmIaY)
+[![Install tutorial](https://img.youtube.com/vi/-Pol8HEmIaY/0.jpg)](https://youtu.be/-Pol8HEmIaY)
 
 # license
 - Author: me (please contact me for distribution, commercial use, etc)
