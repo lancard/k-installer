@@ -683,7 +683,7 @@ function initialization() {
             "INSTR APCH CHART": "https://docs.google.com/drawings/d/1XPadjZpe-4uQ8-ls_y9AacdV1WtjSSictudLyMvYiT4/edit?usp=sharing",
             "PRECISION APP TERRAIN CHART": false,
             "SID": "https://docs.google.com/drawings/d/15QUM8bKBDNS6_jhxoA5Ilz9r1F2XFPA3vBEpWFNeePE/edit?usp=sharing",
-            "STAR": false,
+            "STAR": "https://docs.google.com/drawings/d/1oTln52p3Z8Gd9-BJQVquxRaWDHOHyuDUFG6gTrefhso/edit?usp=sharing",
             "TEXT": false,
             "VISUAL APCH CHART": false
         };
@@ -806,6 +806,10 @@ function openChart(elem, chartName) {
     }
     if (icao == "ZKPY" && chartName == "SID") {
         openExternalBrowser("https://docs.google.com/drawings/d/15QUM8bKBDNS6_jhxoA5Ilz9r1F2XFPA3vBEpWFNeePE/edit?usp=sharing");
+        return;
+    }
+    if (icao == "ZKPY" && chartName == "STAR") {
+        openExternalBrowser("https://docs.google.com/drawings/d/1oTln52p3Z8Gd9-BJQVquxRaWDHOHyuDUFG6gTrefhso/edit?usp=sharing");
         return;
     }
     if (icao == "ZKPY" && chartName == "AD GROUND MOVEMENT CHART") {
