@@ -682,7 +682,7 @@ function initialization() {
             "BIRD CONCENTRATION CHART": false,
             "INSTR APCH CHART": "https://docs.google.com/drawings/d/1XPadjZpe-4uQ8-ls_y9AacdV1WtjSSictudLyMvYiT4/edit?usp=sharing",
             "PRECISION APP TERRAIN CHART": false,
-            "SID": false,
+            "SID": "https://docs.google.com/drawings/d/15QUM8bKBDNS6_jhxoA5Ilz9r1F2XFPA3vBEpWFNeePE/edit?usp=sharing",
             "STAR": false,
             "TEXT": false,
             "VISUAL APCH CHART": false
@@ -802,6 +802,10 @@ function openChart(elem, chartName) {
 
     if (icao == "ZKPY" && chartName == "AD CHART") {
         openExternalBrowser("https://docs.google.com/drawings/d/1i5-MPOAG82jDGAm02Vgn1sIow4qArLh8jdKC36zkJ9k/edit?usp=sharing");
+        return;
+    }
+    if (icao == "ZKPY" && chartName == "SID") {
+        openExternalBrowser("https://docs.google.com/drawings/d/15QUM8bKBDNS6_jhxoA5Ilz9r1F2XFPA3vBEpWFNeePE/edit?usp=sharing");
         return;
     }
     if (icao == "ZKPY" && chartName == "AD GROUND MOVEMENT CHART") {
