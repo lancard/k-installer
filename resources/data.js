@@ -87,6 +87,7 @@ const airportInfo = {
     RKTH: {
         icao: "RKTH",
         name: "Pohang Gyeongju Airport",
+        fs2020SceneryId: "RKTH-fs2020-scenery",
         p3dSceneryId: "RKTH-p3d-scenery"
     },
     RKTL: {
@@ -520,6 +521,21 @@ const programInfo = {
         directory: {
             "RKPU-p3d-scenery\\scenery": "RKPU-master\\scenery",
             "RKPU-p3d-scenery\\texture": "RKPU-master\\texture"
+        }
+    },
+    "RKTH-fs2020-scenery": {
+        icao: "RKTH",
+        programType: 'fs2020',
+        author: "me",
+        license: "contact me",
+        donation: "contact me",
+        downloadUrl: "https://github.com/lancard/fs2020-RKTH/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKTH/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "RKTH-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "RKTH-fs2020-scenery-installed-directory-list",
+        directory: {
+            "thekoreans-airport-rkth-pohang": `fs2020-RKTH-master\\Packages\\thekoreans-airport-rkth-pohang`
         }
     },
     "RKTH-p3d-scenery": {
