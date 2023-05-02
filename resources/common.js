@@ -17,7 +17,7 @@ function openExternalBrowser(url) {
 }
 
 function decompress(zipFilename, targetDirectory, callback) {
-    child_process.exec(`${programRootDirectory}\\7za.exe x "${zipFilename}" -y -bd -o"${targetDirectory}"`, (error, stdout, stderr) => {
+    child_process.exec(`"${programRootDirectory}\\7za.exe" x "${zipFilename}" -y -bd -o"${targetDirectory}"`, (error, stdout, stderr) => {
         if (error) {
             $.toast({
                 heading: 'Error',
@@ -89,7 +89,7 @@ function downloadFile(filename, url, callback, progressCallback) {
 }
 
 function getZipfileList(filename) {
-    return child_process.execSync(`${programRootDirectory}\\7za.exe l -ba -slt "${filename}"`).toString().split("\r\n").filter(e => e.startsWith('Path = ')).map(e => e.substring(7));
+    return child_process.execSync(`"${programRootDirectory}\\7za.exe" l -ba -slt "${filename}"`).toString().split("\r\n").filter(e => e.startsWith('Path = ')).map(e => e.substring(7));
 }
 
 function getCommunityDirectory() {
