@@ -629,7 +629,7 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "ZKPY-fs2020-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "ZKPY-fs2020-scenery-installed-directory-list",
         directory: {
-            "thekoreans-airport-zkpy-pyeongyang": `fs2020-ZKPY-master\\Packages\\thekoreans-airport-rkpk-pyeongyang`
+            "thekoreans-airport-zkpy-pyeongyang": `fs2020-ZKPY-master\\Packages\\thekoreans-airport-zkpy-pyeongyang`
         }
     },
     "ZKPY-p3d-scenery": {
