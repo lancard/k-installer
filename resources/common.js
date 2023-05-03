@@ -650,20 +650,11 @@ function initialization() {
 
 
     // new airport!
-    $("span[menu-icao=ZKWS]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
-    $("[icao=ZKWS] [scenerytype=fs2020] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
-
-    $("span[menu-icao=RKDU]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
-    $("[icao=RKDU] [scenerytype=fs2020] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
-
-    $("span[menu-icao=RKNY]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
-    $("[icao=RKNY] [scenerytype=fs2020] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
-
-    $("span[menu-icao=RKPC]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
-    $("[icao=RKPC] [scenerytype=fs2020] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
-
     $("span[menu-icao=RKTH]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
     $("[icao=RKTH] [scenerytype=fs2020] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
+
+    $("span[menu-icao=ZKPY]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
+    $("[icao=ZKPY] [scenerytype=fs2020] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
 
 
     // check update
