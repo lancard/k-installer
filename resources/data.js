@@ -1,124 +1,124 @@
 constInfo = {
     RKSI: {
         icao: "RKSI",
-        name: "Incheon intl",
+        name: "Incheon intl Airport",
         fs2020SceneryId: "RKSI-fs2020-scenery"
     },
     RKSS: {
         icao: "RKSS",
-        name: "Gimpo intl",
+        name: "Gimpo intl Airport",
         fs2020SceneryId: "RKSS-fs2020-scenery",
         p3dSceneryId: "RKSS-p3d-scenery"
     },
     RKPC: {
         icao: "RKPC",
-        name: "Jeju intl",
+        name: "Jeju intl Airport",
         fs2020SceneryId: "RKPC-fs2020-scenery",
         p3dSceneryId: "RKPC-p3d-scenery"
     },
     RKPK: {
         icao: "RKPK",
-        name: "Gimhae intl",
+        name: "Gimhae intl Airport",
         fs2020SceneryId: "RKPK-fs2020-scenery",
         p3dSceneryId: "RKPK-p3d-scenery"
     },
     RKTU: {
         icao: "RKTU",
-        name: "Cheongju intl",
+        name: "Cheongju intl Airport",
         fs2020SceneryId: "RKTU-fs2020-scenery",
         p3dSceneryId: "RKTU-p3d-scenery"
     },
     RKNY: {
         icao: "RKNY",
-        name: "Yangyang intl",
+        name: "Yangyang intl Airport",
         fs2020SceneryId: "RKNY-fs2020-scenery",
         p3dSceneryId: "RKNY-p3d-scenery"
     },
     RKTN: {
         icao: "RKTN",
-        name: "Daegu intl",
+        name: "Daegu intl Airport",
         fs2020SceneryId: "RKTN-fs2020-scenery",
         p3dSceneryId: "RKTN-p3d-scenery"
     },
     RKJB: {
         icao: "RKJB",
-        name: "Muan intl",
+        name: "Muan intl Airport",
         p3dSceneryId: "RKJB-p3d-scenery"
     },
     RKJJ: {
         icao: "RKJJ",
-        name: "Gwangju",
+        name: "Gwangju Airport",
         p3dSceneryId: "RKJJ-p3d-scenery"
     },
     RKJK: {
         icao: "RKJK",
-        name: "Gunsan",
+        name: "Gunsan Airport",
         fs2020SceneryId: "RKJK-fs2020-scenery",
         p3dSceneryId: "RKJK-p3d-scenery"
     },
     RKJY: {
         icao: "RKJY",
-        name: "Yeosu",
+        name: "Yeosu Airport",
         fs2020SceneryId: "RKJY-fs2020-scenery",
         p3dSceneryId: "RKJY-p3d-scenery"
     },
     RKNW: {
         icao: "RKNW",
-        name: "Wonju",
+        name: "Wonju Airport",
         fs2020SceneryId: "RKNW-fs2020-scenery",
         p3dSceneryId: "RKNW-p3d-scenery"
     },
     RKPS: {
         icao: "RKPS",
-        name: "Sacheon",
+        name: "Sacheon Airport",
         fs2020SceneryId: "RKPS-fs2020-scenery",
         p3dSceneryId: "RKPS-p3d-scenery"
     },
     RKPU: {
         icao: "RKPU",
-        name: "Ulsan",
+        name: "Ulsan Airport",
         // fs2020SceneryId: "RKPU-fs2020-scenery",
         p3dSceneryId: "RKPU-p3d-scenery"
     },
     RKSM: {
         icao: "RKSM",
-        name: "Seoul"
+        name: "Seoul Airport"
     },
     RKTH: {
         icao: "RKTH",
-        name: "Pohang Gyeongju",
+        name: "Pohang Gyeongju Airport",
         fs2020SceneryId: "RKTH-fs2020-scenery",
         p3dSceneryId: "RKTH-p3d-scenery"
     },
     RKTL: {
         icao: "RKTL",
-        name: "Uljin",
+        name: "Uljin Airport",
         p3dSceneryId: "RKTL-p3d-scenery"
     },
     RKPD: {
         icao: "RKPD",
-        name: "Jeongseok",
+        name: "Jeongseok Airport",
         p3dSceneryId: "RKPD-p3d-scenery"
     },
     RKRS: {
         icao: "RKRS",
-        name: "Susaek",
+        name: "Susaek Airport",
         fs2020SceneryId: "RKRS-fs2020-scenery"
     },
     RKDU: {
         icao: "RKDU",
-        name: "Ulleung (virtual)",
+        name: "Ulleung Airport (virtual)",
         fs2020SceneryId: "RKDU-fs2020-scenery"
     },
     ZKPY: {
         icao: "ZKPY",
-        name: "Pyeongyang intl",
+        name: "Pyeongyang intl Airport",
         fs2020SceneryId: "ZKPY-fs2020-scenery",
         p3dSceneryId: "ZKPY-p3d-scenery"
     },
     ZKWS: {
         icao: "ZKWS",
-        name: "Wonsan Kalma intl",
+        name: "Wonsan Kalma intl Airport",
         fs2020SceneryId: "ZKWS-fs2020-scenery",
         p3dSceneryId: "ZKWS-p3d-scenery"
     }
