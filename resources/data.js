@@ -113,6 +113,7 @@ const airportInfo = {
     ZKPY: {
         icao: "ZKPY",
         name: "Pyeongyang intl Airport",
+        fs2020SceneryId: "ZKPY-fs2020-scenery",
         p3dSceneryId: "ZKPY-p3d-scenery"
     },
     ZKWS: {
@@ -614,6 +615,21 @@ const programInfo = {
         localStorageNameOfInstalledDirectoryList: "RKDU-fs2020-scenery-installed-directory-list",
         directory: {
             "JejuFlight-UlleungAirport": `fs2020-RKDU-master\\JejuFlight-UlleungAirport`
+        }
+    },
+    "ZKPY-fs2020-scenery": {
+        icao: "ZKPY",
+        programType: 'fs2020',
+        author: "me",
+        license: "contact me",
+        donation: "contact me",
+        downloadUrl: "https://github.com/lancard/fs2020-ZKPY/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-ZKPY/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "ZKPY-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "ZKPY-fs2020-scenery-installed-directory-list",
+        directory: {
+            "thekoreans-airport-zkpy-pyeongyang": `fs2020-ZKPY-master\\Packages\\thekoreans-airport-rkpk-pyeongyang`
         }
     },
     "ZKPY-p3d-scenery": {
