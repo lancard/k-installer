@@ -99,6 +99,7 @@ const airportInfo = {
     RKPD: {
         icao: "RKPD",
         name: "Jeongseok",
+        fs2020SceneryId: "RKPD-fs2020-scenery",
         p3dSceneryId: "RKPD-p3d-scenery"
     },
     RKRS: {
@@ -554,6 +555,21 @@ const programInfo = {
         directory: {
             "RKTH-p3d-scenery\\scenery": "RKTH-master\\scenery",
             "RKTH-p3d-scenery\\texture": "RKTH-master\\texture"
+        }
+    },
+    "RKPD-fs2020-scenery": {
+        icao: "RKPD",
+        programType: 'fs2020',
+        author: "Min-soo Lee",
+        license: "contact Min-soo Lee (민수#8934)",
+        donation: "contact Min-soo Lee (민수#8934)",
+        downloadUrl: "https://github.com/lancard/fs2020-RKPD/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKPD/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "RKPD-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "RKPD-fs2020-scenery-installed-directory-list",
+        directory: {
+            "a7lmu-airport-rkpd-jeongseok": `fs2020-RKPD-master\\a7lmu-airport-rkpd-jeongseok`
         }
     },
     "RKPD-p3d-scenery": {
