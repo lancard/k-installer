@@ -544,7 +544,7 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKSM-fs2020-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKSM-fs2020-scenery-installed-directory-list",
         directory: {
-            "a7lmu-seoulfix": `fs2020-RKSM-master\\a7lmu-seoulfix`
+            "a7lmu-seoulab": `fs2020-RKSM-master\\a7lmu-seoulab`
         }
     },
     "RKTH-fs2020-scenery": {
