@@ -575,9 +575,9 @@ const programInfo = {
     "RKTL-fs2020-scenery": {
         icao: "RKTL",
         programType: 'fs2020',
-        author: "ArtistPilot",
-        license: "contact ArtistPilot (hyuntakim123@naver.com)",
-        donation: "Toss 1000-3637-7654",
+        author: "Min-soo Lee",
+        license: "contact Min-soo Lee (민수#8934)",
+        donation: "contact Min-soo Lee (민수#8934)",
         downloadUrl: "https://github.com/lancard/fs2020-RKTL/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/fs2020-RKTL/version.txt",
         versionModifier: (data) => data.trim(),
