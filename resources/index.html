@@ -93,12 +93,12 @@
 
             <!-- Heading -->
             <div class="sidebar-heading mb-2 mt-3">
-                <i class="fas fa-fw fa-tower-cell"></i> Minor airport / city
+                <i class="fas fa-fw fa-tower-cell"></i> city and buildings
             </div>
 
             <li class="nav-item">
-                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('minor')">
-                    <span menu-icao class="font-weight-bold text-warning">MINOR/ETC</span>
+                <a class="nav-link" href="javascript: void(0)" onclick="showMenu('cities')">
+                    <span menu-icao class="font-weight-bold text-warning">CITIES</span>
                 </a>
             </li>
 
@@ -160,12 +160,49 @@
 
             <!-- Main Content -->
             <div id="content">
-                <div class="container-fluid collapse" id="minor">
+                <div class="container-fluid collapse" id="cities">
                     <div class="m-1">
                         <h2 class="p-3">
-                            <i class="fa-solid fa-gift"></i> Minor airport / city / buildings
+                            <i class="fa-solid fa-gift"></i> cities and buildings
                         </h2>
                     </div>
+
+                    <div class="row">
+                        <div class="card m-4 col-auto p-0">
+                            <div class="card-header">
+                                <i class="fa-solid fa-plane-circle-check"></i> Seoul City (서울 풍경)
+
+                                <div class="float-right">
+                                    <button downloadButton="seoulcity" type="button" class="btn btn-sm btn-primary mx-2"
+                                        onclick="upgradeProgram(this)">Install / Update</button>
+                                    <button downloadButton="seoulcity" type="button" class="btn btn-sm btn-danger mx-2"
+                                        onclick="removeProgramFromUI(this);">Remove</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <img src="seoulcity.png" width="200">
+                                    </div>
+                                    <div class="col">
+                                        <ul class="airport-description text-left">
+                                            <li>Target: <strong>FS2020</strong></li>
+                                            <li>Author/License: <strong>Min-soo Lee</strong></li>
+                                            <li>Latest version: <strong latestVersion="seoulcity"></strong></li>
+                                            <li>Installed version: <strong installedVersion="seoulcity"></strong>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div downloadStatus="seoulcity" class="collapse">
+                                    <h4 statusMessage class="text-primary">Download in progress...</h4>
+                                    <h4>Download: <span transferred>0</span></h4>
+                                    <h4>Speed: <span speed>0</span></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="row">
                         <div class="card m-4 col-auto p-0">
@@ -417,9 +454,12 @@
                                     <ul>
                                         <li>Waiting for Contribution! Feel free to contact me!</li>
                                         <li class="text-warning">RKTL (Uljin airport) is arrived! Thanks min-soo!</li>
-                                        <li class="text-warning">RKPD (Jeongseok airport) is arrived! Thanks min-soo!</li>
-                                        <li class="text-warning">RKTH (Pohang Gyeongju airport) is arrived! under development!</li>
-                                        <li class="text-warning">ZKPY (Pyeongyang intl airport) is arrived! under development!</li>
+                                        <li class="text-warning">RKPD (Jeongseok airport) is arrived! Thanks min-soo!
+                                        </li>
+                                        <li class="text-warning">RKTH (Pohang Gyeongju airport) is arrived! under
+                                            development!</li>
+                                        <li class="text-warning">ZKPY (Pyeongyang intl airport) is arrived! under
+                                            development!</li>
                                     </ul>
                                 </div>
                             </div>

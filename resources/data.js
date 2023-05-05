@@ -106,7 +106,7 @@ const airportInfo = {
     RKSO: {
         icao: "RKSO",
         name: "Osan",
-        fs2020SceneryId: "RKSO-fs2020-scenery"        
+        fs2020SceneryId: "RKSO-fs2020-scenery"
     },
     RKRS: {
         icao: "RKRS",
@@ -654,7 +654,7 @@ const programInfo = {
         directory: {
             "a7lmu-airport-rkso-osanairbase": `fs2020-RKSO-master\\a7lmu-airport-rkso-osanairbase`
         }
-    },    
+    },
     "RKRS-fs2020-scenery": {
         icao: "RKRS",
         programType: 'fs2020',
@@ -757,6 +757,17 @@ const programInfo = {
         localStorageNameOfInstalledDirectoryList: "yeouido-fs2020-scenery-installed-directory-list",
         directory: {
             "mycompany-airport-rksy-yeoido-airport": "fs2020-yeouido-master\\mycompany-airport-rksy-yeoido-airport"
+        }
+    },
+    "seoulcity": {
+        programType: 'fs2020',
+        downloadUrl: "https://github.com/lancard/fs2020-seoulcity/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-seoulcity/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "seoulcity-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "seoulcity-fs2020-scenery-installed-directory-list",
+        directory: {
+            "a7lmu-seoulfix": "fs2020-seoulcity-master\\a7lmu-seoulfix"
         }
     }
 };
