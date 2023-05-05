@@ -93,6 +93,7 @@ const airportInfo = {
     RKTL: {
         icao: "RKTL",
         name: "Uljin",
+        fs2020SceneryId: "RKTL-fs2020-scenery",
         p3dSceneryId: "RKTL-p3d-scenery"
     },
     RKPD: {
@@ -569,6 +570,21 @@ const programInfo = {
         directory: {
             "RKPD-p3d-scenery\\scenery": "RKPD-master\\scenery",
             "RKPD-p3d-scenery\\texture": "RKPD-master\\texture"
+        }
+    },
+    "RKTL-fs2020-scenery": {
+        icao: "RKTL",
+        programType: 'fs2020',
+        author: "ArtistPilot",
+        license: "contact ArtistPilot (hyuntakim123@naver.com)",
+        donation: "Toss 1000-3637-7654",
+        downloadUrl: "https://github.com/lancard/fs2020-RKTL/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKTL/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "RKTL-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "RKTL-fs2020-scenery-installed-directory-list",
+        directory: {
+            "a7_lmu-airport-rktl-uljin": `fs2020-RKTL-master\\a7_lmu-airport-rktl-uljin`
         }
     },
     "RKTL-p3d-scenery": {

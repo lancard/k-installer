@@ -656,6 +656,8 @@ function initialization() {
     $("span[menu-icao=ZKPY]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
     $("[icao=ZKPY] [scenerytype=fs2020] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
 
+    $("span[menu-icao=RKTL]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
+    $("[icao=RKTL] [scenerytype=fs2020] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
 
     // check update
     for (var id in programInfo) {
