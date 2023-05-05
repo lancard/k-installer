@@ -82,7 +82,8 @@ const airportInfo = {
     },
     RKSM: {
         icao: "RKSM",
-        name: "Seoul"
+        name: "Seoul",
+        fs2020SceneryId: "RKSM-fs2020-scenery",
     },
     RKTH: {
         icao: "RKTH",
@@ -101,6 +102,11 @@ const airportInfo = {
         name: "Jeongseok",
         fs2020SceneryId: "RKPD-fs2020-scenery",
         p3dSceneryId: "RKPD-p3d-scenery"
+    },
+    RKSO: {
+        icao: "RKSO",
+        name: "Osan",
+        fs2020SceneryId: "RKSO-fs2020-scenery"        
     },
     RKRS: {
         icao: "RKRS",
@@ -526,6 +532,21 @@ const programInfo = {
             "RKPU-p3d-scenery\\texture": "RKPU-master\\texture"
         }
     },
+    "RKSM-fs2020-scenery": {
+        icao: "RKSM",
+        programType: 'fs2020',
+        author: "Min-soo Lee",
+        license: "contact Min-soo Lee (민수#8934)",
+        donation: "contact Min-soo Lee (민수#8934)",
+        downloadUrl: "https://github.com/lancard/fs2020-RKSM/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKSM/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "RKSM-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "RKSM-fs2020-scenery-installed-directory-list",
+        directory: {
+            "a7lmu-seoulfix": `fs2020-RKSM-master\\a7lmu-seoulfix`
+        }
+    },
     "RKTH-fs2020-scenery": {
         icao: "RKTH",
         programType: 'fs2020',
@@ -619,6 +640,21 @@ const programInfo = {
             "RKTL-p3d-scenery\\texture": "texture"
         }
     },
+    "RKSO-fs2020-scenery": {
+        icao: "RKSO",
+        programType: 'fs2020',
+        author: "Min-soo Lee",
+        license: "contact Min-soo Lee (민수#8934)",
+        donation: "contact Min-soo Lee (민수#8934)",
+        downloadUrl: "https://github.com/lancard/fs2020-RKSO/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKSO/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "RKSO-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "RKSO-fs2020-scenery-installed-directory-list",
+        directory: {
+            "a7lmu-airport-rkso-osanairbase": `fs2020-RKSO-master\\a7lmu-airport-rkso-osanairbase`
+        }
+    },    
     "RKRS-fs2020-scenery": {
         icao: "RKRS",
         programType: 'fs2020',
