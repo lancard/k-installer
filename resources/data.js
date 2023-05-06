@@ -769,5 +769,16 @@ const programInfo = {
         directory: {
             "a7lmu-seoulfix": "fs2020-seoulcity-master\\a7lmu-seoulfix"
         }
+    },
+    "jejuisland": {
+        programType: 'fs2020',
+        downloadUrl: "https://github.com/lancard/fs2020-jejuisland/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-jejuisland/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "jejuisland-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "jejuisland-fs2020-scenery-installed-directory-list",
+        directory: {
+            "a7lmu-jejuisland": "fs2020-jejuisland-master\\a7lmu-jejuisland"
+        }
     }
 };

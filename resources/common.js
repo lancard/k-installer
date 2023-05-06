@@ -670,6 +670,7 @@ function initialization() {
 
     $("span[menu-icao=cities]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
     $("[seoulcityButton]").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
+    $("[jejuislandButton]").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
 
     // check update
     for (var id in programInfo) {
