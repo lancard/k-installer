@@ -672,6 +672,9 @@ function initialization() {
     $("span[menu-icao=RKSM]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
     $("[icao=RKSM] [scenerytype=fs2020] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
 
+    $("span[menu-icao=RKJJ]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
+    $("[icao=RKJJ] [scenerytype=fs2020] .card-header .float-right").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
+
     $("span[menu-icao=cities]").append(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
     $("[seoulcityButton]").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");
     $("[jejuislandButton]").before(" <div class='btn btn-sm btn-danger text-small p-0'>new!</div>");

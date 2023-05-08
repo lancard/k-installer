@@ -48,6 +48,7 @@ const airportInfo = {
     RKJJ: {
         icao: "RKJJ",
         name: "Gwangju",
+        fs2020SceneryId: "RKJJ-fs2020-scenery",
         p3dSceneryId: "RKJJ-p3d-scenery"
     },
     RKJK: {
@@ -355,6 +356,21 @@ const programInfo = {
         directory: {
             "RKJB-p3d-scenery\\scenery": "RKJB-master\\scenery",
             "RKJB-p3d-scenery\\texture": "RKJB-master\\texture"
+        }
+    },
+    "RKJJ-fs2020-scenery": {
+        icao: "RKJJ",
+        programType: 'fs2020',
+        author: "me",
+        license: "contact me",
+        donation: "contact me",
+        downloadUrl: "https://github.com/lancard/fs2020-RKJJ/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKJJ/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "RKJJ-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "RKJJ-fs2020-scenery-installed-directory-list",
+        directory: {
+            "thekoreans-airport-rkjj-gwangju": `fs2020-RKJJ-master\\Packages\\thekoreans-airport-rkjj-gwangju`
         }
     },
     "RKJJ-p3d-scenery": {
