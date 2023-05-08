@@ -613,6 +613,10 @@ function updateAllMetarAndRunway() {
     });
 }
 
+function updateUtcTime() {
+    $("#utcTime").text(dayjs().toISOString().split(".")[0] + "Z");
+}
+
 function initialization() {
     // save preferences for k-installer
     localStorage.setItem(programInfo["k-installer"].localStorageNameOfInstalledVersion, appVersion);
@@ -799,6 +803,7 @@ function initialization() {
     // update metar/runway and register interval
     updateAllMetarAndRunway();
     setInterval(updateAllMetarAndRunway, 13 * 60 * 1000);
+    setInterval(updateUtcTime, 1000);
 }
 
 function showMenu(selectedId) {

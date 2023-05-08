@@ -33,6 +33,7 @@ h2 {
     padding: 0px;
     padding-left: 30px;
     width: 20rem;
+    line-height: normal;
 }
 
 .sidebar .nav-item .nav-link span {
@@ -156,7 +157,7 @@ div[logo] {
 }
 
 .sidebar .bottom-copyright .nav-link span {
-    font-size: 1rem !important;
+    font-size: 0.8rem !important;
     font-style: italic !important;
 }
 
@@ -171,4 +172,10 @@ div[logo] {
     .bottom-copyright {
         display: none;
     }
+}
+
+#utcTime {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
