@@ -361,9 +361,9 @@ const programInfo = {
     "RKJJ-fs2020-scenery": {
         icao: "RKJJ",
         programType: 'fs2020',
-        author: "me",
-        license: "contact me",
-        donation: "contact me",
+        author: "me and 유이",
+        license: "contact me and 유이",
+        donation: "contact me and 유이",
         downloadUrl: "https://github.com/lancard/fs2020-RKJJ/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/fs2020-RKJJ/version.txt",
         versionModifier: (data) => data.trim(),
