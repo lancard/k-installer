@@ -104,6 +104,11 @@ const airportInfo = {
         fs2020SceneryId: "RKPD-fs2020-scenery",
         p3dSceneryId: "RKPD-p3d-scenery"
     },
+    RKTA: {
+        icao: "RKTA",
+        name: "Taean"
+        // fs2020SceneryId: "RKTA-fs2020-scenery"
+    },
     RKSO: {
         icao: "RKSO",
         name: "Osan",
@@ -625,6 +630,23 @@ const programInfo = {
             "RKPD-p3d-scenery\\texture": "RKPD-master\\texture"
         }
     },
+    /*
+    "RKTA-fs2020-scenery": {
+        icao: "RKTA",
+        programType: 'fs2020',
+        author: "Min-soo Lee",
+        license: "contact Min-soo Lee (민수#8934)",
+        donation: "contact Min-soo Lee (민수#8934)",
+        downloadUrl: "https://github.com/lancard/fs2020-RKTA/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKTA/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "RKTA-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "RKTA-fs2020-scenery-installed-directory-list",
+        directory: {
+            "a7lmu-airport-rkta-taean": `fs2020-RKTA-master\\a7lmu-airport-rkta-taean`
+        }
+    },
+    */
     "RKTL-fs2020-scenery": {
         icao: "RKTL",
         programType: 'fs2020',
