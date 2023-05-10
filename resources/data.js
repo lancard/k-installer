@@ -106,8 +106,8 @@ const airportInfo = {
     },
     RKTA: {
         icao: "RKTA",
-        name: "Taean"
-        // fs2020SceneryId: "RKTA-fs2020-scenery"
+        name: "Taean",
+        fs2020SceneryId: "RKTA-fs2020-scenery"
     },
     RKSO: {
         icao: "RKSO",
@@ -630,7 +630,6 @@ const programInfo = {
             "RKPD-p3d-scenery\\texture": "RKPD-master\\texture"
         }
     },
-    /*
     "RKTA-fs2020-scenery": {
         icao: "RKTA",
         programType: 'fs2020',
@@ -646,7 +645,6 @@ const programInfo = {
             "a7lmu-airport-rkta-taean": `fs2020-RKTA-master\\a7lmu-airport-rkta-taean`
         }
     },
-    */
     "RKTL-fs2020-scenery": {
         icao: "RKTL",
         programType: 'fs2020',
