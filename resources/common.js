@@ -688,18 +688,18 @@ function initialization() {
     $.getJSON('https://lancard.github.io/chart/AIP/latest/AD/chartInformation.json', (chart) => {
         // add DPRK chart
         chart["ZKPY"] = {
-            "AD CHART": "https://docs.google.com/drawings/d/1i5-MPOAG82jDGAm02Vgn1sIow4qArLh8jdKC36zkJ9k/edit?usp=sharing",
-            "AD GROUND MOVEMENT CHART": "https://docs.google.com/drawings/d/1i5-MPOAG82jDGAm02Vgn1sIow4qArLh8jdKC36zkJ9k/edit?usp=sharing",
+            "AD CHART": true,
+            "AD GROUND MOVEMENT CHART": true,
             "AD OBSTACLE CHART TYPE A": false,
             "AD OBSTACLE CHART TYPE B": false,
-            "AIRCRAFT PARKING DOCKING CHART": "https://docs.google.com/drawings/d/1pS3pQOvoIkasIqEVvwI4QhE8Xoiz72WIcp7O6ESl5Fo/edit?usp=sharing",
+            "AIRCRAFT PARKING DOCKING CHART": true,
             "AREA CHART": false,
             "ATC SURVEILLANCE MINIMUM ALTITUDE CHART": false,
             "BIRD CONCENTRATION CHART": false,
-            "INSTR APCH CHART": "https://docs.google.com/drawings/d/1XPadjZpe-4uQ8-ls_y9AacdV1WtjSSictudLyMvYiT4/edit?usp=sharing",
+            "INSTR APCH CHART": true,
             "PRECISION APP TERRAIN CHART": false,
-            "SID": "https://docs.google.com/drawings/d/15QUM8bKBDNS6_jhxoA5Ilz9r1F2XFPA3vBEpWFNeePE/edit?usp=sharing",
-            "STAR": "https://docs.google.com/drawings/d/1oTln52p3Z8Gd9-BJQVquxRaWDHOHyuDUFG6gTrefhso/edit?usp=sharing",
+            "SID": true,
+            "STAR": true,
             "TEXT": false,
             "VISUAL APCH CHART": false
         };
@@ -712,11 +712,27 @@ function initialization() {
             "AREA CHART": false,
             "ATC SURVEILLANCE MINIMUM ALTITUDE CHART": false,
             "BIRD CONCENTRATION CHART": false,
-            "INSTR APCH CHART": "asfsf",
+            "INSTR APCH CHART": true,
             "PRECISION APP TERRAIN CHART": false,
-            "SID": "https://docs.google.com/drawings/d/15SYvGTXsQFpewbWRBK-QpAoeYWUy3Xj9zZ8UHC4CBHE/edit?usp=sharing",
-            "STAR": "https://docs.google.com/drawings/d/1_P7gqcQbMTlIcXF619k1AiOgMNr0WRV7MagiftFtEL4/edit?usp=sharing",
+            "SID": true,
+            "STAR": true,
             "TEXT": false,
+            "VISUAL APCH CHART": false
+        };
+        chart["RKTA"] = {
+            "AD CHART": false,
+            "AD GROUND MOVEMENT CHART": false,
+            "AD OBSTACLE CHART TYPE A": false,
+            "AD OBSTACLE CHART TYPE B": false,
+            "AIRCRAFT PARKING DOCKING CHART": false,
+            "AREA CHART": false,
+            "ATC SURVEILLANCE MINIMUM ALTITUDE CHART": false,
+            "BIRD CONCENTRATION CHART": false,
+            "INSTR APCH CHART": true,
+            "PRECISION APP TERRAIN CHART": false,
+            "SID": false,
+            "STAR": false,
+            "TEXT": true,
             "VISUAL APCH CHART": false
         };
 
@@ -878,6 +894,16 @@ function openChart(elem, chartName) {
         alert('no more INSTR APCH CHART');
         return;
     }
+
+    if (icao == "RKTA" && chartName == "TEXT") {
+        openExternalBrowser("https://hanseoflight.hanseo.ac.kr/boardCnts/fileDown.do?fileSeq=361a680721039176bca7cc3a73f0ec94");
+        return;
+    }
+    if (icao == "RKTA" && chartName == "INSTR APCH CHART") {
+        openExternalBrowser("https://hanseoflight.hanseo.ac.kr/boardCnts/fileDown.do?fileSeq=3e13ede984ee30052ad2897c5b5ed617");
+        return;
+    }
+
 
     if (downloadCount > 0) {
         $.toast({
