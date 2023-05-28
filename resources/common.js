@@ -687,11 +687,11 @@ function initialization() {
             "VISUAL APCH CHART": false
         };
         chart["ZKWS"] = {
-            "AD CHART": false,
+            "AD CHART": true,
             "AD GROUND MOVEMENT CHART": false,
             "AD OBSTACLE CHART TYPE A": false,
             "AD OBSTACLE CHART TYPE B": false,
-            "AIRCRAFT PARKING DOCKING CHART": false,
+            "AIRCRAFT PARKING DOCKING CHART": true,
             "AREA CHART": false,
             "ATC SURVEILLANCE MINIMUM ALTITUDE CHART": false,
             "BIRD CONCENTRATION CHART": false,
@@ -857,12 +857,20 @@ function openChart(elem, chartName) {
         return;
     }
 
+    if (icao == "ZKWS" && chartName == "AD CHART") {
+        openExternalBrowser("https://docs.google.com/drawings/d/1zCEK813XHRaso_utq9C2v2nyxuCDLWeam-5Rs6wAGKI/edit?usp=sharing");
+        return;
+    }
     if (icao == "ZKWS" && chartName == "SID") {
         openExternalBrowser("https://docs.google.com/drawings/d/15SYvGTXsQFpewbWRBK-QpAoeYWUy3Xj9zZ8UHC4CBHE/edit?usp=sharing");
         return;
     }
     if (icao == "ZKWS" && chartName == "STAR") {
         openExternalBrowser("https://docs.google.com/drawings/d/1_P7gqcQbMTlIcXF619k1AiOgMNr0WRV7MagiftFtEL4/edit?usp=sharing");
+        return;
+    }
+    if (icao == "ZKWS" && chartName == "AIRCRAFT PARKING DOCKING CHART") {
+        openExternalBrowser("https://docs.google.com/drawings/d/1RFYDxQtj2ZoKT1h1H86UNOrlC8y2MzPrX_mN2CVaak4/edit?usp=sharing");
         return;
     }
     if (icao == "ZKWS" && chartName == "INSTR APCH CHART") {
