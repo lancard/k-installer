@@ -43,6 +43,7 @@ const airportInfo = {
     RKJB: {
         icao: "RKJB",
         name: "Muan intl",
+        fs2020SceneryId: "RKJB-fs2020-scenery",
         p3dSceneryId: "RKJB-p3d-scenery"
     },
     RKJJ: {
@@ -345,6 +346,21 @@ const programInfo = {
         localStorageNameOfInstalledDirectoryList: "RKTN-p3d-scenery-installed-directory-list",
         directory: {
             "RKTN-p3d-scenery": "RKTN-master\\1. Daegu International Airport RKTN VER1.0"
+        }
+    },
+    "RKJB-fs2020-scenery": {
+        icao: "RKJB",
+        programType: 'fs2020',
+        author: "me and 유이",
+        license: "contact me and 유이",
+        donation: "contact me and 유이",
+        downloadUrl: "https://github.com/lancard/fs2020-RKJB/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKJB/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "RKJB-fs2020-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "RKJB-fs2020-scenery-installed-directory-list",
+        directory: {
+            "thekoreans-airport-rkjb-muan": `fs2020-RKJB-master\\Packages\\thekoreans-airport-rkjb-muan`
         }
     },
     "RKJB-p3d-scenery": {
