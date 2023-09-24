@@ -197,16 +197,16 @@ const programInfo = {
     "RKPC-fs2020-scenery": {
         icao: "RKPC",
         programType: 'fs2020',
-        author: "Snowynest",
-        license: "contact Snowynest",
-        donation: "contact Snowynest",
-        downloadUrl: "https://github.com/lancard/fs2020-RKPC/releases/latest/download/snowynest-jeju.zip",
+        author: "Me and Snowynest",
+        license: "contact Me and Snowynest",
+        donation: "contact Me and Snowynest",
+        downloadUrl: "https://github.com/lancard/fs2020-RKPC/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/fs2020-RKPC/version.txt",
         versionModifier: (data) => data.trim(),
         localStorageNameOfInstalledVersion: "RKPC-fs2020-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKPC-fs2020-scenery-installed-directory-list",
         directory: {
-            "snowynest-jeju": "snowynest-jeju",
+            "thekoreans-airport-rkpc-jeju": `fs2020-RKPC-master\\Packages\\thekoreans-airport-rkpc-jeju`
         }
     },
     "RKPC-p3d-scenery": {
