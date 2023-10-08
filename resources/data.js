@@ -167,8 +167,8 @@ const programInfo = {
     "RKSS-fs2020-scenery": {
         icao: "RKSS",
         programType: 'fs2020',
-        author: "Rusion",
-        license: "refer https://github.com/lancard/fs2020-RKSS and contact Rusion",
+        author: "Rusion and me",
+        license: "ctc contact Rusion and me",
         donation: "Kookmin bank, 27430104173050",
         downloadUrl: "https://github.com/lancard/fs2020-RKSS/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/fs2020-RKSS/version.txt",
@@ -176,7 +176,7 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKSS-fs2020-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKSS-fs2020-scenery-installed-directory-list",
         directory: {
-            "msapgimpo-msapgimpo": "fs2020-RKSS-master\\msapgimpo-msapgimpo"
+            "thekoreans-airport-rkss-gimpo": `fs2020-RKSS-master\\Packages\\thekoreans-airport-rkss-gimpo`
         }
     },
     "RKSS-p3d-scenery": {
