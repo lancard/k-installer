@@ -167,9 +167,9 @@ const programInfo = {
     "RKSS-fs2020-scenery": {
         icao: "RKSS",
         programType: 'fs2020',
-        author: "Rusion and me",
-        license: "ctc contact Rusion and me",
-        donation: "Kookmin bank, 27430104173050",
+        author: "Rusion, 플심죠아, me",
+        license: "ctc contact Rusion, 플심죠아, me",
+        donation: "Kookmin bank, 27430104173050 (Rusion), and each authors",
         downloadUrl: "https://github.com/lancard/fs2020-RKSS/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/fs2020-RKSS/version.txt",
         versionModifier: (data) => data.trim(),
