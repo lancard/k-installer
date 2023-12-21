@@ -1,6 +1,6 @@
 {
   "name": "k-installer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "installer for korean program and scenery",
   "main": "main.js",
   "build": {
@@ -19,11 +19,11 @@
   "repository": "https://github.com/lancard",
   "author": "Sungho Kim",
   "dependencies": {
-    "@electron/remote": "^2.0.9",
-    "follow-redirects": "^1.15.2"
+    "@electron/remote": "^2.1.1",
+    "follow-redirects": "^1.15.3"
   },
   "devDependencies": {
-    "electron": "^24.0.0",
-    "electron-builder": "^24.2.0"
+    "electron": "^24.8.8",
+    "electron-builder": "^24.9.1"
   }
 }
