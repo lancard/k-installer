@@ -20,7 +20,7 @@
   "author": "Sungho Kim",
   "dependencies": {
     "@electron/remote": "^2.1.2",
-    "follow-redirects": "^1.15.5"
+    "follow-redirects": "^1.15.6"
   },
   "devDependencies": {
     "electron": "^24.8.8",
