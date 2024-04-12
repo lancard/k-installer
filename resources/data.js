@@ -351,16 +351,17 @@ const programInfo = {
     "RKJB-fs2020-scenery": {
         icao: "RKJB",
         programType: 'fs2020',
-        author: "me and 유이",
-        license: "contact me and 유이",
-        donation: "contact me and 유이",
+        author: "JejuFlight",
+        license: "contact JejuFlight",
+        donation: "contact JejuFlight",
         downloadUrl: "https://github.com/lancard/fs2020-RKJB/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/fs2020-RKJB/version.txt",
         versionModifier: (data) => data.trim(),
         localStorageNameOfInstalledVersion: "RKJB-fs2020-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKJB-fs2020-scenery-installed-directory-list",
         directory: {
-            "thekoreans-airport-rkjb-muan": `fs2020-RKJB-master\\Packages\\thekoreans-airport-rkjb-muan`
+            "jejuflight-airport-rkjb-muan-intl": `fs2020-RKJB-master\\jejuflight-airport-rkjb-muan-intl`,
+            "jejuflight-scenery-muan-model": `fs2020-RKJB-master\\jejuflight-scenery-muan-model`
         }
     },
     "RKJB-p3d-scenery": {
