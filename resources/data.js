@@ -321,8 +321,8 @@ const programInfo = {
     "RKTN-fs2020-scenery": {
         icao: "RKTN",
         programType: 'fs2020',
-        author: "KoreaFix team",
-        license: "contact KoreaFix team",
+        author: "Snowynest and me",
+        license: "contact Snowynest or me",
         donation: "<a href='javascript:void(0)' onclick=\"openExternalBrowser('https://www.buymeacoffee.com/KoreaFix')\">https://www.buymeacoffee.com/KoreaFix</a>",
         downloadUrl: "https://github.com/lancard/fs2020-RKTN/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/fs2020-RKTN/version.txt",
@@ -330,7 +330,7 @@ const programInfo = {
         localStorageNameOfInstalledVersion: "RKTN-fs2020-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKTN-fs2020-scenery-installed-directory-list",
         directory: {
-            "Daegu-airport": `fs2020-RKTN-master\\Deagu-airport`
+            "thekoreans-airport-rktn-daegu": `fs2020-RKTN-master\\Packages\\thekoreans-airport-rktn-daegu`
         }
     },
     "RKTN-p3d-scenery": {
