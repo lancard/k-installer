@@ -323,7 +323,7 @@ const programInfo = {
         programType: 'fs2020',
         author: "Snowynest and me",
         license: "contact Snowynest or me",
-        donation: "<a href='javascript:void(0)' onclick=\"openExternalBrowser('https://www.buymeacoffee.com/KoreaFix')\">https://www.buymeacoffee.com/KoreaFix</a>",
+        donation: "contact Snowynest or me",
         downloadUrl: "https://github.com/lancard/fs2020-RKTN/archive/master.zip",
         versionCheckUrl: "https://lancard.github.io/fs2020-RKTN/version.txt",
         versionModifier: (data) => data.trim(),
