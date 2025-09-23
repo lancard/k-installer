@@ -151,15 +151,17 @@ const programInfo = {
         icao: "RKSI",
         programType: 'fs2020',
         author: "me, ArtistPilot, KIS, KoreaSim, Real Wing, DDKK08, JEJUFLIGHT, LAZ, MCRN KARAKUM",
-        license: "contact me",
-        donation: "contact me",
-        downloadUrl: "https://github.com/lancard/fs2020-RKSI/archive/master.zip",
-        versionCheckUrl: "https://lancard.github.io/fs2020-RKSI/version.txt",
+        license: "contact ArtistPilot",
+        donation: "contact ArtistPilot",
+        downloadUrl: "https://big.mywire.org/RKSI.zip",
+        versionCheckUrl: "https://big.mywire.org/version.txt",
         versionModifier: (data) => data.trim(),
         localStorageNameOfInstalledVersion: "RKSI-fs2020-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKSI-fs2020-scenery-installed-directory-list",
         directory: {
-            "thekoreans-airport-rksi-incheon": `fs2020-RKSI-master\\Packages\\thekoreans-airport-rksi-incheon`
+            "airport-rksi-model": "airport-rksi-model",
+            "Fly Together Korea-RKSI Aerial": "Fly Together Korea-RKSI Aerial",
+            "ftk-airport-rksi-seoul-incheon": "ftk-airport-rksi-seoul-incheon"
         }
     },
     "RKSS-fs2020-scenery": {
@@ -831,3 +833,4 @@ const programInfo = {
         }
     }
 };
+
