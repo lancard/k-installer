@@ -889,7 +889,7 @@ function openChart(elem, chartName) {
     }
 
     if (icao == "RKTA" && chartName == "TEXT") {
-        openExternalBrowser("https://hanseoflight.hanseo.ac.kr/boardCnts/fileDown.do?fileSeq=361a680721039176bca7cc3a73f0ec94");
+        openExternalBrowser("https://hanseoflight.hanseo.ac.kr/boardCnts/fileDown.do?fileSeq=cefd558f6e8b7aff4a5e5d124f5656ea");
         return;
     }
     if (icao == "RKTA" && chartName == "INSTR APCH CHART") {
@@ -966,3 +966,4 @@ function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
 
     $clonedDOM.appendTo(`#content`);
 }
+
