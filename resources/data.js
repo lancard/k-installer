@@ -20,6 +20,7 @@ const airportInfo = {
         icao: "RKPK",
         name: "Gimhae intl",
         fs2020SceneryId: "RKPK-fs2020-scenery",
+        fs2024SceneryId: "RKPK-fs2024-scenery",
         p3dSceneryId: "RKPK-p3d-scenery"
     },
     RKTU: {
@@ -236,6 +237,21 @@ const programInfo = {
         versionModifier: (data) => data.trim(),
         localStorageNameOfInstalledVersion: "RKPK-fs2020-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKPK-fs2020-scenery-installed-directory-list",
+        directory: {
+            "thekoreans-airport-rkpk-busan": `fs2020-RKPK-master\\Packages\\thekoreans-airport-rkpk-busan`
+        }
+    },
+    "RKPK-fs2024-scenery": {
+        icao: "RKPK",
+        programType: 'fs2024',
+        author: "me and hongsda",
+        license: "contact me",
+        donation: "contact me",
+        downloadUrl: "https://github.com/lancard/fs2020-RKPK/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKPK/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "RKPK-fs2024-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "RKPK-fs2024-scenery-installed-directory-list",
         directory: {
             "thekoreans-airport-rkpk-busan": `fs2020-RKPK-master\\Packages\\thekoreans-airport-rkpk-busan`
         }

@@ -5,7 +5,7 @@ const child_process = require('child_process');
 const remote = require('@electron/remote');
 
 const appVersion = process.env.npm_package_version ? process.env.npm_package_version : JSON.parse(fs.readFileSync('resources/app.asar/package.json')).version;
-const programRootDirectory = (process.env.NODE_ENV == "development" ? "." : require('@electron/remote').app.getAppPath() + ".unpacked");
+const programRootDirectory = process.env.INIT_CWD;
 
 if (!appVersion.startsWith('1.0')) {
     alert('open beta finished! use 1.0.X version plz');
@@ -92,11 +92,43 @@ function getZipfileList(filename) {
     return child_process.execSync(`"${programRootDirectory}\\7za.exe" l -ba -slt "${filename}"`).toString().split("\r\n").filter(e => e.startsWith('Path = ')).map(e => e.substring(7));
 }
 
-function getCommunityDirectory() {
+function getFs2020CommunityDirectory() {
     var msfsConfigPath = null;
 
     const steamPath = path.join(process.env.APPDATA, "\\Microsoft Flight Simulator\\UserCfg.opt");
     const storePath = path.join(process.env.LOCALAPPDATA, "\\Packages\\Microsoft.FlightSimulator_8wekyb3d8bbwe\\LocalCache\\UserCfg.opt");
+
+    if (fs.existsSync(steamPath)) {
+        msfsConfigPath = steamPath;
+    } else if (fs.existsSync(storePath)) {
+        msfsConfigPath = storePath;
+    } else {
+        return null;
+    }
+
+    if (!msfsConfigPath) {
+        return null;
+    }
+
+    try {
+        const msfsConfig = fs.readFileSync(msfsConfigPath).toString();
+        const msfsConfigLines = msfsConfig.split(/\r?\n/);
+        const packagesPathLine = msfsConfigLines.find(line => line.includes('InstalledPackagesPath'));
+        const communityDir = path.join(packagesPathLine.split(" ").slice(1).join(" ").replaceAll('"', ''), "\\Community");
+
+        return fs.existsSync(communityDir) ? communityDir : null;
+    } catch (e) {
+        console.warn('Could not parse community dir from file', msfsConfigPath);
+        console.error(e);
+        return null;
+    }
+}
+
+function getFs2024CommunityDirectory() {
+    var msfsConfigPath = null;
+
+    const steamPath = path.join(process.env.APPDATA, "\\Microsoft Flight Simulator 2024\\UserCfg.opt");
+    const storePath = path.join(process.env.LOCALAPPDATA, "\\Packages\\Microsoft.Limitless_8wekyb3d8bbwe\\LocalCache\\UserCfg.opt");
 
     if (fs.existsSync(steamPath)) {
         msfsConfigPath = steamPath;
@@ -182,13 +214,15 @@ function moveSync(oldPath, newPath) {
 
 function updateAirportMarks(icao) {
     const fs2020Id = `${icao}-fs2020-scenery`;
+    const fs2024Id = `${icao}-fs2024-scenery`;
     const p3dId = `${icao}-p3d-scenery`;
 
     const fs2020installedVersion = programInfo[fs2020Id] ? localStorage.getItem(programInfo[fs2020Id].localStorageNameOfInstalledVersion) : null;
+    const fs2024installedVersion = programInfo[fs2024Id] ? localStorage.getItem(programInfo[fs2024Id].localStorageNameOfInstalledVersion) : null;
     const p3dinstalledVersion = programInfo[p3dId] ? localStorage.getItem(programInfo[p3dId].localStorageNameOfInstalledVersion) : null;
 
     // installed mark
-    if (fs2020installedVersion != null || p3dinstalledVersion != null) {
+    if (fs2020installedVersion != null || fs2024installedVersion != null || p3dinstalledVersion != null) {
         $(`[map-overlay=${icao}] div.bg-gray-800`).addClass("text-success");
     }
     else {
@@ -198,6 +232,9 @@ function updateAirportMarks(icao) {
     // update mark
     var updated = false;
     if (fs2020installedVersion != null && fs2020installedVersion != programInfo[fs2020Id].latestVersion) {
+        updated = true;
+    }
+    if (fs2024installedVersion != null && fs2024installedVersion != programInfo[fs2024Id].latestVersion) {
         updated = true;
     }
     if (p3dinstalledVersion != null && p3dinstalledVersion != programInfo[p3dId].latestVersion) {
@@ -318,6 +355,15 @@ function installProgram(id) {
         }
 
         targetDirectory = localStorage.getItem("fs2020-root-directory");
+    }
+    if (programInfo[id].programType == 'fs2024') {
+        if (localStorage.getItem("fs2024-root-directory") == null) {
+            alert('select directory in home screen first');
+            showMenu('k-installer');
+            return;
+        }
+
+        targetDirectory = localStorage.getItem("fs2024-root-directory");
     }
     if (programInfo[id].programType == 'p3d') {
         if (localStorage.getItem("p3d-root-directory") == null) {
@@ -451,7 +497,11 @@ function selectDirectory(program) {
 
     if (program == 'fs2020') {
         localStorage.setItem("fs2020-root-directory", ret[0]);
-        $("#communityDirectory").text(ret[0]);
+        $("#fs2020CommunityDirectory").text(ret[0]);
+    }
+    if (program == 'fs2024') {
+        localStorage.setItem("fs2024-root-directory", ret[0]);
+        $("#fs2024CommunityDirectory").text(ret[0]);
     }
     if (program == 'p3d') {
         localStorage.setItem("p3d-root-directory", ret[0]);
@@ -622,15 +672,28 @@ function initialization() {
     localStorage.setItem(programInfo["k-installer"].localStorageNameOfInstalledVersion, appVersion);
 
     if (localStorage.getItem("fs2020-root-directory") == null) {
-        if (getCommunityDirectory() != null)
-            localStorage.setItem("fs2020-root-directory", getCommunityDirectory());
+        if (getFs2020CommunityDirectory() != null)
+            localStorage.setItem("fs2020-root-directory", getFs2020CommunityDirectory());
     }
 
+    if (localStorage.getItem("fs2024-root-directory") == null) {
+        if (getFs2024CommunityDirectory() != null)
+            localStorage.setItem("fs2024-root-directory", getFs2024CommunityDirectory());
+    }
+
+
     if (localStorage.getItem("fs2020-root-directory") == null) {
-        $("#communityDirectory").text("Not Found");
+        $("#fs2020CommunityDirectory").text("Not Found");
     }
     else {
-        $("#communityDirectory").text(localStorage.getItem("fs2020-root-directory"));
+        $("#fs2020CommunityDirectory").text(localStorage.getItem("fs2020-root-directory"));
+    }
+
+    if (localStorage.getItem("fs2024-root-directory") == null) {
+        $("#fs2024CommunityDirectory").text("Not Found");
+    }
+    else {
+        $("#fs2024CommunityDirectory").text(localStorage.getItem("fs2024-root-directory"));
     }
 
     if (localStorage.getItem("p3d-root-directory") == null) {
@@ -641,7 +704,7 @@ function initialization() {
     }
 
     for (var airport in airportInfo) {
-        createSceneryContentsDOM(airportInfo[airport].icao, airportInfo[airport].name, airportInfo[airport].fs2020SceneryId, airportInfo[airport].p3dSceneryId);
+        createSceneryContentsDOM(airportInfo[airport].icao, airportInfo[airport].name, airportInfo[airport].fs2020SceneryId, airportInfo[airport].fs2024SceneryId, airportInfo[airport].p3dSceneryId);
     }
     $("[airportTemplate]").hide();
 
@@ -912,7 +975,7 @@ function openChart(elem, chartName) {
     window.open(`https://lancard.github.io/chart/AIP/latest/AD/${icao}/${chartName}.pdf`);
 }
 
-function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
+function createSceneryContentsDOM(icao, airportName, fs2020Id, fs2024Id, p3dId) {
     $clonedDOM = $("[airportTemplate]:not(:visible)").clone().removeClass("collapse");;
 
     // menu
@@ -947,6 +1010,21 @@ function createSceneryContentsDOM(icao, airportName, fs2020Id, p3dId) {
         $clonedDOM.find("[sceneryType=fs2020]").remove();
     }
 
+    // fs2024
+    if (fs2024Id) {
+        $clonedDOM.find("[sceneryType=fs2024]").find("[author]").text(programInfo[fs2024Id].author);
+        $clonedDOM.find("[sceneryType=fs2024]").find("[license]").text(programInfo[fs2024Id].license);
+        $clonedDOM.find("[sceneryType=fs2024]").find("[donation]").html(programInfo[fs2024Id].donation);
+        $clonedDOM.find("[sceneryType=fs2024]").find("[latestVersion]").attr("latestVersion", fs2024Id);
+        $clonedDOM.find("[sceneryType=fs2024]").find("[installedVersion]").attr("installedVersion", fs2024Id);
+        $clonedDOM.find("[sceneryType=fs2024]").find("[installedDirectory]").attr("installedDirectory", fs2024Id);
+        $clonedDOM.find("[sceneryType=fs2024]").find("[updateNotify]").attr("updateNotify", fs2024Id);
+        $clonedDOM.find("[sceneryType=fs2024]").find("[downloadButton]").attr("downloadButton", fs2024Id);
+        $clonedDOM.find("[sceneryType=fs2024]").find("[downloadStatus]").attr("downloadStatus", fs2024Id);
+    }
+    else {
+        $clonedDOM.find("[sceneryType=fs2024]").remove();
+    }
 
     // p3d
     if (p3dId) {
