@@ -7,11 +7,6 @@ const remote = require('@electron/remote');
 const appVersion = process.env.npm_package_version ? process.env.npm_package_version : JSON.parse(fs.readFileSync('resources/app.asar/package.json')).version;
 const programRootDirectory = (process.env.npm_lifecycle_event == 'dev' ? process.env.INIT_CWD : require('@electron/remote').app.getAppPath() + ".unpacked");
 
-if (!appVersion.startsWith('1.0')) {
-    alert('open beta finished! use 1.0.X version plz');
-    openExternalBrowser("https://github.com/lancard/k-installer/releases");
-}
-
 function openExternalBrowser(url) {
     child_process.execSync(`start ${url}`);
 }
