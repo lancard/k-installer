@@ -81,6 +81,7 @@ const airportInfo = {
         icao: "RKPU",
         name: "Ulsan",
         fs2020SceneryId: "RKPU-fs2020-scenery",
+        fs2024SceneryId: "RKPU-fs2024-scenery",
         p3dSceneryId: "RKPU-p3d-scenery"
     },
     RKSM: {
@@ -564,6 +565,21 @@ const programInfo = {
         versionModifier: (data) => data.trim(),
         localStorageNameOfInstalledVersion: "RKPU-fs2020-scenery-installed-version",
         localStorageNameOfInstalledDirectoryList: "RKPU-fs2020-scenery-installed-directory-list",
+        directory: {
+            "thekoreans-airport-rkpu-ulsan": `fs2020-RKPU-master\\Packages\\thekoreans-airport-rkpu-ulsan`
+        }
+    },
+    "RKPU-fs2024-scenery": {
+        icao: "RKPU",
+        programType: 'fs2024',
+        author: "me and 유이",
+        license: "contact me and 유이",
+        donation: "contact me and 유이",
+        downloadUrl: "https://github.com/lancard/fs2020-RKPU/archive/master.zip",
+        versionCheckUrl: "https://lancard.github.io/fs2020-RKPU/version.txt",
+        versionModifier: (data) => data.trim(),
+        localStorageNameOfInstalledVersion: "RKPU-fs2024-scenery-installed-version",
+        localStorageNameOfInstalledDirectoryList: "RKPU-fs2024-scenery-installed-directory-list",
         directory: {
             "thekoreans-airport-rkpu-ulsan": `fs2020-RKPU-master\\Packages\\thekoreans-airport-rkpu-ulsan`
         }
